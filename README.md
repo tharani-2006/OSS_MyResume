@@ -12,10 +12,24 @@ A modern, futuristic portfolio website showcasing my backend development and cyb
 - Smooth animations with Framer Motion
 - Backend and cybersecurity focused content
 
-## 🎯 Projects Showcased
-- **Library Management System** - Advanced DBMS project with PostgreSQL
+## 🎯 Featured Projects
+
+### 🏛️ **Library Management System** (LIVE DEMO)
+> **Advanced Database Management System with Interactive UI**
+
+- **🔗 Live Demo**: [Interactive Database Operations](https://your-demo-url.railway.app) *(Update when deployed)*
+- **📂 GitHub**: [Library Management System](https://github.com/avis-enna/library-management-system)
+- **⚡ Features**: 
+  - Complete CRUD operations with real-time updates
+  - Interactive web interface for database manipulation
+  - Advanced SQL queries, JOINs, and aggregations
+  - Member management, book borrowing/returning, overdue tracking
+  - Professional API with comprehensive error handling
+- **🛠️ Tech Stack**: PostgreSQL, Python Flask, SQLite, REST API, Interactive UI
+
+### 🔐 **Additional Projects**
 - **Secure Authentication System** - JWT-based security implementation
-- **RESTful API Development** - Scalable backend architecture
+- **RESTful API Development** - Scalable backend architecture  
 - **Containerized Microservices** - Docker and deployment automation
 
 ## 🔧 Technologies

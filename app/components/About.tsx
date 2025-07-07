@@ -88,9 +88,17 @@ export default function About() {
               </p>
               
               <p>
-                My journey in software development focuses on backend technologies, system architecture, 
-                and security implementations. I enjoy solving complex problems related to data management, 
-                performance optimization, and secure deployment strategies.
+                My experience includes developing comprehensive database management systems with 
+                advanced features like real-time CRUD operations, complex query optimization, and 
+                interactive user interfaces. I recently built a complete Library Management System 
+                demonstrating end-to-end database design, API development, and deployment skills.
+              </p>
+              
+              <p>
+                I focus on backend technologies, system architecture, and security implementations, 
+                with hands-on experience in PostgreSQL, Python Flask APIs, and database optimization. 
+                I enjoy solving complex problems related to data management, performance optimization, 
+                and secure deployment strategies.
               </p>
               
               <p>

@@ -103,8 +103,9 @@ export default function Hero() {
           className="text-lg text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed"
           variants={itemVariants}
         >
-          Backend Developer specializing in secure, scalable systems and cybersecurity. 
-          Passionate about building robust server-side solutions and deployment automation.
+          Backend Developer specializing in secure, scalable systems and database management. 
+          Built comprehensive projects including interactive Library Management Systems with 
+          advanced CRUD operations and real-time API demonstrations.
         </motion.p>
 
         {/* CTA Buttons */}

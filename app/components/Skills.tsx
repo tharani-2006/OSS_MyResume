@@ -19,11 +19,13 @@ export default function Skills() {
       title: 'Database & Storage',
       skills: [
         { name: 'PostgreSQL', level: 88 },
+        { name: 'SQL Query Optimization', level: 90 },
+        { name: 'Database Design', level: 92 },
+        { name: 'CRUD Operations', level: 95 },
         { name: 'MongoDB', level: 85 },
+        { name: 'SQLite', level: 88 },
         { name: 'Redis', level: 82 },
-        { name: 'MySQL', level: 80 },
-        { name: 'Database Design', level: 90 },
-        { name: 'Data Modeling', level: 85 },
+        { name: 'Data Modeling', level: 90 },
       ]
     },
     {

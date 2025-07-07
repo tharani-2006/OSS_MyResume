@@ -8,11 +8,11 @@ export default function Projects() {
     {
       id: 1,
       title: 'Library Management System',
-      description: 'Comprehensive DBMS project with PostgreSQL featuring advanced database concepts, optimization, and full API implementation.',
-      tech: ['PostgreSQL', 'Python', 'Flask', 'SQL', 'Database Design', 'Performance Optimization'],
+      description: 'Advanced DBMS project featuring interactive CRUD operations, real-time statistics, and comprehensive database design. Includes member management, book borrowing/returning, overdue tracking, and live API demonstrations with professional web interface.',
+      tech: ['PostgreSQL', 'Python', 'Flask', 'SQLite', 'SQL', 'Database Design', 'CRUD Operations', 'REST API', 'Interactive UI'],
       image: '/api/placeholder/600/400',
       github: 'https://github.com/avis-enna/library-management-system',
-      live: '#',
+      live: 'https://your-demo-url.railway.app', // Update this with your Railway URL when available
       category: 'Database',
       icon: Database,
     },
