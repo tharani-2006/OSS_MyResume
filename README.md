@@ -17,7 +17,7 @@ A modern, futuristic portfolio website showcasing my backend development and cyb
 ### 🏛️ **Library Management System** (LIVE DEMO)
 > **Advanced Database Management System with Interactive UI**
 
-- **🔗 Live Demo**: [Interactive Database Operations](https://your-demo-url.railway.app) *(Update when deployed)*
+- **🔗 Live Demo**: [Interactive Database Operations](https://web-production-e0364.up.railway.app)
 - **📂 GitHub**: [Library Management System](https://github.com/avis-enna/library-management-system)
 - **⚡ Features**: 
   - Complete CRUD operations with real-time updates

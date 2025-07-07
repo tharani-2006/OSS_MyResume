@@ -12,7 +12,7 @@ export default function Projects() {
       tech: ['PostgreSQL', 'Python', 'Flask', 'SQLite', 'SQL', 'Database Design', 'CRUD Operations', 'REST API', 'Interactive UI'],
       image: '/api/placeholder/600/400',
       github: 'https://github.com/avis-enna/library-management-system',
-      live: 'https://your-demo-url.railway.app', // Update this with your Railway URL when available
+      live: 'https://web-production-e0364.up.railway.app',
       category: 'Database',
       icon: Database,
     },
