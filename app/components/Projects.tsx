@@ -11,7 +11,7 @@ export default function Projects() {
       description: 'Comprehensive DBMS project with PostgreSQL featuring advanced database concepts, optimization, and full API implementation.',
       tech: ['PostgreSQL', 'Python', 'Flask', 'SQL', 'Database Design', 'Performance Optimization'],
       image: '/api/placeholder/600/400',
-      github: 'https://github.com/sivavenna/library-management-system',
+      github: 'https://github.com/avis-enna/library-management-system',
       live: '#',
       category: 'Database',
       icon: Database,

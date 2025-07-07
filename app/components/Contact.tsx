@@ -52,7 +52,7 @@ export default function Contact() {
   ]
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/sivavenna', label: 'GitHub' },
+    { icon: Github, href: 'https://github.com/avis-enna', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/sivavenna/', label: 'LinkedIn' },
     { icon: Twitter, href: '#', label: 'Twitter' },
   ]
