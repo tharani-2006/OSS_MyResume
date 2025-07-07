@@ -3,7 +3,7 @@
 A modern, futuristic portfolio website showcasing my backend development and cybersecurity expertise.
 
 ## 🚀 Live Demo
-[View Portfolio](https://your-username.vercel.app) <!-- Update this after deployment -->
+[View Portfolio](https://my-resume-o2do89dyl-sivavennas-projects.vercel.app)
 
 ## 🛠 Features
 - Modern Next.js 14 with TypeScript
