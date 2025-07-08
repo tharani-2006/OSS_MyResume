@@ -483,7 +483,7 @@ async def create_bulk_notifications(
 # Real-time notifications
 @app.get("/notifications/realtime/{user_id}")
 @limiter.limit("200/minute")
-async def get_realtime_notifications(user_id: int):
+async def get_realtime_notifications(request: Request, user_id: int):
     """Get real-time in-app notifications for a user"""
     try:
         notifications = []
@@ -500,7 +500,7 @@ async def get_realtime_notifications(user_id: int):
 
 @app.delete("/notifications/realtime/{user_id}")
 @limiter.limit("50/minute")
-async def clear_realtime_notifications(user_id: int):
+async def clear_realtime_notifications(request: Request, user_id: int):
     """Clear real-time notifications for a user"""
     try:
         redis_client.delete(f"user_notifications:{user_id}")

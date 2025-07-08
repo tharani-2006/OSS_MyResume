@@ -330,7 +330,7 @@ async def health_check():
 # Service health checks
 @app.get("/health/services")
 @limiter.limit("10/minute")
-async def check_services_health():
+async def check_services_health(request: Request):
     """Check health of all services"""
     health_status = {}
     

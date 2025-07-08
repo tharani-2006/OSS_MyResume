@@ -4,8 +4,8 @@
 echo "🧪 Testing AI Chatbot API Connection"
 echo "===================================="
 
-API_URL="https://premiere-brakes-attitudes-ohio.trycloudflare.com"
-API_KEY="ak_1751948233952_l9tap319gfn"
+API_URL="https://reader-santa-accessories-scout.trycloudflare.com"
+API_KEY="demo-api-key-12345"
 
 echo "📡 API Base URL: $API_URL"
 echo "🔑 API Key: $API_KEY"
@@ -30,10 +30,22 @@ curl -s -X POST \
   "$API_URL/api/chat/message" | python3 -m json.tool 2>/dev/null || echo "Chat response received"
 echo ""
 
-# Test docs endpoint
-echo "3. Testing Docs Endpoint..."
-echo "GET $API_URL/docs"
-curl -s -H "X-API-Key: $API_KEY" "$API_URL/docs" | python3 -m json.tool 2>/dev/null || echo "Docs response received"
+# Test starters endpoint
+echo "3. Testing Starters Endpoint..."
+echo "GET $API_URL/api/chat/starters"
+curl -s -H "X-API-Key: $API_KEY" "$API_URL/api/chat/starters" | python3 -m json.tool 2>/dev/null || echo "Starters response received"
+echo ""
+
+# Test models endpoint
+echo "4. Testing Models Endpoint..."
+echo "GET $API_URL/api/chat/models"
+curl -s -H "X-API-Key: $API_KEY" "$API_URL/api/chat/models" | python3 -m json.tool 2>/dev/null || echo "Models response received"
+echo ""
+
+# Test widget endpoint
+echo "5. Testing Widget Endpoint..."
+echo "GET $API_URL/widget"
+curl -s -H "X-API-Key: $API_KEY" "$API_URL/widget" | head -20 || echo "Widget response received"
 echo ""
 
 echo "✅ API Test Complete!"

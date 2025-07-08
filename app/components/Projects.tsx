@@ -12,7 +12,7 @@ export default function Projects() {
       tech: ['Node.js', 'TypeScript', 'Express.js', 'Socket.io', 'Ollama', 'SQLite', 'Docker', 'WebSocket', 'API Design', 'AI Integration'],
       image: '/api/placeholder/600/400',
       github: 'https://github.com/avis-enna/ai-chatbot-microservice',
-      live: 'https://premiere-brakes-attitudes-ohio.trycloudflare.com',
+      live: 'https://reader-santa-accessories-scout.trycloudflare.com',
       category: 'AI/ML',
       icon: Bot,
     },

@@ -3,7 +3,7 @@ User Service - Authentication & Authorization Microservice
 Handles user management, authentication, and security
 """
 
-from fastapi import FastAPI, HTTPException, Depends, status, Security
+from fastapi import FastAPI, HTTPException, Depends, status, Security, Request
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
@@ -282,8 +282,8 @@ async def health_check():
 @app.post("/auth/register", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
 @limiter.limit("5/minute")
 async def register_user(
+    request: Request,
     user_data: UserCreate, 
-    request, 
     db: Session = Depends(get_db)
 ):
     """Register a new user with comprehensive validation"""
@@ -335,8 +335,8 @@ async def register_user(
 @app.post("/auth/login", response_model=Token)
 @limiter.limit("10/minute")
 async def login_user(
+    request: Request,
     login_data: UserLogin,
-    request,
     db: Session = Depends(get_db)
 ):
     """Authenticate user with security controls"""
@@ -431,8 +431,8 @@ async def get_current_user_info(current_user: User = Depends(get_current_user)):
 @app.put("/auth/change-password")
 @limiter.limit("3/minute")
 async def change_password(
+    request: Request,
     password_data: PasswordChange,
-    request,
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):

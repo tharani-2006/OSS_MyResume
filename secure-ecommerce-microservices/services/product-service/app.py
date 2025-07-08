@@ -3,7 +3,7 @@ Product Service - Product Catalog & Inventory Management
 Handles product listings, categories, inventory, and search
 """
 
-from fastapi import FastAPI, HTTPException, Depends, status, Query
+from fastapi import FastAPI, HTTPException, Depends, status, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from sqlalchemy import create_engine, Column, Integer, String, DateTime, Boolean, Text, Float, ForeignKey
@@ -215,7 +215,7 @@ async def health_check():
 # Category endpoints
 @app.post("/categories", response_model=CategoryResponse, status_code=status.HTTP_201_CREATED)
 @limiter.limit("10/minute")
-async def create_category(category: CategoryCreate, db: Session = Depends(get_db)):
+async def create_category(request: Request, category: CategoryCreate, db: Session = Depends(get_db)):
     try:
         db_category = Category(**category.dict())
         db.add(db_category)
@@ -230,6 +230,7 @@ async def create_category(category: CategoryCreate, db: Session = Depends(get_db
 @app.get("/categories", response_model=List[CategoryResponse])
 @limiter.limit("50/minute")
 async def get_categories(
+    request: Request,
     skip: int = Query(0, ge=0),
     limit: int = Query(50, ge=1, le=100),
     active_only: bool = Query(True),
@@ -245,7 +246,7 @@ async def get_categories(
 # Product endpoints
 @app.post("/products", response_model=ProductResponse, status_code=status.HTTP_201_CREATED)
 @limiter.limit("20/minute")
-async def create_product(product: ProductCreate, db: Session = Depends(get_db)):
+async def create_product(request: Request, product: ProductCreate, db: Session = Depends(get_db)):
     try:
         # Check if SKU already exists
         existing_product = db.query(Product).filter(Product.sku == product.sku).first()
@@ -291,6 +292,7 @@ async def create_product(product: ProductCreate, db: Session = Depends(get_db)):
 @app.get("/products", response_model=List[ProductResponse])
 @limiter.limit("100/minute")
 async def get_products(
+    request: Request,
     skip: int = Query(0, ge=0),
     limit: int = Query(50, ge=1, le=100),
     category_id: Optional[int] = Query(None),
@@ -320,7 +322,7 @@ async def get_products(
 
 @app.get("/products/{product_id}", response_model=ProductResponse)
 @limiter.limit("200/minute")
-async def get_product(product_id: int, db: Session = Depends(get_db)):
+async def get_product(request: Request, product_id: int, db: Session = Depends(get_db)):
     # Try cache first
     cached_product = get_cached_product(product_id)
     if cached_product:
@@ -349,7 +351,7 @@ async def get_product(product_id: int, db: Session = Depends(get_db)):
 
 @app.put("/products/{product_id}", response_model=ProductResponse)
 @limiter.limit("20/minute")
-async def update_product(product_id: int, product_update: ProductUpdate, db: Session = Depends(get_db)):
+async def update_product(request: Request, product_id: int, product_update: ProductUpdate, db: Session = Depends(get_db)):
     try:
         product = db.query(Product).filter(Product.id == product_id).first()
         if not product:
@@ -378,7 +380,7 @@ async def update_product(product_id: int, product_update: ProductUpdate, db: Ses
 # Inventory endpoints
 @app.get("/products/{product_id}/inventory", response_model=InventoryResponse)
 @limiter.limit("100/minute")
-async def get_inventory(product_id: int, db: Session = Depends(get_db)):
+async def get_inventory(request: Request, product_id: int, db: Session = Depends(get_db)):
     inventory = db.query(Inventory).filter(Inventory.product_id == product_id).first()
     if not inventory:
         raise HTTPException(status_code=404, detail="Inventory not found")
@@ -386,7 +388,7 @@ async def get_inventory(product_id: int, db: Session = Depends(get_db)):
 
 @app.put("/products/{product_id}/inventory", response_model=InventoryResponse)
 @limiter.limit("20/minute")
-async def update_inventory(product_id: int, inventory_update: InventoryUpdate, db: Session = Depends(get_db)):
+async def update_inventory(request: Request, product_id: int, inventory_update: InventoryUpdate, db: Session = Depends(get_db)):
     try:
         inventory = db.query(Inventory).filter(Inventory.product_id == product_id).first()
         if not inventory:
@@ -414,7 +416,7 @@ async def update_inventory(product_id: int, inventory_update: InventoryUpdate, d
 
 @app.post("/products/{product_id}/inventory/reserve")
 @limiter.limit("50/minute")
-async def reserve_inventory(product_id: int, quantity: int, db: Session = Depends(get_db)):
+async def reserve_inventory(request: Request, product_id: int, quantity: int, db: Session = Depends(get_db)):
     try:
         inventory = db.query(Inventory).filter(Inventory.product_id == product_id).first()
         if not inventory:
@@ -437,7 +439,7 @@ async def reserve_inventory(product_id: int, quantity: int, db: Session = Depend
 
 @app.post("/products/{product_id}/inventory/release")
 @limiter.limit("50/minute")
-async def release_inventory(product_id: int, quantity: int, db: Session = Depends(get_db)):
+async def release_inventory(request: Request, product_id: int, quantity: int, db: Session = Depends(get_db)):
     try:
         inventory = db.query(Inventory).filter(Inventory.product_id == product_id).first()
         if not inventory:
