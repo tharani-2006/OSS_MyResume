@@ -1,0 +1,33 @@
+# Exclude AiProject from Vercel deployment
+AiProject/
+secure-ecommerce-microservices/
+library-management-system/
+
+# Exclude other project files
+*.md
+*.sh
+.env
+.env.local
+.env.production
+.env.development
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
