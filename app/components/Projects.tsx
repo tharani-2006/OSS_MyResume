@@ -1,12 +1,23 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ExternalLink, Github, Code, Smartphone, Globe, Database } from 'lucide-react'
+import { ExternalLink, Github, Code, Smartphone, Globe, Database, Bot } from 'lucide-react'
 
 export default function Projects() {
   const projects = [
     {
       id: 1,
+      title: 'AI Chatbot Microservice',
+      description: 'Production-ready AI chatbot microservice with Ollama integration, featuring real-time WebSocket communication, embeddable widget, session management, and comprehensive API. Includes rate limiting, authentication, SQLite persistence, and Docker containerization for seamless deployment. Try the chat widget below!',
+      tech: ['Node.js', 'TypeScript', 'Express.js', 'Socket.io', 'Ollama', 'SQLite', 'Docker', 'WebSocket', 'API Design', 'AI Integration'],
+      image: '/api/placeholder/600/400',
+      github: 'https://github.com/avis-enna/ai-chatbot-microservice',
+      live: 'https://premiere-brakes-attitudes-ohio.trycloudflare.com',
+      category: 'AI/ML',
+      icon: Bot,
+    },
+    {
+      id: 2,
       title: 'Library Management System',
       description: 'Advanced DBMS project featuring interactive CRUD operations, real-time statistics, and comprehensive database design. Includes member management, book borrowing/returning, overdue tracking, and live API demonstrations with professional web interface.',
       tech: ['PostgreSQL', 'Python', 'Flask', 'SQLite', 'SQL', 'Database Design', 'CRUD Operations', 'REST API', 'Interactive UI'],
@@ -17,7 +28,7 @@ export default function Projects() {
       icon: Database,
     },
     {
-      id: 2,
+      id: 3,
       title: 'Secure E-Commerce Microservices Platform',
       description: 'Production-ready e-commerce platform with microservices architecture featuring JWT authentication, API Gateway, rate limiting, circuit breakers, Redis caching, and comprehensive security measures. Includes User, Product, Order, and Notification services with Docker orchestration.',
       tech: ['FastAPI', 'PostgreSQL', 'Redis', 'Docker', 'JWT', 'Microservices', 'API Gateway', 'Circuit Breaker', 'Rate Limiting', 'Security'],
@@ -28,7 +39,7 @@ export default function Projects() {
       icon: Globe,
     },
     {
-      id: 3,
+      id: 4,
       title: 'Secure Authentication System',
       description: 'JWT-based authentication with multi-factor authentication, rate limiting, and security monitoring.',
       tech: ['Node.js', 'Express.js', 'JWT', 'bcrypt', 'Redis', 'PostgreSQL'],
@@ -39,7 +50,7 @@ export default function Projects() {
       icon: Code,
     },
     {
-      id: 4,
+      id: 5,
       title: 'RESTful API with Database',
       description: 'Scalable REST API architecture with CRUD operations, input validation, and error handling.',
       tech: ['Python', 'Flask/FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Docker'],
@@ -85,7 +96,8 @@ export default function Projects() {
           </h2>
           <div className="w-20 h-1 bg-gradient-cyber mx-auto mb-6"></div>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Conceptual projects showcasing my technical knowledge and the type of solutions I'm passionate about building
+            Conceptual projects showcasing my technical knowledge and the type of solutions I'm passionate about building. 
+            <span className="text-cyber-blue"> Try the AI chatbot in the bottom-right corner to learn more!</span>
           </p>
         </motion.div>
 
