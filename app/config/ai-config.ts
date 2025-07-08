@@ -13,9 +13,13 @@ export const AI_CONFIG = {
   
   // Determine which URL to use
   getApiUrl: () => {
+    // Always use production URL if environment variable is set
+    if (process.env.NEXT_PUBLIC_AI_API_URL) {
+      return process.env.NEXT_PUBLIC_AI_API_URL;
+    }
     // If we're in production or the environment variable is set, use production URL
     if (process.env.NODE_ENV === 'production' || process.env.NEXT_PUBLIC_USE_PRODUCTION_AI === 'true') {
-      return process.env.NEXT_PUBLIC_AI_API_URL || AI_CONFIG.PRODUCTION_API_URL;
+      return AI_CONFIG.PRODUCTION_API_URL;
     }
     // Otherwise use local development URL
     return AI_CONFIG.LOCAL_API_URL;

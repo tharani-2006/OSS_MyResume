@@ -21,6 +21,8 @@ export default function ChatBot({
   apiEndpoint = AI_CONFIG.getApiUrl(),
   apiKey = AI_CONFIG.API_KEY
 }: ChatBotProps) {
+  console.log('ChatBot initialized with:', { apiEndpoint, apiKey })
+  
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -40,14 +42,29 @@ export default function ChatBot({
 
   const checkAiServiceHealth = async () => {
     try {
-      const response = await fetch(AI_CONFIG.getHealthUrl(), {
+      const healthUrl = AI_CONFIG.getHealthUrl()
+      console.log('Checking health at:', healthUrl)
+      console.log('Using API key:', apiKey)
+      
+      const response = await fetch(healthUrl, {
         method: 'GET',
         headers: {
           'X-API-Key': apiKey
         }
       })
-      setIsOnline(response.ok)
+      
+      console.log('Health check response status:', response.status)
+      
+      if (response.ok) {
+        const data = await response.json()
+        console.log('Health check data:', data)
+        setIsOnline(true)
+      } else {
+        console.log('Health check failed')
+        setIsOnline(false)
+      }
     } catch (error) {
+      console.log('Health check error:', error)
       setIsOnline(false)
     }
   }
@@ -126,6 +143,9 @@ export default function ChatBot({
 
       // Try to call the live AI service first
       try {
+        console.log('Attempting to call AI service:', apiEndpoint)
+        console.log('Using API key:', apiKey)
+        
         const apiResponse = await fetch(apiEndpoint, {
           method: 'POST',
           headers: {
@@ -138,20 +158,27 @@ export default function ChatBot({
           })
         })
 
+        console.log('API Response status:', apiResponse.status)
+        
         if (apiResponse.ok) {
           const data = await apiResponse.json()
+          console.log('API Response data:', data)
+          
           if (data.success && data.data && data.data.response) {
             response = data.data.response
             setIsOnline(true)
+            console.log('Using AI response:', response)
           } else if (data.response) {
             response = data.response
             setIsOnline(true)
+            console.log('Using AI response (fallback format):', response)
           }
         } else {
+          console.log('API response not ok:', apiResponse.status)
           setIsOnline(false)
         }
       } catch (error) {
-        console.log('AI service unavailable, using fallback response')
+        console.log('AI service error:', error)
         setIsOnline(false)
       }
 
