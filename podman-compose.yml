@@ -1,0 +1,163 @@
+version: '3.8'
+
+services:
+  # Redis for caching and rate limiting
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # PostgreSQL databases (using single instance with multiple databases for Podman simplicity)
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ecommerce_user
+      POSTGRES_PASSWORD: secure_password_123
+      POSTGRES_DB: ecommerce_main
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ecommerce_user -d ecommerce_main"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # User Service
+  user-service:
+    build:
+      context: ./secure-ecommerce-microservices/services/user-service
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      - DATABASE_URL=postgresql://ecommerce_user:secure_password_123@postgres:5432/user_db
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - JWT_SECRET_KEY=your-super-secret-jwt-key-change-in-production-podman
+    depends_on:
+      - postgres
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # Product Service
+  product-service:
+    build:
+      context: ./secure-ecommerce-microservices/services/product-service
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    environment:
+      - DATABASE_URL=postgresql://ecommerce_user:secure_password_123@postgres:5432/product_db
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - postgres
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8002/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # Order Service
+  order-service:
+    build:
+      context: ./secure-ecommerce-microservices/services/order-service
+      dockerfile: Dockerfile
+    ports:
+      - "8003:8003"
+    environment:
+      - DATABASE_URL=postgresql://ecommerce_user:secure_password_123@postgres:5432/order_db
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PRODUCT_SERVICE_URL=http://product-service:8002
+      - USER_SERVICE_URL=http://user-service:8001
+      - NOTIFICATION_SERVICE_URL=http://notification-service:8004
+    depends_on:
+      - postgres
+      - redis
+      - product-service
+      - notification-service
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8003/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # Notification Service
+  notification-service:
+    build:
+      context: ./secure-ecommerce-microservices/services/notification-service
+      dockerfile: Dockerfile
+    ports:
+      - "8004:8004"
+    environment:
+      - DATABASE_URL=postgresql://ecommerce_user:secure_password_123@postgres:5432/notification_db
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - EMAIL_HOST=smtp.gmail.com
+      - EMAIL_PORT=587
+      - EMAIL_USERNAME=${EMAIL_USERNAME}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+      - EMAIL_FROM=noreply@ecommerce.com
+    depends_on:
+      - postgres
+      - redis
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8004/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+  # API Gateway
+  api-gateway:
+    build:
+      context: ./secure-ecommerce-microservices/services/api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - USER_SERVICE_URL=http://user-service:8001
+      - PRODUCT_SERVICE_URL=http://product-service:8002
+      - ORDER_SERVICE_URL=http://order-service:8003
+      - NOTIFICATION_SERVICE_URL=http://notification-service:8004
+      - JWT_SECRET_KEY=your-super-secret-jwt-key-change-in-production-podman
+    depends_on:
+      - redis
+      - user-service
+      - product-service
+      - order-service
+      - notification-service
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+  postgres_data:
