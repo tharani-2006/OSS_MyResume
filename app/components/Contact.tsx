@@ -58,9 +58,17 @@ export default function Contact() {
         const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
         const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
+        console.log('EmailJS Configuration:', {
+          serviceId: serviceId ? 'Set' : 'Missing',
+          templateId: templateId ? 'Set' : 'Missing',
+          publicKey: publicKey ? 'Set' : 'Missing'
+        })
+
         // Check if EmailJS is configured
         if (serviceId && templateId && publicKey) {
-          await emailjs.send(
+          console.log('Attempting to send email via EmailJS...')
+          
+          const result = await emailjs.send(
             serviceId,
             templateId,
             {
@@ -68,12 +76,13 @@ export default function Contact() {
               from_email: formData.email,
               subject: formData.subject,
               message: formData.message,
-              to_email: 'vsivareddy.venna@gmail.com',
+              reply_to: formData.email,
             },
             publicKey
           )
           
-          setSubmitMessage('Message sent successfully! I\'ll get back to you soon.')
+          console.log('EmailJS Success:', result)
+          setSubmitMessage('Message sent successfully via EmailJS! I\'ll get back to you soon.')
           setSubmitType('success')
           setFormData({ name: '', email: '', subject: '', message: '' })
           setIsSubmitting(false)
@@ -82,7 +91,8 @@ export default function Contact() {
           console.log('EmailJS not configured, using mailto fallback...')
         }
       } catch (error) {
-        console.log('EmailJS failed, using mailto fallback...', error)
+        console.error('EmailJS Error:', error)
+        console.log('EmailJS failed, using mailto fallback...')
       }
 
       // Method 3: Fallback to mailto (always works)
