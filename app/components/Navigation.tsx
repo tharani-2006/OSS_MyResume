@@ -20,13 +20,14 @@ export default function Navigation() {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Journey', href: '#timeline' },
     { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' },
   ]
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/sivavenna', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/sivavenna/', label: 'LinkedIn' },
+    { icon: Github, href: 'https://github.com/avis-enna', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://linkedin.com/in/sivavenna', label: 'LinkedIn' },
     { icon: Mail, href: '#contact', label: 'Email' },
   ]
 
