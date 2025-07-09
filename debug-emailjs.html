@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EmailJS Debug Test</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <h1>EmailJS Debug Test</h1>
+    <p>Open the browser console to see the debug output</p>
+    <button onclick="testEmailJS()">Test EmailJS</button>
+    <div id="result"></div>
+
+    <script>
+        function testEmailJS() {
+            console.log('Testing EmailJS...');
+            
+            // These should match your environment variables
+            const serviceId = 'service_w6oxwdj';
+            const templateId = 'template_1jf6crg';
+            const publicKey = 'ZRXH7r1GZlKFJTfCH';
+            
+            console.log('Configuration:', {
+                serviceId,
+                templateId,
+                publicKey
+            });
+            
+            const templateParams = {
+                from_name: 'Test User',
+                from_email: 'test@example.com',
+                subject: 'Test Subject',
+                message: 'This is a test message from the debug script.',
+                reply_to: 'test@example.com'
+            };
+            
+            console.log('Template params:', templateParams);
+            
+            emailjs.send(serviceId, templateId, templateParams, publicKey)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    document.getElementById('result').innerHTML = '<p style="color: green;">SUCCESS! Check console for details.</p>';
+                })
+                .catch(function(error) {
+                    console.log('FAILED...', error);
+                    document.getElementById('result').innerHTML = '<p style="color: red;">FAILED! Check console for details.</p>';
+                });
+        }
+    </script>
+</body>
+</html>
