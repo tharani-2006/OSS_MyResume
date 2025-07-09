@@ -51,36 +51,38 @@ export default function Contact() {
         console.log('API route failed, trying alternative methods...')
       }
 
-      // Method 2: Try EmailJS (you'll need to set up EmailJS service)
+      // Method 2: Try EmailJS
       try {
-        // EmailJS configuration (you need to set up your EmailJS account)
-        const serviceId = 'your_service_id' // Replace with your EmailJS service ID
-        const templateId = 'your_template_id' // Replace with your EmailJS template ID
-        const publicKey = 'your_public_key' // Replace with your EmailJS public key
+        // EmailJS configuration from environment variables
+        const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+        const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+        const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
-        // Uncomment this when you have EmailJS set up
-        /*
-        await emailjs.send(
-          serviceId,
-          templateId,
-          {
-            from_name: formData.name,
-            from_email: formData.email,
-            subject: formData.subject,
-            message: formData.message,
-            to_email: 'vsivareddy.venna@gmail.com',
-          },
-          publicKey
-        )
-        
-        setSubmitMessage('Message sent successfully via EmailJS!')
-        setSubmitType('success')
-        setFormData({ name: '', email: '', subject: '', message: '' })
-        setIsSubmitting(false)
-        return
-        */
+        // Check if EmailJS is configured
+        if (serviceId && templateId && publicKey) {
+          await emailjs.send(
+            serviceId,
+            templateId,
+            {
+              from_name: formData.name,
+              from_email: formData.email,
+              subject: formData.subject,
+              message: formData.message,
+              to_email: 'vsivareddy.venna@gmail.com',
+            },
+            publicKey
+          )
+          
+          setSubmitMessage('Message sent successfully! I\'ll get back to you soon.')
+          setSubmitType('success')
+          setFormData({ name: '', email: '', subject: '', message: '' })
+          setIsSubmitting(false)
+          return
+        } else {
+          console.log('EmailJS not configured, using mailto fallback...')
+        }
       } catch (error) {
-        console.log('EmailJS failed, using mailto fallback...')
+        console.log('EmailJS failed, using mailto fallback...', error)
       }
 
       // Method 3: Fallback to mailto (always works)
