@@ -373,7 +373,7 @@ export default function Contact() {
               )}
               
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="relative">
+                <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                     Name
                   </label>
@@ -393,18 +393,9 @@ export default function Contact() {
                     }`}
                     placeholder="Your Name"
                   />
-                  {fieldFocus === 'name' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="absolute -top-2 left-4 bg-dark-bg px-2 text-xs text-cyber-blue"
-                    >
-                      Tell me what to call you
-                    </motion.div>
-                  )}
                 </div>
                 
-                <div className="relative">
+                <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
                     Email
                   </label>
@@ -424,19 +415,10 @@ export default function Contact() {
                     }`}
                     placeholder="your.email@example.com"
                   />
-                  {fieldFocus === 'email' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="absolute -top-2 left-4 bg-dark-bg px-2 text-xs text-cyber-blue"
-                    >
-                      I'll use this to respond
-                    </motion.div>
-                  )}
                 </div>
               </div>
               
-              <div className="relative">
+              <div>
                 <div className="flex justify-between items-center mb-2">
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-300">
                     Subject
@@ -462,18 +444,9 @@ export default function Contact() {
                   }`}
                   placeholder="Project Discussion"
                 />
-                {fieldFocus === 'subject' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="absolute -top-2 left-4 bg-dark-bg px-2 text-xs text-cyber-blue"
-                  >
-                    What's this about?
-                  </motion.div>
-                )}
               </div>
               
-              <div className="relative">
+              <div>
                 <div className="flex justify-between items-center mb-2">
                   <label htmlFor="message" className="block text-sm font-medium text-gray-300">
                     Message
@@ -499,15 +472,6 @@ export default function Contact() {
                   }`}
                   placeholder="Tell me about your project, ideas, or just say hello..."
                 />
-                {fieldFocus === 'message' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="absolute -top-2 left-4 bg-dark-bg px-2 text-xs text-cyber-blue"
-                  >
-                    Share your thoughts
-                  </motion.div>
-                )}
               </div>
               
               <motion.button
