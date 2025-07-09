@@ -5,9 +5,9 @@ import { User, Award, Coffee, Clock } from 'lucide-react'
 
 export default function About() {
   const stats = [
-    { icon: Award, label: 'Years Experience', value: '3+' },
-    { icon: Coffee, label: 'Projects Completed', value: '50+' },
-    { icon: Clock, label: 'Hours Coded', value: '5000+' },
+    { icon: Award, label: 'Years Experience', value: '1+' },
+    { icon: Coffee, label: 'Projects Completed', value: '5+' },
+    { icon: Clock, label: 'Hours Coded', value: '2000+' },
   ]
 
   const containerVariants = {
@@ -51,7 +51,7 @@ export default function About() {
                 </div>
               </div>
               <h3 className="text-2xl font-bold mb-2">Venna Venkata Siva Reddy</h3>
-              <p className="text-cyber-blue font-cyber">Backend Developer</p>
+              <p className="text-cyber-blue font-cyber">Software Engineer Trainee @ Cisco</p>
             </div>
 
             {/* Stats */}
@@ -82,29 +82,31 @@ export default function About() {
 
             <div className="space-y-4 text-gray-300 leading-relaxed">
               <p>
-                I'm a passionate Backend Developer with expertise in building secure, scalable 
-                server-side applications. I specialize in designing robust APIs, managing databases, 
-                and implementing cybersecurity best practices.
+                I'm a passionate Network Engineer with hands-on experience in network operations, 
+                backend development, and system automation. Currently working at Cisco Systems 
+                as a Software Engineer Trainee, where I monitor and support enterprise-level networks 
+                to ensure high availability and low latency.
               </p>
               
               <p>
-                My experience includes developing comprehensive database management systems with 
-                advanced features like real-time CRUD operations, complex query optimization, and 
-                interactive user interfaces. I recently built a complete Library Management System 
-                demonstrating end-to-end database design, API development, and deployment skills.
+                My experience includes developing and securing REST APIs for internal network automation 
+                tools using Java and Spring Boot frameworks. I perform comprehensive packet analysis 
+                and network issue resolution using Wireshark and advanced CLI tools, while assisting 
+                in security policy configuration and assessments.
               </p>
               
               <p>
-                I focus on backend technologies, system architecture, and security implementations, 
-                with hands-on experience in PostgreSQL, Python Flask APIs, and database optimization. 
-                I enjoy solving complex problems related to data management, performance optimization, 
-                and secure deployment strategies.
+                I have a strong foundation in TCP/IP, routing, switching, and Linux system administration. 
+                My expertise extends to scripting automation solutions for log parsing, configuration 
+                backups, and monitoring using Python and Bash. I also have experience with IBM Mainframe 
+                environments from my previous role at Cognizant Technology Solutions.
               </p>
               
               <p>
-                When I'm not coding, you'll find me exploring cybersecurity trends, learning about 
-                new deployment technologies, or contributing to open-source security tools. I believe 
-                in building systems that are not just functional, but also secure and maintainable.
+                When I'm not working, you'll find me pursuing additional certifications like the 
+                Cisco Certified DevNet Associate (DEVASC), exploring new networking technologies, 
+                or contributing to IoT projects. I believe in continuous learning and staying 
+                updated with the latest industry trends.
               </p>
             </div>
 
@@ -112,12 +114,12 @@ export default function About() {
               <h3 className="text-xl font-semibold text-cyber-blue">What I Do</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {[
-                  'Backend Development',
-                  'API Design & Development',
-                  'Database Architecture',
-                  'Cybersecurity Implementation',
-                  'Cloud Deployment & DevOps',
-                  'System Performance Optimization',
+                  'Network Engineering',
+                  'REST API Development',
+                  'Enterprise Network Support',
+                  'Security Policy Configuration',
+                  'Automation Scripting',
+                  'Packet Analysis & Troubleshooting',
                 ].map((skill, index) => (
                   <motion.div
                     key={skill}
@@ -135,10 +137,10 @@ export default function About() {
               <h3 className="text-xl font-semibold text-cyber-purple">Certifications</h3>
               <div className="grid grid-cols-1 gap-3">
                 {[
-                  'AWS Certified Solutions Architect',
-                  'CompTIA Security+',
-                  'Certified Kubernetes Administrator',
-                  'Docker Certified Associate',
+                  'Cisco Certified Network Associate (CCNA)',
+                  'Cisco Certified Cybersecurity Associate (CCCA)',
+                  'Microsoft Certified: Security, Compliance & Identity',
+                  'Currently Pursuing: Cisco Certified DevNet Associate (DEVASC)',
                 ].map((cert, index) => (
                   <motion.div
                     key={cert}

@@ -94,8 +94,8 @@ export default function Hero() {
           className="text-xl md:text-2xl lg:text-3xl text-gray-300 mb-8 font-light"
           variants={itemVariants}
         >
-          <span className="block">Backend Developer</span>
-          <span className="block text-cyber-purple">& Cybersecurity Enthusiast</span>
+          <span className="block">Network Engineer</span>
+          <span className="block text-cyber-purple">& Software Engineer Trainee at Cisco</span>
         </motion.div>
 
         {/* Description */}
@@ -103,9 +103,9 @@ export default function Hero() {
           className="text-lg text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed"
           variants={itemVariants}
         >
-          Backend Developer specializing in secure, scalable systems and database management. 
-          Built comprehensive projects including interactive Library Management Systems with 
-          advanced CRUD operations and real-time API demonstrations.
+          Experienced Network Engineer with expertise in network operations, backend development, 
+          and system automation. Currently serving as a Software Engineer Trainee at Cisco Systems 
+          with CCNA and CCCA certifications. Passionate about building scalable, secure, and reliable enterprise systems.
         </motion.p>
 
         {/* CTA Buttons */}

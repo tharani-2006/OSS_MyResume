@@ -5,38 +5,42 @@ import { motion } from 'framer-motion'
 export default function Skills() {
   const skillCategories = [
     {
-      title: 'Backend & APIs',
+      title: 'Networking & Infrastructure',
       skills: [
-        { name: 'Node.js', level: 90 },
-        { name: 'Python', level: 85 },
-        { name: 'Java', level: 80 },
-        { name: 'Express.js', level: 88 },
-        { name: 'RESTful APIs', level: 92 },
-        { name: 'GraphQL', level: 75 },
+        { name: 'TCP/IP', level: 92 },
+        { name: 'Routing & Switching', level: 90 },
+        { name: 'VLANs', level: 88 },
+        { name: 'ACLs & Security', level: 85 },
+        { name: 'OSPF', level: 82 },
+        { name: 'BGP', level: 75 },
+        { name: 'NAT & IP Tables', level: 88 },
+        { name: 'Network Troubleshooting', level: 90 },
       ]
     },
     {
-      title: 'Database & Storage',
+      title: 'Programming & Development',
       skills: [
-        { name: 'PostgreSQL', level: 88 },
-        { name: 'SQL Query Optimization', level: 90 },
-        { name: 'Database Design', level: 92 },
-        { name: 'CRUD Operations', level: 95 },
-        { name: 'MongoDB', level: 85 },
-        { name: 'SQLite', level: 88 },
-        { name: 'Redis', level: 82 },
-        { name: 'Data Modeling', level: 90 },
+        { name: 'Python', level: 88 },
+        { name: 'Java', level: 85 },
+        { name: 'Spring Boot', level: 82 },
+        { name: 'Shell Scripting (Bash)', level: 90 },
+        { name: 'C/C++', level: 75 },
+        { name: 'REST APIs', level: 88 },
+        { name: 'SQL', level: 85 },
+        { name: 'React', level: 80 },
       ]
     },
     {
-      title: 'Security & DevOps',
+      title: 'Tools & Technologies',
       skills: [
-        { name: 'Cybersecurity', level: 80 },
-        { name: 'Docker', level: 85 },
-        { name: 'AWS', level: 82 },
-        { name: 'CI/CD Pipelines', level: 88 },
-        { name: 'System Security', level: 78 },
-        { name: 'Deployment Automation', level: 85 },
+        { name: 'Wireshark', level: 92 },
+        { name: 'Cisco Packet Tracer', level: 90 },
+        { name: 'GNS3', level: 85 },
+        { name: 'Linux (Ubuntu/CentOS)', level: 88 },
+        { name: 'Git & DevOps', level: 82 },
+        { name: 'MongoDB', level: 80 },
+        { name: 'IBM DB2', level: 75 },
+        { name: 'Mainframe (z/OS, JCL)', level: 70 },
       ]
     },
   ]

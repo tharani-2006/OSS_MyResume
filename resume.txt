@@ -1,0 +1,63 @@
+VENNA VENKATA SIVA REDDY
+📧 vsivareddy.venna@gmail.com | 📞 +91 93989 61541
+🔗 LinkedIn: https://linkedin.com/in/sivavenna
+
+PROFESSIONAL SUMMARY
+Experienced Network Engineer with expertise in network operations, backend development, and system automation. Currently serving as a Software Engineer Trainee at Cisco Systems with CCNA and CCCA certifications. Strong foundation in TCP/IP, routing, switching, and Linux system administration. Proven track record in developing REST APIs, network troubleshooting, and automation scripting. Passionate about building scalable, secure, and reliable enterprise systems.
+TECHNICAL SKILLS
+
+• Networking: TCP/IP, ARP, OSPF, BGP, VLANs, ACLs, IP Tables, NAT, Routing & Switching, Network Security
+• Programming & Scripting: Python, Java, C/C++, Shell Scripting (Bash), SQL
+• Web Technologies: Java Spring Boot, React, REST APIs, JSON, HTML/CSS
+• Operating Systems: Linux (Ubuntu/CentOS/RHEL), Windows Server, z/OS (IBM Mainframe)
+• Network Tools: Wireshark, Cisco Packet Tracer, GNS3, Network Analyzers, SNMP Tools
+• Development Tools: Git, DevOps, CI/CD Pipelines, Automated Testing (Axe, WAVE)
+• Databases: MongoDB, IBM DB2, SQL Server, Database Design and Optimization
+• Mainframe Technologies: JCL, COBOL, z/OS, TSO/ISPF, VSAM
+PROFESSIONAL EXPERIENCE
+
+Software Engineer Trainee | Cisco Systems | August 2024 – Present
+• Monitor and support enterprise-level networks to ensure high availability and low latency across distributed systems
+• Develop and secure REST APIs for internal network automation tools using Java and Spring Boot frameworks
+• Perform comprehensive packet analysis and network issue resolution using Wireshark and advanced CLI tools
+• Assist in security policy configuration and assessments including ACLs, NAT, and IP Tables implementation
+• Script automation solutions for log parsing, configuration backups, and monitoring using Python and Bash
+• Collaborate on network optimization projects to improve performance and reliability
+
+Trainee | Cognizant Technology Solutions | November 2023 – May 2024
+• Completed comprehensive training in IBM Mainframe environments including z/OS, JCL, COBOL, and DB2
+• Contributed to process automation initiatives in legacy systems to enhance performance and reduce manual overhead
+• Gained expertise in enterprise system workflows and mainframe application development
+• Participated in code reviews and quality assurance processes for mainframe applications
+KEY PROJECTS
+
+IoT-Based Continuous Abiotic Factor Monitoring | Java, React, Arduino
+• Designed and implemented a real-time environmental monitoring system for agricultural applications
+• Integrated IoT sensors with backend services to collect and process environmental data continuously
+• Developed responsive dashboards using React for data visualization and trend analysis
+• Implemented data storage and retrieval mechanisms for historical environmental data tracking
+• Created alerting mechanisms for critical environmental threshold breaches
+• Employed secure data transmission protocols and anomaly detection for system reliability
+
+CERTIFICATIONS
+
+• Cisco Certified Network Associate (CCNA) - Active
+• Cisco Certified Cybersecurity Associate (CCCA) - Active
+• Microsoft Certified: Security, Compliance & Identity
+• Currently Pursuing: Cisco Certified DevNet Associate (DEVASC)
+
+EDUCATION
+
+Bachelor of Engineering (B.E.) - Electronics and Telecommunication Engineering
+Sir M Visvesvaraya Institute of Technology, Bengaluru
+[Graduation Year]
+
+ADDITIONAL QUALIFICATIONS
+
+• Strong analytical and problem-solving skills with attention to detail
+• Excellent communication and teamwork abilities in cross-functional environments
+• Experience with enterprise-scale network infrastructure and security implementations
+• Proficient in network performance optimization and troubleshooting methodologies
+• Knowledge of industry best practices for network security and compliance standards
+Honors & Publications
+•	Research Paper: “IoT-Based Continuous Abiotic Factor Monitoring” – IJFMR, May–June 2023

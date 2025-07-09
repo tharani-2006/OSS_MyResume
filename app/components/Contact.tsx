@@ -34,26 +34,26 @@ export default function Contact() {
     {
       icon: Mail,
       label: 'Email',
-      value: 'your.email@example.com',
-      href: 'mailto:your.email@example.com',
+      value: 'vsivareddy.venna@gmail.com',
+      href: 'mailto:vsivareddy.venna@gmail.com',
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567',
+      value: '+91 93989 61541',
+      href: 'tel:+919398961541',
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'New York, NY',
+      value: 'Bengaluru, India',
       href: '#',
     },
   ]
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/avis-enna', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/sivavenna/', label: 'LinkedIn' },
+    { icon: Linkedin, href: 'https://linkedin.com/in/sivavenna', label: 'LinkedIn' },
     { icon: Twitter, href: '#', label: 'Twitter' },
   ]
 
