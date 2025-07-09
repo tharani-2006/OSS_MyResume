@@ -15,12 +15,39 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
   const [submitType, setSubmitType] = useState<'success' | 'error' | ''>('')
+  const [fieldFocus, setFieldFocus] = useState<string | null>(null)
+  const [copySuccess, setCopySuccess] = useState('')
+  const [formProgress, setFormProgress] = useState(0)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }))
+    
+    // Calculate form completion progress
+    const updatedData = { ...formData, [name]: value }
+    const filledFields = Object.values(updatedData).filter(val => val.trim() !== '').length
+    setFormProgress((filledFields / 4) * 100)
+  }
+
+  const handleFocus = (fieldName: string) => {
+    setFieldFocus(fieldName)
+  }
+
+  const handleBlur = () => {
+    setFieldFocus(null)
+  }
+
+  const copyToClipboard = async (text: string, label: string) => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopySuccess(label)
+      setTimeout(() => setCopySuccess(''), 2000)
+    } catch (err) {
+      console.error('Failed to copy: ', err)
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -117,18 +144,24 @@ export default function Contact() {
       label: 'Email',
       value: 'vsivareddy.venna@gmail.com',
       href: 'mailto:vsivareddy.venna@gmail.com',
+      description: 'Best way to reach me',
+      copyable: true,
     },
     {
       icon: Phone,
       label: 'Phone',
       value: '+91 93989 61541',
       href: 'tel:+919398961541',
+      description: 'Available 9 AM - 6 PM IST',
+      copyable: true,
     },
     {
       icon: MapPin,
       label: 'Location',
       value: 'Bengaluru, India',
       href: '#',
+      description: 'Open to remote work',
+      copyable: false,
     },
   ]
 
@@ -198,21 +231,68 @@ export default function Contact() {
             {/* Contact Details */}
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
-                <motion.a
+                <motion.div
                   key={info.label}
-                  href={info.href}
-                  className="flex items-center space-x-4 p-4 rounded-lg border border-border-glow hover:border-cyber-blue/50 transition-all duration-300 group"
+                  className="relative p-4 rounded-lg border border-border-glow hover:border-cyber-blue/50 transition-all duration-300 group overflow-hidden"
                   variants={itemVariants}
                   whileHover={{ scale: 1.02, x: 10 }}
                 >
-                  <div className="w-12 h-12 bg-cyber-blue/10 rounded-lg flex items-center justify-center group-hover:bg-cyber-blue/20 transition-colors duration-300">
-                    <info.icon className="text-cyber-blue" size={20} />
+                  {/* Background gradient on hover */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-cyber-blue/5 to-cyber-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    layoutId={`bg-${index}`}
+                  />
+                  
+                  <div className="relative z-10 flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-12 h-12 bg-cyber-blue/10 rounded-lg flex items-center justify-center group-hover:bg-cyber-blue/20 transition-colors duration-300">
+                        <info.icon className="text-cyber-blue" size={20} />
+                      </div>
+                      <div>
+                        <div className="text-sm text-gray-400 font-cyber">{info.label}</div>
+                        <div className="text-white font-medium">{info.value}</div>
+                        <div className="text-xs text-gray-500 mt-1">{info.description}</div>
+                      </div>
+                    </div>
+                    
+                    {/* Action buttons */}
+                    <div className="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <motion.a
+                        href={info.href}
+                        className="p-2 bg-dark-bg border border-border-glow rounded-lg hover:border-cyber-blue transition-colors duration-300"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <info.icon size={16} className="text-gray-400 hover:text-cyber-blue" />
+                      </motion.a>
+                      
+                      {info.copyable && (
+                        <motion.button
+                          onClick={() => copyToClipboard(info.value, info.label)}
+                          className="p-2 bg-dark-bg border border-border-glow rounded-lg hover:border-cyber-purple transition-colors duration-300"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                        >
+                          <svg className="w-4 h-4 text-gray-400 hover:text-cyber-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                          </svg>
+                        </motion.button>
+                      )}
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-sm text-gray-400 font-cyber">{info.label}</div>
-                    <div className="text-white font-medium">{info.value}</div>
-                  </div>
-                </motion.a>
+                  
+                  {/* Copy success indicator */}
+                  {copySuccess === info.label && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      className="absolute top-2 right-2 bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded"
+                    >
+                      Copied!
+                    </motion.div>
+                  )}
+                </motion.div>
               ))}
             </div>
 
@@ -242,9 +322,39 @@ export default function Contact() {
 
           {/* Contact Form */}
           <motion.div className="cyber-card" variants={itemVariants}>
-            <h3 className="text-2xl font-semibold mb-6 text-center">
-              Send Me a Message
-            </h3>
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-semibold">
+                Send Me a Message
+              </h3>
+              <div className="text-sm text-gray-400">
+                <span className="text-cyber-blue font-medium">{Math.round(formProgress)}%</span> complete
+              </div>
+            </div>
+            
+            {/* Progress Bar */}
+            <div className="mb-6">
+              <div className="w-full bg-dark-bg rounded-full h-1 border border-border-glow">
+                <motion.div
+                  className="h-full bg-gradient-to-r from-cyber-blue to-cyber-purple rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${formProgress}%` }}
+                  transition={{ duration: 0.3 }}
+                />
+              </div>
+            </div>
+            
+            {/* Response Time Indicator */}
+            <motion.div
+              className="flex items-center space-x-2 mb-6 p-3 bg-cyber-blue/5 border border-cyber-blue/20 rounded-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span className="text-sm text-gray-300">
+                Typically responds within <span className="text-cyber-blue font-medium">24 hours</span>
+              </span>
+            </motion.div>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Success/Error Message */}
@@ -263,7 +373,7 @@ export default function Contact() {
               )}
               
               <div className="grid md:grid-cols-2 gap-6">
-                <div>
+                <div className="relative">
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                     Name
                   </label>
@@ -273,12 +383,28 @@ export default function Contact() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
+                    onFocus={() => handleFocus('name')}
+                    onBlur={handleBlur}
                     required
-                    className="w-full px-4 py-3 bg-dark-bg border border-border-glow rounded-lg focus:border-cyber-blue focus:outline-none transition-colors duration-300 text-white"
+                    className={`w-full px-4 py-3 bg-dark-bg border rounded-lg focus:outline-none transition-all duration-300 text-white ${
+                      fieldFocus === 'name' 
+                        ? 'border-cyber-blue shadow-lg shadow-cyber-blue/20' 
+                        : 'border-border-glow hover:border-gray-400'
+                    }`}
                     placeholder="Your Name"
                   />
+                  {fieldFocus === 'name' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="absolute -top-2 left-4 bg-dark-bg px-2 text-xs text-cyber-blue"
+                    >
+                      Tell me what to call you
+                    </motion.div>
+                  )}
                 </div>
-                <div>
+                
+                <div className="relative">
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
                     Email
                   </label>
@@ -288,62 +414,167 @@ export default function Contact() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
+                    onFocus={() => handleFocus('email')}
+                    onBlur={handleBlur}
                     required
-                    className="w-full px-4 py-3 bg-dark-bg border border-border-glow rounded-lg focus:border-cyber-blue focus:outline-none transition-colors duration-300 text-white"
+                    className={`w-full px-4 py-3 bg-dark-bg border rounded-lg focus:outline-none transition-all duration-300 text-white ${
+                      fieldFocus === 'email' 
+                        ? 'border-cyber-blue shadow-lg shadow-cyber-blue/20' 
+                        : 'border-border-glow hover:border-gray-400'
+                    }`}
                     placeholder="your.email@example.com"
                   />
+                  {fieldFocus === 'email' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="absolute -top-2 left-4 bg-dark-bg px-2 text-xs text-cyber-blue"
+                    >
+                      I'll use this to respond
+                    </motion.div>
+                  )}
                 </div>
               </div>
               
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
-                  Subject
-                </label>
+              <div className="relative">
+                <div className="flex justify-between items-center mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-300">
+                    Subject
+                  </label>
+                  <span className="text-xs text-gray-500">
+                    {formData.subject.length}/100
+                  </span>
+                </div>
                 <input
                   type="text"
                   id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
+                  onFocus={() => handleFocus('subject')}
+                  onBlur={handleBlur}
                   required
-                  className="w-full px-4 py-3 bg-dark-bg border border-border-glow rounded-lg focus:border-cyber-blue focus:outline-none transition-colors duration-300 text-white"
+                  maxLength={100}
+                  className={`w-full px-4 py-3 bg-dark-bg border rounded-lg focus:outline-none transition-all duration-300 text-white ${
+                    fieldFocus === 'subject' 
+                      ? 'border-cyber-blue shadow-lg shadow-cyber-blue/20' 
+                      : 'border-border-glow hover:border-gray-400'
+                  }`}
                   placeholder="Project Discussion"
                 />
+                {fieldFocus === 'subject' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="absolute -top-2 left-4 bg-dark-bg px-2 text-xs text-cyber-blue"
+                  >
+                    What's this about?
+                  </motion.div>
+                )}
               </div>
               
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                  Message
-                </label>
+              <div className="relative">
+                <div className="flex justify-between items-center mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-300">
+                    Message
+                  </label>
+                  <span className="text-xs text-gray-500">
+                    {formData.message.length}/1000
+                  </span>
+                </div>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
+                  onFocus={() => handleFocus('message')}
+                  onBlur={handleBlur}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 bg-dark-bg border border-border-glow rounded-lg focus:border-cyber-blue focus:outline-none transition-colors duration-300 text-white resize-none"
-                  placeholder="Tell me about your project..."
+                  maxLength={1000}
+                  className={`w-full px-4 py-3 bg-dark-bg border rounded-lg focus:outline-none transition-all duration-300 text-white resize-none ${
+                    fieldFocus === 'message' 
+                      ? 'border-cyber-blue shadow-lg shadow-cyber-blue/20' 
+                      : 'border-border-glow hover:border-gray-400'
+                  }`}
+                  placeholder="Tell me about your project, ideas, or just say hello..."
                 />
+                {fieldFocus === 'message' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="absolute -top-2 left-4 bg-dark-bg px-2 text-xs text-cyber-blue"
+                  >
+                    Share your thoughts
+                  </motion.div>
+                )}
               </div>
               
               <motion.button
                 type="submit"
-                disabled={isSubmitting}
-                className="w-full cyber-button flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isSubmitting || formProgress < 100}
+                className={`w-full cyber-button flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden ${
+                  formProgress === 100 ? 'hover:scale-105' : ''
+                }`}
                 whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                 whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
               >
-                {isSubmitting ? (
-                  <motion.div
-                    className="w-5 h-5 border-2 border-dark-bg border-t-transparent rounded-full"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                  />
-                ) : (
-                  <Send size={20} />
-                )}
-                <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+                {/* Button background animation */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-cyber-blue/20 to-cyber-purple/20"
+                  initial={{ x: '-100%' }}
+                  animate={{ x: isSubmitting ? '100%' : '-100%' }}
+                  transition={{ duration: 1.5, repeat: isSubmitting ? Infinity : 0 }}
+                />
+                
+                <div className="relative z-10 flex items-center space-x-2">
+                  {isSubmitting ? (
+                    <>
+                      <motion.div
+                        className="w-5 h-5 border-2 border-dark-bg border-t-transparent rounded-full"
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      />
+                      <span>Sending...</span>
+                      <motion.div
+                        className="flex space-x-1"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5 }}
+                      >
+                        <motion.div
+                          className="w-1 h-1 bg-white rounded-full"
+                          animate={{ scale: [1, 1.5, 1] }}
+                          transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
+                        />
+                        <motion.div
+                          className="w-1 h-1 bg-white rounded-full"
+                          animate={{ scale: [1, 1.5, 1] }}
+                          transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
+                        />
+                        <motion.div
+                          className="w-1 h-1 bg-white rounded-full"
+                          animate={{ scale: [1, 1.5, 1] }}
+                          transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
+                        />
+                      </motion.div>
+                    </>
+                  ) : (
+                    <>
+                      <Send size={20} />
+                      <span>
+                        {formProgress === 100 ? 'Send Message' : 'Complete form to send'}
+                      </span>
+                      {formProgress === 100 && (
+                        <motion.div
+                          className="w-2 h-2 bg-green-400 rounded-full"
+                          animate={{ scale: [1, 1.2, 1] }}
+                          transition={{ duration: 1, repeat: Infinity }}
+                        />
+                      )}
+                    </>
+                  )}
+                </div>
               </motion.button>
             </form>
           </motion.div>
