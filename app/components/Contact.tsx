@@ -29,8 +29,6 @@ export default function Contact() {
     setSubmitMessage('')
     setSubmitType('')
     
-    console.log('Form submitted with data:', formData)
-    
     try {
       // Method 1: Try EmailJS first (primary method)
       try {
@@ -39,23 +37,8 @@ export default function Contact() {
         const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
         const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 
-        console.log('EmailJS Configuration:', {
-          serviceId: serviceId ? 'Set' : 'Missing',
-          templateId: templateId ? 'Set' : 'Missing',
-          publicKey: publicKey ? 'Set' : 'Missing'
-        })
-
         // Check if EmailJS is configured
         if (serviceId && templateId && publicKey) {
-          console.log('Attempting to send email via EmailJS...')
-          console.log('Template data:', {
-            from_name: formData.name,
-            from_email: formData.email,
-            subject: formData.subject,
-            message: formData.message,
-            reply_to: formData.email,
-          })
-          
           const result = await emailjs.send(
             serviceId,
             templateId,
@@ -69,30 +52,20 @@ export default function Contact() {
             publicKey
           )
           
-          console.log('EmailJS Success:', result)
-          setSubmitMessage('Message sent successfully via EmailJS! I\'ll get back to you soon.')
+          setSubmitMessage('Message sent successfully! I\'ll get back to you soon.')
           setSubmitType('success')
           setFormData({ name: '', email: '', subject: '', message: '' })
           setIsSubmitting(false)
           return
         } else {
-          console.log('EmailJS not properly configured')
           throw new Error('EmailJS not configured')
         }
       } catch (error) {
-        console.error('EmailJS Error Details:', error)
-        
-        // Show specific error message
-        if (error instanceof Error) {
-          console.error('Error message:', error.message)
-          setSubmitMessage(`EmailJS Error: ${error.message}. Trying fallback method...`)
-          setSubmitType('error')
-        }
+        console.error('EmailJS Error:', error)
       }
 
       // Method 2: Try API route as backup
       try {
-        console.log('Trying API route fallback...')
         const response = await fetch('/api/contact', {
           method: 'POST',
           headers: {
@@ -102,21 +75,17 @@ export default function Contact() {
         })
         
         if (response.ok) {
-          console.log('API route succeeded')
-          setSubmitMessage('Message sent successfully via API! I\'ll get back to you soon.')
+          setSubmitMessage('Message sent successfully! I\'ll get back to you soon.')
           setSubmitType('success')
           setFormData({ name: '', email: '', subject: '', message: '' })
           setIsSubmitting(false)
           return
-        } else {
-          console.log('API route failed with status:', response.status)
         }
       } catch (error) {
-        console.log('API route failed:', error)
+        console.error('API route failed:', error)
       }
 
       // Method 3: Fallback to mailto (always works)
-      console.log('Using mailto fallback...')
       const mailtoLink = `mailto:vsivareddy.venna@gmail.com?subject=${encodeURIComponent(
         `Portfolio Contact: ${formData.subject}`
       )}&body=${encodeURIComponent(
@@ -129,7 +98,6 @@ export default function Contact() {
       setFormData({ name: '', email: '', subject: '', message: '' })
       
     } catch (error) {
-      console.error('All methods failed:', error)
       setSubmitMessage('Failed to send message. Please contact me directly at vsivareddy.venna@gmail.com')
       setSubmitType('error')
     }
