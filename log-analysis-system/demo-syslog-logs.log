@@ -1,0 +1,55 @@
+# Generated log file - 2025-07-09 14:05:07.401932
+# Lines: 50
+# Format: syslog
+# Time range: last 24 hours
+
+2025-07-08 21:44:22 db-slave firewall[5149]: Queue size growing: 8129 items
+2025-07-09 04:58:39 auth-01 auth-service[2045]: Email sent to bob@company.com
+2025-07-08 16:12:44 db-slave database[4308]: Response time degraded: 713ms
+2025-07-09 06:02:49 db-slave nginx[1832]: HTTP DELETE request to /health
+2025-07-08 21:08:22 lb-01 security[4219]: Configuration reloaded
+2025-07-08 16:12:26 api-01 mail-server[6128]: Cache cleared successfully
+2025-07-09 10:40:37 web-01 firewall[4681]: Transaction tx-409188 failed
+2025-07-09 07:38:19 web-02 application[6534]: Failed authentication attempt for user iris
+2025-07-09 09:38:19 lb-01 api-gateway[3506]: Report generated for user eve
+2025-07-09 06:39:21 api-01 api-gateway[5613]: Queue size growing: 8985 items
+2025-07-09 10:55:23 auth-01 database[9918]: API key invalid for request
+2025-07-08 22:30:35 db-master mail-server[1433]: Configuration value loaded: cache.size=INFO
+2025-07-09 09:55:39 web-01 application[5320]: High memory usage detected: 77%
+2025-07-09 10:34:37 web-01 auth-service[1024]: Memory allocation error
+2025-07-08 14:28:57 api-01 nginx[8281]: Response time degraded: 189ms
+2025-07-08 19:11:59 db-slave application[5392]: File upload completed by eve
+2025-07-09 13:04:55 lb-01 mail-server[6158]: Data synchronization completed
+2025-07-08 15:47:58 db-master application[9037]: Network unreachable
+2025-07-09 12:59:17 cache-01 firewall[6226]: Invalid configuration parameter
+2025-07-09 12:43:04 db-master security[3872]: User iris logged in successfully
+2025-07-09 02:14:32 web-02 database[4032]: Permission denied for user jack
+2025-07-08 17:29:37 auth-01 database[6726]: Validation passed for input: input-321
+2025-07-08 22:58:27 cache-01 firewall[8044]: File upload completed by henry
+2025-07-08 15:45:42 db-slave nginx[2647]: Queue size growing: 6400 items
+2025-07-08 15:06:59 db-slave application[1627]: Failed to parse configuration file
+2025-07-08 18:43:28 api-01 nginx[8750]: SSL certificate expires in 29 days
+2025-07-09 13:59:27 auth-01 api-gateway[2325]: File upload completed by bob
+2025-07-09 11:29:32 lb-01 auth-service[2672]: Queue size growing: 6711 items
+2025-07-09 00:54:52 auth-01 mail-server[5788]: File not found: /var/log/access.log
+2025-07-09 06:06:27 db-master nginx[9100]: Critical security policy violation
+2025-07-08 16:22:19 api-01 nginx[6457]: Email sent to alice@company.com
+2025-07-08 20:12:11 web-02 mail-server[1070]: High memory usage detected: 93%
+2025-07-09 11:00:45 auth-01 nginx[1953]: Processing request ID: req-34281
+2025-07-09 06:44:10 db-slave mail-server[2687]: Backup process initiated
+2025-07-09 02:40:35 db-master application[7355]: Transaction tx-474393 completed
+2025-07-09 12:33:48 api-01 database[6429]: Data exfiltration attempt detected
+2025-07-09 11:43:00 cache-01 security[5871]: API request processed successfully
+2025-07-08 19:26:17 cache-01 auth-service[5151]: Slow database query: 4971 ms
+2025-07-09 08:14:44 lb-01 database[9940]: User eve logged in successfully
+2025-07-09 13:59:48 cache-01 nginx[9100]: Email sent to diana@company.com
+2025-07-09 00:29:00 api-01 api-gateway[9054]: Connection timeout occurred
+2025-07-09 01:08:21 api-01 mail-server[1097]: Queue size growing: 8022 items
+2025-07-09 10:08:22 lb-01 api-gateway[5250]: Service crashed and restarted
+2025-07-09 11:29:32 auth-01 auth-service[6110]: Memory allocation error
+2025-07-08 23:17:07 db-slave firewall[1901]: Slow database query: 1633 ms
+2025-07-09 07:45:01 api-01 database[6074]: Health check passed
+2025-07-09 13:05:34 db-master auth-service[4501]: Disk space running low: 97% used
+2025-07-08 16:02:09 auth-01 database[4343]: Database connection failed
+2025-07-09 07:50:37 db-master security[7748]: File /var/log/app.log processed successfully
+2025-07-09 09:12:44 auth-01 security[6113]: Service restart completed

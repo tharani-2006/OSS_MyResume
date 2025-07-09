@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react'
 import { useState } from 'react'
+import emailjs from '@emailjs/browser'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -12,6 +13,8 @@ export default function Contact() {
     message: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState('')
+  const [submitType, setSubmitType] = useState<'success' | 'error' | ''>('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -23,11 +26,87 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    setSubmitMessage('')
+    setSubmitType('')
+    
+    try {
+      // Method 1: Try API route first
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        })
+        
+        if (response.ok) {
+          setSubmitMessage('Message sent successfully! I\'ll get back to you soon.')
+          setSubmitType('success')
+          setFormData({ name: '', email: '', subject: '', message: '' })
+          setIsSubmitting(false)
+          return
+        }
+      } catch (error) {
+        console.log('API route failed, trying alternative methods...')
+      }
+
+      // Method 2: Try EmailJS (you'll need to set up EmailJS service)
+      try {
+        // EmailJS configuration (you need to set up your EmailJS account)
+        const serviceId = 'your_service_id' // Replace with your EmailJS service ID
+        const templateId = 'your_template_id' // Replace with your EmailJS template ID
+        const publicKey = 'your_public_key' // Replace with your EmailJS public key
+
+        // Uncomment this when you have EmailJS set up
+        /*
+        await emailjs.send(
+          serviceId,
+          templateId,
+          {
+            from_name: formData.name,
+            from_email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            to_email: 'vsivareddy.venna@gmail.com',
+          },
+          publicKey
+        )
+        
+        setSubmitMessage('Message sent successfully via EmailJS!')
+        setSubmitType('success')
+        setFormData({ name: '', email: '', subject: '', message: '' })
+        setIsSubmitting(false)
+        return
+        */
+      } catch (error) {
+        console.log('EmailJS failed, using mailto fallback...')
+      }
+
+      // Method 3: Fallback to mailto (always works)
+      const mailtoLink = `mailto:vsivareddy.venna@gmail.com?subject=${encodeURIComponent(
+        `Portfolio Contact: ${formData.subject}`
+      )}&body=${encodeURIComponent(
+        `Hi Siva,\n\nName: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}\n\nBest regards,\n${formData.name}`
+      )}`
+      
+      window.open(mailtoLink, '_blank')
+      setSubmitMessage('Opening your email client to send the message. Please send the email from your email app.')
+      setSubmitType('success')
+      setFormData({ name: '', email: '', subject: '', message: '' })
+      
+    } catch (error) {
+      setSubmitMessage('Failed to send message. Please contact me directly at vsivareddy.venna@gmail.com')
+      setSubmitType('error')
+    }
+    
     setIsSubmitting(false)
-    // Reset form
-    setFormData({ name: '', email: '', subject: '', message: '' })
+    
+    // Clear message after 7 seconds
+    setTimeout(() => {
+      setSubmitMessage('')
+      setSubmitType('')
+    }, 7000)
   }
 
   const contactInfo = [
@@ -166,6 +245,21 @@ export default function Contact() {
             </h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Success/Error Message */}
+              {submitMessage && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`p-4 rounded-lg border ${
+                    submitType === 'success'
+                      ? 'bg-green-500/10 border-green-500/50 text-green-400'
+                      : 'bg-red-500/10 border-red-500/50 text-red-400'
+                  }`}
+                >
+                  {submitMessage}
+                </motion.div>
+              )}
+              
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">

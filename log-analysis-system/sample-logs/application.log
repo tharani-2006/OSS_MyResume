@@ -1,0 +1,10 @@
+2025-07-08 10:00:01,123 [main] INFO  com.example.Application - Application started successfully
+2025-07-08 10:00:02,456 [http-nio-8080-exec-1] INFO  com.example.controller.UserController - User login attempt for user: admin
+2025-07-08 10:00:03,789 [http-nio-8080-exec-2] ERROR com.example.service.OrderService - Failed to process order: Database connection timeout
+2025-07-08 10:00:04,012 [http-nio-8080-exec-3] WARN  com.example.security.SecurityFilter - Suspicious activity detected from IP: 10.0.0.1
+2025-07-08 10:00:05,345 [http-nio-8080-exec-4] INFO  com.example.controller.ProductController - Product search executed successfully
+2025-07-08 10:00:06,678 [http-nio-8080-exec-5] ERROR com.example.service.PaymentService - Payment processing failed: Invalid credit card
+2025-07-08 10:00:07,901 [http-nio-8080-exec-6] WARN  com.example.security.SecurityFilter - Multiple failed login attempts from IP: 192.168.1.2
+2025-07-08 10:00:08,234 [http-nio-8080-exec-7] INFO  com.example.controller.StatsController - Dashboard statistics generated
+2025-07-08 10:00:09,567 [http-nio-8080-exec-8] ERROR com.example.service.DatabaseService - Database connection pool exhausted
+2025-07-08 10:00:10,890 [http-nio-8080-exec-9] CRITICAL com.example.service.SecurityService - SQL injection attempt detected: SELECT * FROM users WHERE id = '1' OR '1'='1'

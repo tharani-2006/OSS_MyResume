@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ExternalLink, Github, Code, Smartphone, Globe, Database, Bot } from 'lucide-react'
+import { ExternalLink, Github, Code, Smartphone, Globe, Database, Bot, Activity } from 'lucide-react'
 
 export default function Projects() {
   const projects = [
@@ -18,6 +18,17 @@ export default function Projects() {
     },
     {
       id: 2,
+      title: 'Log Analysis System',
+      description: 'Enterprise-grade log analysis and monitoring system built with Java Spring Boot, featuring real-time log processing, pattern detection, security threat identification, and interactive dashboards. Includes Kafka streaming, Elasticsearch integration, alert management, and comprehensive analytics with Docker orchestration.',
+      tech: ['Java 17', 'Spring Boot', 'Kafka', 'Elasticsearch', 'PostgreSQL', 'Redis', 'Docker', 'Prometheus', 'Grafana', 'Security Analysis'],
+      image: '/api/placeholder/600/400',
+      github: 'https://github.com/avis-enna/log-analysis-system',
+      live: '#',
+      category: 'Analytics',
+      icon: Activity,
+    },
+    {
+      id: 3,
       title: 'Library Management System',
       description: 'Advanced DBMS project featuring interactive CRUD operations, real-time statistics, and comprehensive database design. Includes member management, book borrowing/returning, overdue tracking, and live API demonstrations with professional web interface.',
       tech: ['PostgreSQL', 'Python', 'Flask', 'SQLite', 'SQL', 'Database Design', 'CRUD Operations', 'REST API', 'Interactive UI'],
@@ -28,7 +39,7 @@ export default function Projects() {
       icon: Database,
     },
     {
-      id: 3,
+      id: 4,
       title: 'Secure E-Commerce Microservices Platform',
       description: 'Production-ready e-commerce platform with microservices architecture featuring JWT authentication, API Gateway, rate limiting, circuit breakers, Redis caching, and comprehensive security measures. Includes User, Product, Order, and Notification services with Docker orchestration.',
       tech: ['FastAPI', 'PostgreSQL', 'Redis', 'Docker', 'JWT', 'Microservices', 'API Gateway', 'Circuit Breaker', 'Rate Limiting', 'Security'],
@@ -39,7 +50,7 @@ export default function Projects() {
       icon: Globe,
     },
     {
-      id: 4,
+      id: 5,
       title: 'Secure Authentication System',
       description: 'JWT-based authentication with multi-factor authentication, rate limiting, and security monitoring.',
       tech: ['Node.js', 'Express.js', 'JWT', 'bcrypt', 'Redis', 'PostgreSQL'],
@@ -50,7 +61,7 @@ export default function Projects() {
       icon: Code,
     },
     {
-      id: 5,
+      id: 6,
       title: 'RESTful API with Database',
       description: 'Scalable REST API architecture with CRUD operations, input validation, and error handling.',
       tech: ['Python', 'Flask/FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Docker'],

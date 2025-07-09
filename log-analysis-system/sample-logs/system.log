@@ -1,0 +1,10 @@
+Jul  8 10:00:01 server01 kernel: [1234567.890] Out of memory: Kill process 1234 (java) score 900 or sacrifice child
+Jul  8 10:00:02 server01 sshd[5678]: Failed password for invalid user admin from 192.168.1.100 port 52345 ssh2
+Jul  8 10:00:03 server01 nginx: 2025/07/08 10:00:03 [error] 9012#9012: *1 connect() failed (111: Connection refused) while connecting to upstream
+Jul  8 10:00:04 server01 postgresql[3456]: LOG: database system is ready to accept connections
+Jul  8 10:00:05 server01 redis[7890]: Warning: Redis is running in protected mode
+Jul  8 10:00:06 server01 fail2ban.actions[2345]: NOTICE  [sshd] Ban 192.168.1.100
+Jul  8 10:00:07 server01 systemd[1]: Started Log Analysis System Service
+Jul  8 10:00:08 server01 cron[1111]: (CRON) INFO (pidfile fd = 3)
+Jul  8 10:00:09 server01 kernel: [1234568.901] TCP: request_sock_TCP: Possible SYN flooding on port 80
+Jul  8 10:00:10 server01 systemd[1]: log-analysis.service: Service has a main PID which does not match the control group

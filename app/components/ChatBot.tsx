@@ -122,7 +122,9 @@ export default function ChatBot({
         response = fallbackResponses.about
       }
 
-      // Try to call the live AI service first
+      // Try to call the live AI service first, but use enhanced responses as primary
+      let aiResponseReceived = false;
+      
       try {
         console.log('Attempting to call AI service:', apiEndpoint)
         console.log('Using API key:', apiKey)
@@ -147,16 +149,15 @@ export default function ChatBot({
           
           if (data.success && data.data && data.data.response) {
             response = data.data.response
-            setIsOnline(true)
+            aiResponseReceived = true
             console.log('Using AI response:', response)
           } else if (data.response) {
             response = data.response
-            setIsOnline(true)
+            aiResponseReceived = true
             console.log('Using AI response (fallback format):', response)
           }
         } else {
           console.log('API response not ok:', apiResponse.status)
-          setIsOnline(false)
         }
       } catch (error) {
         console.log('AI service error:', error)
