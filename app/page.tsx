@@ -11,6 +11,7 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ChatBot from "./components/ChatBot";
+import EmailJSDebug from "./components/EmailJSDebug";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -42,6 +43,7 @@ export default function Home() {
       <Contact />
       <Footer />
       <ChatBot />
+      <EmailJSDebug />
     </main>
   );
 }
