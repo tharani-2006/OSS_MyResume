@@ -56,3 +56,67 @@
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(135deg, #8b5cf6, #f471b5);
 }
+
+/* Terminal scrollbar */
+.terminal-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-track {
+  background: rgba(34, 197, 94, 0.1);
+  border-radius: 6px;
+}
+
+.terminal-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(34, 197, 94, 0.5);
+  border-radius: 6px;
+  border: 2px solid rgba(34, 197, 94, 0.1);
+}
+
+.terminal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 197, 94, 0.7);
+}
+
+/* Ensure scrollbar is always visible */
+.terminal-scrollbar {
+  overflow-y: scroll !important;
+}
+
+/* Force scrollbar to always be visible and ensure scrolling works */
+.force-scrollbar {
+  overflow-y: scroll !important;
+  scroll-behavior: smooth !important;
+}
+
+.force-scrollbar::-webkit-scrollbar {
+  width: 12px !important;
+  display: block !important;
+}
+
+.force-scrollbar::-webkit-scrollbar-track {
+  background: rgba(34, 197, 94, 0.1) !important;
+  border-radius: 6px !important;
+}
+
+.force-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(34, 197, 94, 0.5) !important;
+  border-radius: 6px !important;
+  border: 2px solid rgba(34, 197, 94, 0.1) !important;
+}
+
+.force-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 197, 94, 0.7) !important;
+}
+
+/* Terminal output container with isolated scrolling */
+.terminal-output-container {
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  /* Prevent text selection when scrolling */
+  -webkit-user-select: text;
+  user-select: text;
+  /* Ensure the container can receive scroll events */
+  position: relative;
+  /* Ensure proper layer stacking */
+  z-index: 1;
+}
