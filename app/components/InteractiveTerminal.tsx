@@ -402,8 +402,6 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
     minimize: "Minimize a section",
     maximize: "Maximize a section",
     status: "Show system status",
-    debug: "Show debug information",
-    test: "Test section opening",
     dock: "Show/hide the dock",
     clear: "Clear terminal",
     pwd: "Print working directory",
@@ -413,9 +411,6 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
     ps: "List running processes",
     top: "Display running processes",
     history: "Show command history",
-    spam: "Generate test output (scroll test)",
-    fillscreen: "Fill screen with content to test scrolling",
-    scrolldebug: "Debug scroll container properties",
     exit: "Exit terminal mode"
   };
 
@@ -436,9 +431,9 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
       "   • 'help' - Show all available commands",
       "   • 'ls' - List all portfolio sections",
       "   • 'open <section>' - Open section as draggable window",
-      "   • 'status' - Show system status and debug info",
+      "   • 'status' - Show system status",
       "",
-      "� Available: about.txt, skills.json, experience.log, projects/, contact.info",
+      "📁 Available: about.txt, skills.json, experience.log, projects/, contact.info",
       ""
     ];
     
@@ -460,29 +455,13 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
       // Check if user is near the bottom (within 50px for more precision)
       const isNearBottom = element.scrollTop + element.clientHeight >= element.scrollHeight - 50;
       
-      console.log('Auto-scroll check:', {
-        isUserScrolling,
-        isNearBottom,
-        scrollTop: element.scrollTop,
-        clientHeight: element.clientHeight,
-        scrollHeight: element.scrollHeight,
-        distanceFromBottom: element.scrollHeight - (element.scrollTop + element.clientHeight),
-        lastScrollTop
-      });
-      
       // Only auto-scroll if user is near the bottom AND not actively scrolling
-      // Also check if the user has manually scrolled up (current position < last known bottom)
       if (isNearBottom && !isUserScrolling) {
-        console.log('Auto-scrolling to bottom');
         requestAnimationFrame(() => {
           if (element) {
             element.scrollTop = element.scrollHeight;
           }
         });
-      } else if (isUserScrolling) {
-        console.log('User is scrolling - skipping auto-scroll');
-      } else {
-        console.log('User is not near bottom - skipping auto-scroll');
       }
     }
   }, [history, isUserScrolling, lastScrollTop]);
@@ -597,28 +576,17 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
   };
 
   const bringToFront = (sectionId: string) => {
-    console.log('Bringing to front:', sectionId);
     const newZIndex = maxZIndex + 1;
     setMaxZIndex(newZIndex);
-    setSections(prev => {
-      const updated = prev.map(s => 
-        s.id === sectionId ? { ...s, zIndex: newZIndex } : s
-      );
-      console.log('Updated z-indexes:', updated.map(s => ({ id: s.id, zIndex: s.zIndex })));
-      return updated;
-    });
+    setSections(prev => prev.map(s => 
+      s.id === sectionId ? { ...s, zIndex: newZIndex } : s
+    ));
   };
 
   const openSection = (sectionId: string) => {
-    console.log('Opening section:', sectionId);
-    setSections(prev => {
-      const updated = prev.map(s => 
-        s.id === sectionId ? { ...s, isOpen: true, isMinimized: false, zIndex: maxZIndex + 1 } : s
-      );
-      console.log('Updated sections:', updated);
-      console.log('Section to open:', updated.find(s => s.id === sectionId));
-      return updated;
-    });
+    setSections(prev => prev.map(s => 
+      s.id === sectionId ? { ...s, isOpen: true, isMinimized: false, zIndex: maxZIndex + 1 } : s
+    ));
     setMaxZIndex(prev => prev + 1);
   };
 
@@ -646,22 +614,16 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
   };
 
   const handleCommand = (command: string) => {
-    console.log('=== COMMAND START ===');
-    console.log('Raw command:', command);
-    
     const cmd = command.trim().toLowerCase();
     const args = cmd.split(/\s+/).filter(arg => arg.length > 0);
     const baseCmd = args[0];
     let output: string[] = [];
-
-    console.log('Parsed command:', baseCmd, 'Args:', args);
 
     // Add command to history
     setCommandHistory(prev => [...prev, command]);
     setHistoryIndex(-1);
 
     if (!baseCmd) {
-      console.log('Empty command, returning');
       return;
     }
 
@@ -887,107 +849,10 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
           "║ Available sections:                       ║",
           ...sections.map(s => `║ • ${s.name.padEnd(15)} ${(s.isOpen ? (s.isMinimized ? '[MINIMIZED]' : s.isMaximized ? '[MAXIMIZED]' : '[OPEN]     ') : '[CLOSED]   ').padEnd(12)} ║`),
           "║                                           ║",
-          "╠═══════════════════════════════════════════╣",
-          "║ 🐛 DEBUG INFO (scroll detection)          ║",
-          "╠═══════════════════════════════════════════╣",
-          `║ User scrolling:     ${isUserScrolling.toString().padStart(2)} active        ║`,
-          `║ Last scroll pos:    ${lastScrollTop.toString().padStart(2)} pixels        ║`,
-          `║ Input focused:      ${isInputFocused.toString().padStart(2)} ready         ║`,
-          `║ Max Z-index:        ${maxZIndex.toString().padStart(2)} layers        ║`,
+          "║ � Tip: Each section has an interactive   ║",
+          "║    mini-terminal with context commands    ║",
           "╚═══════════════════════════════════════════╝"
         ];
-        break;
-
-      case "debug":
-        output = [
-          "🐛 DEBUG INFO:",
-          "Debug information is now integrated into the 'status' command.",
-          "Use 'status' to see system status and debug information.",
-          "Available test commands: test, scrolltest, forcescroll, spam"
-        ];
-        break;
-
-      case "test":
-        // Force open a section for testing
-        console.log('TEST: Force opening about section');
-        const currentAbout = sections.find(s => s.id === 'about');
-        console.log('Current about section:', currentAbout);
-        setSections(prev => {
-          const updated = prev.map(s => 
-            s.id === 'about' ? { ...s, isOpen: true, isMinimized: false, zIndex: maxZIndex + 1 } : s
-          );
-          console.log('Updated sections after test:', updated);
-          const openSections = updated.filter(s => s.isOpen && !s.isMinimized);
-          console.log('Open sections that should render:', openSections.map(s => ({ id: s.id, isOpen: s.isOpen, isMinimized: s.isMinimized, position: s.position })));
-          return updated;
-        });
-        setMaxZIndex(prev => prev + 1);
-        output = ["TEST: Forced about section to open", "Check if window appears above", "Check debug panel in top-right corner", "If window still doesn't appear, there's a rendering issue"];
-        break;
-
-      case "scrolltest":
-        // Generate comprehensive scroll test content
-        const scrollTestLines = [];
-        for (let i = 1; i <= 25; i++) {
-          scrollTestLines.push(`📋 Scroll test line ${i} - Testing terminal scroll functionality with longer content to ensure scrolling works properly`);
-        }
-        scrollTestLines.push('');
-        scrollTestLines.push('🎯 SCROLL TEST COMPLETE');
-        scrollTestLines.push('💡 If you can see this message and scroll up/down smoothly, scrolling is working!');
-        scrollTestLines.push('🔄 Use mouse wheel or scrollbar to navigate');
-        scrollTestLines.push('⚠️ Scroll should be isolated to this terminal area only');
-        scrollTestLines.push('');
-        output = scrollTestLines;
-        break;
-
-      case "forcescroll":
-        // Force set user scrolling to true for testing
-        setIsUserScrolling(true);
-        setTimeout(() => {
-          setIsUserScrolling(false);
-        }, 5000);
-        output = ["FORCE SCROLL: Set user scrolling to true for 5 seconds", "This tests if the detection mechanism works"];
-        break;
-
-      case "simpletest":
-        // Test without animation - add a simple div to see if rendering works
-        output = ["SIMPLE TEST: Adding a basic window without animation"];
-        break;
-
-      case "scrolldebug":
-        if (terminalOutputRef.current) {
-          const el = terminalOutputRef.current;
-          output = [
-            "SCROLL DEBUG INFO:",
-            `Container height: ${el.clientHeight}px`,
-            `Content height: ${el.scrollHeight}px`,
-            `Current scroll position: ${el.scrollTop}px`,
-            `Max scroll: ${el.scrollHeight - el.clientHeight}px`,
-            `Overflow-Y style: ${window.getComputedStyle(el).overflowY}`,
-            `Scrollable: ${el.scrollHeight > el.clientHeight ? 'YES' : 'NO'}`,
-            `Scroll listeners: Check console for event logs`
-          ];
-        } else {
-          output = ["SCROLL DEBUG: Terminal output ref not found"];
-        }
-        break;
-
-      case "fillscreen":
-        // Fill the screen with enough content to guarantee scrolling
-        const fillLines = [];
-        for (let i = 1; i <= 30; i++) {
-          fillLines.push(`Fill Line ${i}: Testing scrolling functionality with enough content to overflow the 400px container height.`);
-        }
-        output = ["FILL SCREEN TEST:", ...fillLines, "You should now be able to scroll up and down in the terminal output area."];
-        break;
-
-      case "spam":
-        // Generate lots of output for scroll testing
-        const spamLines = [];
-        for (let i = 1; i <= 100; i++) {
-          spamLines.push(`Line ${i}: This is a test line to generate lots of output for scroll testing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.`);
-        }
-        output = ["SPAM TEST: Generating 100 lines of output...", ...spamLines, "End of spam test - check scroll behavior"];
         break;
 
       case "clear":
@@ -1101,21 +966,15 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
         break;
     }
 
-    console.log('Command output:', output);
     setHistory(prev => {
       const newHistory = [...prev, `$ ${command}`, ...output, ""];
-      console.log('New history length:', newHistory.length);
       return newHistory;
     });
-    console.log('=== COMMAND END ===');
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    console.log('Key pressed:', e.key, 'Input value:', input);
-    
     if (e.key === "Enter") {
       if (input.trim()) { // Only process non-empty commands
-        console.log('Processing command:', input.trim());
         handleCommand(input);
       }
       setInput("");
@@ -1210,7 +1069,7 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
               >
                 Type 'help' for available commands • Navigate with terminal commands • Each section opens as a draggable window
                 <br />
-                <span className="text-green-300/80">💡 Test scrolling with 'spam' command to generate 50 lines of output</span>
+                <span className="text-green-300/80">💡 Use scrollbar to navigate through output history</span>
               </motion.div>
               
               {/* Terminal status line */}
@@ -1246,12 +1105,6 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
                 onScroll={(e) => {
                   e.stopPropagation(); // Prevent scroll event from bubbling
                   const target = e.currentTarget;
-                  console.log('Terminal output scroll event:', {
-                    scrollTop: target.scrollTop,
-                    scrollHeight: target.scrollHeight,
-                    clientHeight: target.clientHeight,
-                    isScrollable: target.scrollHeight > target.clientHeight
-                  });
                   
                   setIsUserScrolling(true);
                   setLastScrollTop(target.scrollTop);
@@ -1276,7 +1129,7 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
                       <br />
                       Type commands to see output
                       <br />
-                      Use 'spam' command to generate test content for scrolling
+                      Navigate through history with arrow keys
                     </div>
                   ) : (
                     history.map((line, index) => (

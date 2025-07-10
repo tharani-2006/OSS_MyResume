@@ -21,8 +21,6 @@ export default function ChatBot({
   apiEndpoint = 'https://reader-santa-accessories-scout.trycloudflare.com/api/chat/message',
   apiKey = 'demo-api-key-12345'
 }: ChatBotProps) {
-  console.log('ChatBot initialized with:', { apiEndpoint, apiKey })
-  
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -43,7 +41,6 @@ export default function ChatBot({
   const checkAiServiceHealth = async () => {
     // For demo purposes, always show as online with smart AI responses
     // In production, this would check the actual AI service health
-    console.log('AI Assistant ready with smart responses')
     setIsOnline(true)
   }
 
@@ -126,9 +123,6 @@ export default function ChatBot({
       let aiResponseReceived = false;
       
       try {
-        console.log('Attempting to call AI service:', apiEndpoint)
-        console.log('Using API key:', apiKey)
-        
         const apiResponse = await fetch(apiEndpoint, {
           method: 'POST',
           headers: {
@@ -140,27 +134,19 @@ export default function ChatBot({
             sessionId: sessionId
           })
         })
-
-        console.log('API Response status:', apiResponse.status)
         
         if (apiResponse.ok) {
           const data = await apiResponse.json()
-          console.log('API Response data:', data)
           
           if (data.success && data.data && data.data.response) {
             response = data.data.response
             aiResponseReceived = true
-            console.log('Using AI response:', response)
           } else if (data.response) {
             response = data.response
             aiResponseReceived = true
-            console.log('Using AI response (fallback format):', response)
           }
-        } else {
-          console.log('API response not ok:', apiResponse.status)
         }
       } catch (error) {
-        console.log('AI service error:', error)
         setIsOnline(false)
       }
 

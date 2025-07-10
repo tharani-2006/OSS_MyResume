@@ -19,9 +19,7 @@ export default function Home() {
   const [isV2UI, setIsV2UI] = useState(false);
 
   const toggleUI = () => {
-    console.log('Toggle clicked! Current state:', isV2UI);
     setIsV2UI(!isV2UI);
-    console.log('New state will be:', !isV2UI);
   };
 
   // V1 UI - Original beautiful design
