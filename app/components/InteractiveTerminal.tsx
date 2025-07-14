@@ -613,7 +613,7 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
     bringToFront(sectionId);
   };
 
-  const handleCommand = (command: string) => {
+  const handleCommand = async (command: string) => {
     const cmd = command.trim().toLowerCase();
     const args = cmd.split(/\s+/).filter(arg => arg.length > 0);
     const baseCmd = args[0];
@@ -651,40 +651,232 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
         break;
 
       case "ls":
-        output = [
-          "Files and directories:",
-          ...sections.map(section => `  ${section.isOpen ? '📂' : '📁'} ${section.name}`),
-          ""
-        ];
+        // Parse ls flags and path
+        let listPath = '';
+        let showHidden = false;
+        let longFormat = false;
+        
+        // Parse arguments for flags and path
+        for (let i = 1; i < args.length; i++) {
+          const arg = args[i];
+          if (arg.startsWith('-')) {
+            if (arg.includes('a')) showHidden = true;
+            if (arg.includes('l')) longFormat = true;
+          } else {
+            listPath = arg;
+            break;
+          }
+        }
+        
+        // If no path specified, determine what to list based on current directory
+        if (!listPath) {
+          if (currentPath === "~/projects") {
+            // When in projects directory, list the projects
+            if (longFormat) {
+              let files = [
+                "drwxr-xr-x  3 sivareddy sivareddy  4096 Jul 14 12:00 network-automation/",
+                "drwxr-xr-x  3 sivareddy sivareddy  4096 Jul 14 12:00 topology-discovery/",
+                "drwxr-xr-x  3 sivareddy sivareddy  4096 Jul 14 12:00 security-monitor/",
+                "-rw-r--r--  1 sivareddy sivareddy  1024 Jul 14 12:00 README.md"
+              ];
+              if (showHidden) {
+                files = [
+                  "drwxr-xr-x  5 sivareddy sivareddy  4096 Jul 14 12:00 ./",
+                  "drwxr-xr-x  6 sivareddy sivareddy  4096 Jul 14 12:00 ../",
+                  ...files
+                ];
+              }
+              output = [
+                `total ${showHidden ? '6' : '4'}`,
+                ...files
+              ];
+            } else {
+              let files = ["network-automation/", "topology-discovery/", "security-monitor/", "README.md"];
+              if (showHidden) {
+                files = ["./", "../", ...files];
+              }
+              output = files;
+            }
+            break;
+          } else if (currentPath.startsWith("~/projects/")) {
+            // When in a specific project directory, try to list its contents
+            const projectPath = currentPath.replace("~/", "");
+            try {
+              const response = await fetch(`/api/directory-listing?path=${encodeURIComponent(projectPath)}`);
+              if (response.ok) {
+                const data = await response.json();
+                if (data.success) {
+                  output = [
+                    ...data.files.map((file: any) => {
+                      const permissions = file.isDirectory ? 'drwxr-xr-x' : '-rw-r--r--';
+                      const size = file.isDirectory ? '' : ` ${Math.round(file.size / 1024)}K`;
+                      return `${permissions}  ${file.name}${size}`;
+                    }),
+                    "",
+                    `${data.files.filter((f: any) => f.isDirectory).length} directories, ${data.files.filter((f: any) => !f.isDirectory).length} files`
+                  ];
+                } else {
+                  output = [`ls: cannot access '${currentPath}': ${data.error || 'Directory not found'}`];
+                }
+              } else {
+                output = [`ls: cannot access '${currentPath}': Network error`];
+              }
+            } catch (error) {
+              output = [`ls: cannot access '${currentPath}': Error reading directory`];
+            }
+            break;
+          }
+        }
+        
+        // Handle explicit path arguments
+        if (listPath === "projects" || listPath === "~/projects") {
+          if (longFormat) {
+            let files = [
+              "drwxr-xr-x  3 sivareddy sivareddy  4096 Jul 14 12:00 network-automation/",
+              "drwxr-xr-x  3 sivareddy sivareddy  4096 Jul 14 12:00 topology-discovery/",
+              "drwxr-xr-x  3 sivareddy sivareddy  4096 Jul 14 12:00 security-monitor/",
+              "-rw-r--r--  1 sivareddy sivareddy  1024 Jul 14 12:00 README.md"
+            ];
+            if (showHidden) {
+              files = [
+                "drwxr-xr-x  5 sivareddy sivareddy  4096 Jul 14 12:00 ./",
+                "drwxr-xr-x  6 sivareddy sivareddy  4096 Jul 14 12:00 ../",
+                ...files
+              ];
+            }
+            output = [
+              `total ${showHidden ? '6' : '4'}`,
+              ...files
+            ];
+          } else {
+            let files = ["network-automation/", "topology-discovery/", "security-monitor/", "README.md"];
+            if (showHidden) {
+              files = ["./", "../", ...files];
+            }
+            output = files;
+          }
+        } else if (listPath && listPath.startsWith("projects/")) {
+          try {
+            const response = await fetch(`/api/directory-listing?path=${encodeURIComponent(listPath)}`);
+            if (response.ok) {
+              const data = await response.json();
+              if (data.success) {
+                output = [
+                  ...data.files.map((file: any) => {
+                    const permissions = file.isDirectory ? 'drwxr-xr-x' : '-rw-r--r--';
+                    const size = file.isDirectory ? '' : ` ${Math.round(file.size / 1024)}K`;
+                    return `${permissions}  ${file.name}${size}`;
+                  }),
+                  "",
+                  `${data.files.filter((f: any) => f.isDirectory).length} directories, ${data.files.filter((f: any) => !f.isDirectory).length} files`
+                ];
+              } else {
+                output = [`ls: cannot access '${listPath}': ${data.error || 'Directory not found'}`];
+              }
+            } else {
+              output = [`ls: cannot access '${listPath}': Network error`];
+            }
+          } catch (error) {
+            output = [`ls: cannot access '${listPath}': Error reading directory`];
+          }
+        } else {
+          // Default listing for home directory (~)
+          if (currentPath === "~") {
+            if (longFormat) {
+              let files = [
+                "-rw-r--r--  1 sivareddy sivareddy  2048 Jul 14 12:00 about.txt",
+                "-rw-r--r--  1 sivareddy sivareddy  1024 Jul 14 12:00 contact.info", 
+                "-rw-r--r--  1 sivareddy sivareddy  3072 Jul 14 12:00 experience.log",
+                "drwxr-xr-x  5 sivareddy sivareddy  4096 Jul 14 12:00 projects/",
+                "-rw-r--r--  1 sivareddy sivareddy  1536 Jul 14 12:00 skills.json"
+              ];
+              if (showHidden) {
+                files = [
+                  "drwxr-xr-x  6 sivareddy sivareddy  4096 Jul 14 12:00 ./",
+                  "drwxr-xr-x  3 root     root       4096 Jul 14 10:00 ../",
+                  ...files
+                ];
+              }
+              output = [
+                `total ${showHidden ? '6' : '5'}`,
+                ...files
+              ];
+            } else {
+              let files = ["about.txt", "contact.info", "experience.log", "projects/", "skills.json"];
+              if (showHidden) {
+                files = ["./", "../", ...files];
+              }
+              output = files;
+            }
+          } else {
+            // Unknown directory
+            output = [`ls: cannot access '${listPath || currentPath}': No such file or directory`];
+          }
+        }
         break;
 
       case "cat":
         if (args.length < 2) {
-          output = ["Usage: cat <filename>", "Available files: about.txt, skills.json, experience.log, projects/, contact.info"];
-        } else {
-          const filename = args.slice(1).join(' ').toLowerCase(); // Join all remaining args
-          let section = null;
-          
-          // Remove common file extensions for better matching
-          const cleanFilename = filename.replace(/\.(txt|json|log|info)$/, '');
-          
-          // Try to find section by filename or id
-          section = sections.find(s => 
-            s.name.toLowerCase() === filename ||
-            s.name.toLowerCase().includes(filename) ||
-            s.id === filename ||
-            s.id === cleanFilename ||
-            s.id.includes(cleanFilename)
-          );
-          
-          if (section) {
-            openSection(section.id);
-            output = [`Opening ${section.name}...`, `✓ File displayed in new window`];
+          if (currentPath.startsWith("~/projects/")) {
+            output = ["Usage: cat <filename>", "Use 'ls' to see available files in this directory"];
           } else {
-            output = [
-              `cat: ${filename}: No such file or directory`,
-              "Available files: about.txt, skills.json, experience.log, projects/, contact.info"
-            ];
+            output = ["Usage: cat <filename>", "Available files: about.txt, skills.json, experience.log, projects/, contact.info"];
+          }
+        } else {
+          const filename = args.slice(1).join(' '); // Join all remaining args but keep original case
+          
+          // Check if we're in a projects directory and try to read actual file
+          if (currentPath.startsWith("~/projects/")) {
+            try {
+              const projectPath = currentPath.replace("~/", "");
+              const filePath = `${projectPath}/${filename}`;
+              const response = await fetch(`/api/file-content?path=${encodeURIComponent(filePath)}`);
+              
+              if (response.ok) {
+                const data = await response.json();
+                if (data.success) {
+                  // Display file content inline
+                  const lines = data.content.split('\n');
+                  output = [
+                    `--- ${filename} ---`,
+                    ...lines,
+                    `--- End of ${filename} ---`
+                  ];
+                } else {
+                  output = [`cat: ${filename}: ${data.error || 'File not found'}`];
+                }
+              } else {
+                output = [`cat: ${filename}: Cannot read file (network error)`];
+              }
+            } catch (error) {
+              output = [`cat: ${filename}: Error reading file`];
+            }
+          } else {
+            // For files in home directory, try to match portfolio sections
+            const filenameLower = filename.toLowerCase();
+            let section = null;
+            
+            // Remove common file extensions for better matching
+            const cleanFilename = filenameLower.replace(/\.(txt|json|log|info)$/, '');
+            
+            // Try to find section by filename or id
+            section = sections.find(s => 
+              s.name.toLowerCase() === filenameLower ||
+              s.name.toLowerCase().includes(filenameLower) ||
+              s.id === filenameLower ||
+              s.id === cleanFilename ||
+              s.id.includes(cleanFilename)
+            );
+            
+            if (section) {
+              openSection(section.id);
+              output = [`Opening ${section.name}...`, `✓ File displayed in new window`];
+            } else {
+              output = [
+                `cat: ${filename}: No such file or directory`,
+                "Available files: about.txt, skills.json, experience.log, projects/, contact.info"
+              ];
+            }
           }
         }
         break;
@@ -858,6 +1050,73 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
       case "clear":
         setHistory([]);
         return;
+
+      case "cd":
+        if (args.length < 2) {
+          setCurrentPath("~");
+          output = [`Changed directory to: ~`];
+        } else {
+          const targetPath = args[1];
+          
+          if (targetPath === "~" || targetPath === "~/" || targetPath === "/home/sivareddy") {
+            setCurrentPath("~");
+            output = [`Changed directory to: ~`];
+          } else if (targetPath === ".") {
+            output = [`Current directory: ${currentPath}`];
+          } else if (targetPath === "..") {
+            if (currentPath === "~") {
+              output = [`cd: ..: Permission denied (already at home directory)`];
+            } else if (currentPath.includes("/")) {
+              const pathParts = currentPath.split("/");
+              pathParts.pop();
+              const newPath = pathParts.join("/") || "~";
+              setCurrentPath(newPath);
+              output = [`Changed directory to: ${newPath}`];
+            } else {
+              setCurrentPath("~");
+              output = [`Changed directory to: ~`];
+            }
+          } else if (targetPath === "projects" || targetPath === "~/projects") {
+            setCurrentPath("~/projects");
+            output = [`Changed directory to: ~/projects`];
+          } else if (targetPath.startsWith("projects/") || targetPath.startsWith("~/projects/")) {
+            const cleanPath = targetPath.replace("~/", "");
+            const knownProjects = ["network-automation", "topology-discovery", "security-monitor"];
+            const projectName = cleanPath.replace("projects/", "");
+            
+            if (projectName === "" || knownProjects.includes(projectName)) {
+              setCurrentPath(`~/${cleanPath}`);
+              output = [`Changed directory to: ~/${cleanPath}`];
+            } else {
+              output = [`cd: ${targetPath}: No such directory`];
+            }
+          } else if (targetPath === "/") {
+            output = [`cd: /: Permission denied (restricted to user directory)`];
+          } else {
+            let newPath = targetPath;
+            
+            if (!targetPath.startsWith("~") && !targetPath.startsWith("/")) {
+              if (currentPath === "~") {
+                newPath = `~/${targetPath}`;
+              } else {
+                newPath = `${currentPath}/${targetPath}`;
+              }
+            }
+            
+            const validPaths = [
+              "~", "~/projects", "~/utils", "~/pages", "~/app", "~/components",
+              "~/projects/network-automation", "~/projects/topology-discovery", "~/projects/security-monitor"
+            ];
+            
+            if (validPaths.includes(newPath) || newPath.startsWith("~/projects/")) {
+              setCurrentPath(newPath);
+              output = [`Changed directory to: ${newPath}`];
+            } else {
+              output = [`cd: ${targetPath}: No such directory`];
+            }
+          }
+        }
+        break;
 
       case "pwd":
         output = [currentPath];
