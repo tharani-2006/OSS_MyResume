@@ -3,6 +3,26 @@ AiProject/
 secure-ecommerce-microservices/
 library-management-system/
 
+# Exclude large project directories that shouldn't be deployed
+projects/topology-discovery/frontend/
+projects/*/node_modules/
+projects/*/dist/
+projects/*/build/
+projects/*/target/
+projects/*/*/node_modules/
+projects/*/*/dist/
+projects/*/*/build/
+log-analysis-system/
+log-analysis-system/target/
+*.jar
+
+# Exclude Git and cache directories
+.git/
+.next/cache/
+node_modules/.cache/
+*.cache/
+.cache/
+
 # Exclude other project files
 *.md
 *.sh
@@ -31,3 +51,16 @@ build/
 # OS
 .DS_Store
 Thumbs.db
+
+# Large files and directories
+*.zip
+*.tar.gz
+*.tar
+*.rar
+*.7z
+
+# Maven and Java build artifacts
+target/
+*.jar
+*.war
+*.ear
