@@ -1,16 +1,20 @@
-# Venna Venkata Siva Reddy - Portfolio
+# Venna Venkata Siva Reddy - Portfolio 🚀
 
-A modern, futuristic portfolio website showcasing my backend development and cybersecurity expertise.
+An innovative, terminal-inspired portfolio website showcasing advanced software engineering and network security expertise.
 
-## 🚀 Live Demo
-[View Portfolio](https://my-resume-o2do89dyl-sivavennas-projects.vercel.app)
+## 🌐 Live Demo
+[View Interactive Portfolio](https://my-resume-o2do89dyl-sivavennas-projects.vercel.app)
 
-## 🛠 Features
-- Modern Next.js 14 with TypeScript
-- Futuristic cyber-themed design
-- Responsive and mobile-first
-- Smooth animations with Framer Motion
-- Backend and cybersecurity focused content
+## ✨ Enhanced Features (Updated Jan 2025)
+- **Interactive Terminal UI** with real bash-like commands
+- **Real Network Tools**: ping, traceroute, netstat, ifconfig, curl, nslookup
+- **Live System Monitoring**: Real-time process and system information
+- **Advanced File Navigation**: ls, cat, cd, find, grep with actual file contents
+- **Modern Next.js 14** with TypeScript and enhanced API routes
+- **Futuristic cyber-themed design** with terminal aesthetics
+- **Responsive mobile-first** architecture
+- **Smooth animations** with Framer Motion
+- **Backend and cybersecurity** focused content with real implementations
 
 ## 🎯 Featured Projects
 

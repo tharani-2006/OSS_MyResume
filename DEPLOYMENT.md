@@ -1,22 +1,38 @@
-# Deployment Guide for Portfolio Website
+# Deployment Guide for Interactive Portfolio Terminal 🚀
 
-## Option 1: Deploy to Vercel (Recommended - Free & Easy)
+## Latest Deployment (Jan 2025) - Enhanced Terminal Features
 
-### Step 1: Prepare for Deployment
+The portfolio now includes advanced terminal functionality with real network commands and system monitoring. This guide covers deployment considerations for the enhanced features.
+
+## 🎯 Production Deployment - Vercel (Recommended)
+
+### Recent Optimizations Applied
+- **Size Optimization**: Updated `.vercelignore` to exclude large files (250MB+ → <50MB)
+- **Build Performance**: Removed heavy frontend builds and cache directories
+- **API Enhancement**: 7+ new API endpoints for network and system commands
+- **TypeScript Compliance**: Full type safety with proper error handling
+
+### Step 1: Pre-Deployment Verification
 ```bash
-# Build the project locally to test
+# Verify build works locally
 npm run build
 
-# Create a GitHub repository
-git init
-git add .
-git commit -m "Initial portfolio commit"
+# Test network APIs locally
+npm run dev
+# Test: http://localhost:3000/api/network/ping?target=cisco.com
+
+# Check bundle size
+npm run build && ls -la .next/
 ```
 
-### Step 2: Push to GitHub
+### Step 2: Repository Management
 ```bash
-# Add your GitHub remote (replace with your actual repo URL)
-git remote add origin https://github.com/sivavenna/portfolio-website.git
+# Ensure latest changes are committed
+git add .
+git commit -m "feat: Enhanced terminal with real networking commands"
+
+# Push to GitHub (replace with your repo URL)
+git remote add origin https://github.com/avis-enna/MyResume.git
 git branch -M main
 git push -u origin main
 ```
