@@ -2,15 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
 
-// Disable SSR for this component
-const NotFoundContent = dynamic(() => Promise.resolve(NotFoundContentComponent), {
-  ssr: false,
-});
-
-function NotFoundContentComponent() {
-  const [deploymentVersion, setDeploymentVersion] = useState('36');
+export default function NotFound() {
+  const [deploymentVersion, setDeploymentVersion] = useState('1.37.37');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -20,7 +14,7 @@ function NotFoundContentComponent() {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          setDeploymentVersion(data.version);
+          setDeploymentVersion(data.data.version);
         }
       })
       .catch(() => {
@@ -44,7 +38,7 @@ function NotFoundContentComponent() {
             terminal@portfolio:~/404$ - Error Handler v{deploymentVersion}
           </span>
           <span className="text-xs text-green-400/60">
-            Deployment #{deploymentVersion} | Error Code: 404
+            Version {deploymentVersion} | Error Code: 404
           </span>
         </div>
       </div>
@@ -79,7 +73,6 @@ function NotFoundContentComponent() {
           <div className="mt-12 pt-6 border-t border-green-400/30">
             <p className="text-green-400/60 text-sm">
               Portfolio Terminal System v{deploymentVersion} | 
-              Build #{deploymentVersion} | 
               Error Logged: {new Date().toLocaleString()}
             </p>
           </div>
@@ -87,8 +80,4 @@ function NotFoundContentComponent() {
       </div>
     </div>
   );
-}
-
-export default function NotFound() {
-  return <NotFoundContent />;
 }

@@ -8,12 +8,24 @@ interface ErrorProps {
 }
 
 export default function Error({ error, reset }: ErrorProps) {
-  const [deploymentVersion, setDeploymentVersion] = useState('35');
+  const [deploymentVersion, setDeploymentVersion] = useState('1.37.37');
   const [errorDetails, setErrorDetails] = useState<string[]>([]);
 
   useEffect(() => {
     // Log error details
     console.error('Portfolio Terminal Error:', error);
+    
+    // Fetch current version
+    fetch('/api/version')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          setDeploymentVersion(data.data.version);
+        }
+      })
+      .catch(() => {
+        // Keep fallback
+      });
     
     // Create detailed error log
     const details = [

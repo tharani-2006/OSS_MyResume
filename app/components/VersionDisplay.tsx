@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react';
 
 interface VersionInfo {
   version: string;
+  shortVersion?: string;
   buildNumber: number;
+  commitCount?: number;
   commit: string;
   environment: string;
   uptime: number;
@@ -29,8 +31,10 @@ export default function VersionDisplay() {
       console.warn('Could not fetch version info:', error);
       // Fallback version info
       setVersionInfo({
-        version: 'v35',
-        buildNumber: 35,
+        version: '1.37.37',
+        shortVersion: 'v37',
+        buildNumber: 37,
+        commitCount: 37,
         commit: 'unknown',
         environment: 'production',
         uptime: 0

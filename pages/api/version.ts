@@ -28,9 +28,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     // Get build/deployment info
+    const buildNumber = parseInt(commitCount);
+    const formattedVersion = `1.${commitCount}.${buildNumber}`;
+    
     const deploymentInfo = {
-      version: `v${commitCount}`,
-      buildNumber: parseInt(commitCount),
+      version: formattedVersion,
+      shortVersion: `v${commitCount}`,
+      buildNumber: buildNumber,
+      commitCount: parseInt(commitCount),
       commit: latestCommit,
       buildTime,
       environment: process.env.VERCEL_ENV || process.env.NODE_ENV || 'development',
@@ -62,8 +67,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       success: false,
       error: error.message,
       fallback: {
-        version: 'v35',
-        buildNumber: 35,
+        version: '1.37.37',
+        shortVersion: 'v37',
+        buildNumber: 37,
+        commitCount: 37,
         commit: 'unknown',
         environment: 'unknown'
       }

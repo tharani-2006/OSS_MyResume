@@ -107,7 +107,7 @@ export default function GlobalError({
 
               <div className="text-center">
                 <p className="text-green-400/60 text-sm">
-                  Portfolio Terminal v36 | 
+                  Portfolio Terminal v1.37.37 | 
                   If this error persists, please refresh your browser
                 </p>
                 <p className="text-green-400/40 text-xs mt-2">
