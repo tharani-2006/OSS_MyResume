@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-// import { motion } from "framer-motion";
 
 // Import V1 components
 import Navigation from "./components/Navigation";
@@ -14,7 +13,6 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ChatBot from "./components/ChatBot";
 import InteractiveTerminal from "./components/InteractiveTerminal";
-// import VersionDisplay from "./components/VersionDisplay";
 
 export default function Home() {
   const [isV2UI, setIsV2UI] = useState(false);

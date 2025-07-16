@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -78,21 +77,11 @@ export default function Error({ error, reset }: ErrorProps) {
           <div className="grid lg:grid-cols-2 gap-8">
             
             {/* Left side - Error Information */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-6"
-            >
+            <div className="space-y-6 opacity-0 animate-fade-in">
               <div>
-                <motion.h1 
-                  className="text-4xl md:text-6xl font-bold text-red-400 mb-4"
-                  initial={{ scale: 0.5 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                >
+                <h1 className="text-4xl md:text-6xl font-bold text-red-400 mb-4">
                   SYSTEM ERROR
-                </motion.h1>
+                </h1>
                 <h2 className="text-xl md:text-2xl text-green-300 mb-4">
                   Terminal Process Crashed
                 </h2>
@@ -121,43 +110,32 @@ export default function Error({ error, reset }: ErrorProps) {
               <div className="border border-green-400/30 rounded p-4 bg-green-400/5">
                 <h3 className="text-green-300 font-semibold mb-3">🔧 Recovery Options</h3>
                 <div className="space-y-3">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                  <button
                     onClick={reset}
                     className="w-full bg-green-400 text-black px-4 py-3 rounded font-semibold hover:bg-green-300 transition-colors flex items-center justify-center gap-2"
                   >
                     🔄 Restart Terminal Process
-                  </motion.button>
+                  </button>
                   
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                  <button
                     onClick={() => window.location.reload()}
                     className="w-full border border-yellow-400 text-yellow-400 px-4 py-3 rounded font-semibold hover:bg-yellow-400/10 transition-colors flex items-center justify-center gap-2"
                   >
                     🔃 Force Reload Page
-                  </motion.button>
+                  </button>
 
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                  <button
                     onClick={() => window.location.href = '/'}
                     className="w-full border border-blue-400 text-blue-400 px-4 py-3 rounded font-semibold hover:bg-blue-400/10 transition-colors flex items-center justify-center gap-2"
                   >
                     🏠 Return to Home Terminal
-                  </motion.button>
+                  </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Right side - System Log Terminal */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="border border-red-400/30 rounded bg-black/50"
-            >
+            <div className="border border-red-400/30 rounded bg-black/50 opacity-0 animate-fade-in-delay">
               <div className="border-b border-red-400/30 p-3 bg-red-400/10">
                 <div className="flex items-center justify-between">
                   <span className="text-red-300 font-semibold">System Error Log</span>
@@ -168,11 +146,8 @@ export default function Error({ error, reset }: ErrorProps) {
               <div className="p-4 h-96 overflow-y-auto">
                 <div className="space-y-1 text-sm">
                   {terminalErrorOutput.map((line, index) => (
-                    <motion.div
+                    <div
                       key={index}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: index * 0.05 }}
                       className={`${
                         line.startsWith('$') 
                           ? 'text-yellow-400 font-semibold' 
@@ -186,34 +161,20 @@ export default function Error({ error, reset }: ErrorProps) {
                       }`}
                     >
                       {line || '\u00A0'}
-                    </motion.div>
+                    </div>
                   ))}
                   
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: terminalErrorOutput.length * 0.05 + 0.5 }}
-                    className="text-yellow-400 font-semibold mt-4"
-                  >
+                  <div className="text-yellow-400 font-semibold mt-4">
                     $ _
-                    <motion.span
-                      animate={{ opacity: [1, 0, 1] }}
-                      transition={{ duration: 1, repeat: Infinity }}
-                      className="inline-block w-2 h-4 bg-red-400 ml-1"
-                    />
-                  </motion.div>
+                    <span className="inline-block w-2 h-4 bg-red-400 ml-1 animate-pulse" />
+                  </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Footer */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-8 text-center"
-          >
+          <div className="mt-8 text-center opacity-0 animate-fade-in-late">
             <div className="border-t border-red-400/30 pt-6">
               <p className="text-red-400/60 text-sm">
                 Portfolio Terminal System v{deploymentVersion} | 
@@ -224,9 +185,25 @@ export default function Error({ error, reset }: ErrorProps) {
                 If this error continues, please report it with the error details above
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .animate-fade-in {
+          animation: fadeIn 0.6s ease-out forwards;
+        }
+        .animate-fade-in-delay {
+          animation: fadeIn 0.6s ease-out 0.3s forwards;
+        }
+        .animate-fade-in-late {
+          animation: fadeIn 0.6s ease-out 0.8s forwards;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </div>
   );
 }
