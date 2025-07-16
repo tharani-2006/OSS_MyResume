@@ -4,8 +4,19 @@ import { motion } from 'framer-motion'
 import { Heart, Code, ArrowUp } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
+interface VersionInfo {
+  version: string;
+  shortVersion?: string;
+  buildNumber: number;
+  commitCount?: number;
+  commit: string;
+  environment: string;
+  uptime: number;
+}
+
 export default function Footer() {
   const [showScrollTop, setShowScrollTop] = useState(false)
+  const [versionInfo, setVersionInfo] = useState<VersionInfo | null>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +25,32 @@ export default function Footer() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  useEffect(() => {
+    fetchVersionInfo();
+  }, []);
+
+  const fetchVersionInfo = async () => {
+    try {
+      const response = await fetch('/api/version');
+      const data = await response.json();
+      if (data.success) {
+        setVersionInfo(data.data);
+      }
+    } catch (error) {
+      console.warn('Could not fetch version info:', error);
+      // Fallback version info
+      setVersionInfo({
+        version: '1.0.0',
+        shortVersion: 'v1.0',
+        buildNumber: 0,
+        commitCount: 0,
+        commit: 'unknown',
+        environment: 'development',
+        uptime: 0
+      });
+    }
+  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -108,7 +145,9 @@ export default function Footer() {
           </div>
           
           <div className="flex items-center space-x-4 mt-4 md:mt-0">
-            <span className="text-gray-400 text-sm">Version 1.0.0</span>
+            <span className="text-gray-400 text-sm">
+              Version {versionInfo?.version || '1.0.0'}
+            </span>
             <div className="w-2 h-2 bg-cyber-blue rounded-full animate-pulse"></div>
             <span className="text-cyber-blue text-sm font-cyber">Online</span>
           </div>

@@ -14,7 +14,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ChatBot from "./components/ChatBot";
 import InteractiveTerminal from "./components/InteractiveTerminal";
-// import VersionDisplay from "./components/VersionDisplay";
+// VersionDisplay is now integrated into Footer component
 
 export default function Home() {
   const [isV2UI, setIsV2UI] = useState(false);
@@ -46,7 +46,6 @@ export default function Home() {
         <Contact />
         <Footer />
         <ChatBot />
-        {/* Version display temporarily removed */}
       </main>
     );
   }
@@ -55,7 +54,6 @@ export default function Home() {
   return (
     <div className="relative">
       <InteractiveTerminal onToggleUI={toggleUI} />
-      {/* Version display temporarily removed */}
     </div>
   );
 }
