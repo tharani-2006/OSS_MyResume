@@ -14,6 +14,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ChatBot from "./components/ChatBot";
 import InteractiveTerminal from "./components/InteractiveTerminal";
+import VersionDisplay from "./components/VersionDisplay";
 
 export default function Home() {
   const [isV2UI, setIsV2UI] = useState(false);
@@ -46,6 +47,7 @@ export default function Home() {
         <Contact />
         <Footer />
         <ChatBot />
+        <VersionDisplay />
       </main>
     );
   }
@@ -54,6 +56,7 @@ export default function Home() {
   return (
     <div className="relative">
       <InteractiveTerminal onToggleUI={toggleUI} />
+      <VersionDisplay />
     </div>
   );
 }
