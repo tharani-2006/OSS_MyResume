@@ -7,11 +7,10 @@ import { useState, useEffect } from 'react'
 interface VersionInfo {
   version: string;
   shortVersion?: string;
-  buildNumber: number;
+  buildNumber?: number;
   commitCount?: number;
-  commit: string;
-  environment: string;
-  uptime: number;
+  commit?: string;
+  environment?: string;
 }
 
 export default function Footer() {
@@ -19,35 +18,53 @@ export default function Footer() {
   const [versionInfo, setVersionInfo] = useState<VersionInfo | null>(null)
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  useEffect(() => {
-    fetchVersionInfo();
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setShowScrollTop(window.scrollY > 400);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const fetchVersionInfo = async () => {
+  useEffect(() => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    
+    fetchVersionInfo(controller.signal);
+    
+    return () => {
+      controller.abort();
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
+  const fetchVersionInfo = async (signal?: AbortSignal) => {
     try {
-      const response = await fetch('/api/version');
+      const response = await fetch('/api/version', { signal });
       const data = await response.json();
       if (data.success) {
         setVersionInfo(data.data);
       }
     } catch (error) {
-      console.warn('Could not fetch version info:', error);
-      // Fallback version info
+      // Silent fallback for production - only log in development
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('Version fetch failed:', error);
+      }
       setVersionInfo({
         version: '1.0.0',
         shortVersion: 'v1.0',
         buildNumber: 0,
         commitCount: 0,
         commit: 'unknown',
-        environment: 'development',
-        uptime: 0
+        environment: 'production'
       });
     }
   };
@@ -139,16 +156,16 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <div className="flex items-center space-x-2 text-gray-400 text-sm">
-            <span>© 2024 Venna Venkata Siva Reddy. Made with</span>
+            <span>© 2025 Venna Venkata Siva Reddy. Made with</span>
             <Heart size={16} className="text-cyber-pink" />
             <span>and lots of coffee</span>
           </div>
           
           <div className="flex items-center space-x-4 mt-4 md:mt-0">
             <span className="text-gray-400 text-sm">
-              Version {versionInfo?.version || '1.0.0'}
+              Version {versionInfo?.version || 'Loading...'}
             </span>
-            <div className="w-2 h-2 bg-cyber-blue rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-cyber-blue rounded-full animate-pulse" />
             <span className="text-cyber-blue text-sm font-cyber">Online</span>
           </div>
         </motion.div>
@@ -167,6 +184,7 @@ export default function Footer() {
           opacity: showScrollTop ? 1 : 0, 
           y: showScrollTop ? 0 : 20 
         }}
+        aria-label="Scroll to top"
       >
         <ArrowUp size={20} />
       </motion.button>
