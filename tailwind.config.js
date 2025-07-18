@@ -5,6 +5,7 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -46,6 +47,13 @@ module.exports = {
       backgroundImage: {
         'gradient-cyber': 'linear-gradient(135deg, #00f5ff 0%, #8b5cf6 50%, #f471b5 100%)',
         'gradient-dark': 'linear-gradient(135deg, #0a0a0a 0%, #111111 100%)',
+      },
+      gridTemplateColumns: {
+        '16': 'repeat(16, minmax(0, 1fr))',
+        '20': 'repeat(20, minmax(0, 1fr))',
+        '26': 'repeat(26, minmax(0, 1fr))',
+        '30': 'repeat(30, minmax(0, 1fr))',
+        '32': 'repeat(32, minmax(0, 1fr))',
       },
     },
   },
