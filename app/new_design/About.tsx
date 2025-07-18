@@ -1,7 +1,7 @@
 "use client";
 
 import { useDarkMode } from "./DarkModeContext";
-import Image from "next/image";
+
 
 export default function About() {
   const { isDarkMode } = useDarkMode();
@@ -19,13 +19,13 @@ export default function About() {
             {/* Profile Section */}
             <div className="lg:col-span-1 text-center">
               <div className={`w-60 h-60 rounded-2xl mx-auto mb-8 flex items-center justify-center relative overflow-hidden transition-colors duration-300 ${isDarkMode ? 'bg-gray-900/10 border border-gray-800/30' : 'bg-gray-50 border border-gray-200'}`}>
-                <Image
-                  src="/profile.svg"
+                <img
+                  src="/profile-photo.png"
                   alt="Venna Venkata Siva Reddy"
                   width={240}
                   height={240}
                   className="object-cover transition-transform duration-300 hover:scale-105"
-                  priority
+                  
                 />
               </div>
               <h3 className={`text-2xl font-light mb-4 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>Venna Venkata Siva Reddy</h3>
