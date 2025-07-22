@@ -21,6 +21,13 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="home" className={`min-h-screen flex flex-col justify-center items-center relative transition-colors duration-300 ${isDarkMode ? 'bg-black' : 'bg-white'}`}>
       {/* Main Content */}
@@ -43,10 +50,16 @@ export default function Hero() {
         </div>
 
         <div className="mt-16 flex justify-center space-x-8">
-          <button className={`px-8 py-3 border transition-all duration-300 hover:scale-105 ${isDarkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black text-black hover:bg-black hover:text-white'}`}>
+          <button 
+            onClick={() => scrollToSection('projects')}
+            className={`px-8 py-3 border transition-all duration-300 hover:scale-105 ${isDarkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black text-black hover:bg-black hover:text-white'}`}
+          >
             view work
           </button>
-          <button className={`px-8 py-3 transition-all duration-300 hover:scale-105 ${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
+          <button 
+            onClick={() => scrollToSection('contact')}
+            className={`px-8 py-3 transition-all duration-300 hover:scale-105 ${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'}`}
+          >
             get in touch
           </button>
         </div>
