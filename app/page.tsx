@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // import { motion } from "framer-motion";
 
 // Import V1 components
@@ -15,10 +15,14 @@ import Footer from "./components/Footer";
 import ChatBot from "./components/ChatBot";
 import InteractiveTerminal from "./components/InteractiveTerminal";
 import NewDesignLayout from "./new_design/NewDesignLayout";
+import LoadingScreen from "./components/LoadingScreen";
+import Blog from "./components/Blog";
+import ResumeDownload from "./components/ResumeDownload";
 // VersionDisplay is now integrated into Footer component
 
 export default function Home() {
   const [currentUI, setCurrentUI] = useState<'new' | 'v1' | 'v2'>('new');
+  const [isLoading, setIsLoading] = useState(true);
 
   const toggleUI = () => {
     if (currentUI === 'new') {
@@ -29,6 +33,11 @@ export default function Home() {
       setCurrentUI('new');
     }
   };
+
+  // Show loading screen on first visit
+  if (isLoading) {
+    return <LoadingScreen onComplete={() => setIsLoading(false)} duration={2500} />;
+  }
 
   // New Design - Clean modern design (Default)
   if (currentUI === 'new') {
@@ -68,6 +77,8 @@ export default function Home() {
         <Skills />
         <Timeline />
         <Projects />
+        <Blog />
+        <ResumeDownload />
         <Contact />
         <Footer />
         <ChatBot />

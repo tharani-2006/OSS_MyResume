@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 // Function to perform a simple "traceroute" by trying to measure latency to different hops
 async function performHTTPBasedTrace(target: string) {
-  const hops = [];
+  const hops: string[] = [];
   
   try {
     // Try to resolve the target first
@@ -19,13 +19,15 @@ async function performHTTPBasedTrace(target: string) {
     // Add realistic latency measurements
     for (let i = 0; i < commonHops.length; i++) {
       const hop = commonHops[i];
+      if (!hop) continue;
+
       const baseLatency = (i + 1) * 8 + Math.random() * 10; // Increasing latency
       const times = [
         (baseLatency + Math.random() * 5).toFixed(0),
         (baseLatency + Math.random() * 5).toFixed(0),
         (baseLatency + Math.random() * 5).toFixed(0)
       ];
-      
+
       hops.push(`${i + 1}  ${hop.name} (${hop.ip})  ${times[0]} ms  ${times[1]} ms  ${times[2]} ms`);
     }
 
@@ -88,7 +90,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const result = await performHTTPBasedTrace(target as string);
     
     // Build realistic traceroute output
-    const hops = [];
+    const hops: string[] = [];
     
     // Add common network hops with realistic timing
     const networkHops = [
@@ -100,13 +102,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     for (let i = 0; i < networkHops.length; i++) {
       const hop = networkHops[i];
+      if (!hop) continue;
+
       const baseLatency = (i + 1) * 8 + Math.random() * 15;
       const times = [
         (baseLatency + Math.random() * 8).toFixed(0),
-        (baseLatency + Math.random() * 8).toFixed(0), 
+        (baseLatency + Math.random() * 8).toFixed(0),
         (baseLatency + Math.random() * 8).toFixed(0)
       ];
-      
+
       hops.push(`${i + 1}  ${hop.name} (${hop.ip})                    ${times[0]} ms  ${times[1]} ms  ${times[2]} ms`);
     }
 
