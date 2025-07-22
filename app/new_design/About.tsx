@@ -30,7 +30,7 @@ export default function About() {
               </div>
               <h3 className={`text-2xl font-light mb-4 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>Venna Venkata Siva Reddy</h3>
               <p className={`text-sm mb-6 transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                Software Engineer Trainee at Cisco
+                Software Engineer at Cisco Systems
               </p>
               <div className="flex justify-center space-x-6 mb-8">
                 <a href="https://linkedin.com/in/sivavenna" target="_blank" rel="noopener noreferrer" className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
@@ -49,12 +49,12 @@ export default function About() {
             <div className="lg:col-span-2">
               <div className="mb-12">
                 <p className={`text-lg leading-relaxed mb-6 transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  Experienced Network Engineer with expertise in network operations, backend development, and system automation.
-                  Currently serving as a Software Engineer Trainee at Cisco Systems with CCNA and CCCA certifications.
+                  A results-driven Software Engineer with hands-on experience in migrating legacy systems to modern, cloud-native environments.
+                  Proven expertise in the full software development lifecycle, from backend development with Java/Spring Boot to frontend implementation with React.
                 </p>
                 <p className={`leading-relaxed transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                  Strong foundation in TCP/IP, routing, switching, and Linux system administration. Passionate about building
-                  scalable, secure, and reliable enterprise systems.
+                  Specialized in Kubernetes, Docker, and GitOps workflows using Helm and FluxCD. A proactive problem-solver with unique
+                  cross-functional experience in network engineering (CCNA) and data analytics, passionate about building scalable, mission-critical software.
                 </p>
               </div>
 

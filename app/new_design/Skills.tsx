@@ -7,60 +7,53 @@ export default function Skills() {
 
   const skillCategories = [
     {
-      title: "Networking",
+      title: "Cloud & DevOps",
       skills: [
-        "TCP/IP", "ARP", "OSPF", "BGP", "VLANs", "ACLs", "IP Tables", "NAT", "Routing & Switching", "Network Security"
+        "Kubernetes", "Docker", "Helm", "FluxCD", "CI/CD", "AWS", "GCP"
       ]
     },
     {
-      title: "Programming & Scripting",
+      title: "Programming Languages",
       skills: [
-        "Python", "Java", "C/C++", "Shell Scripting (Bash)", "SQL"
+        "Java", "Python", "JavaScript", "SQL", "Shell Scripting", "COBOL"
       ]
     },
     {
-      title: "Web Technologies",
+      title: "Backend",
       skills: [
-        "Java Spring Boot", "React", "REST APIs", "JSON", "HTML/CSS"
+        "Spring Boot", "REST APIs", "SOAP Web Services", "Microservices"
       ]
     },
     {
-      title: "Operating Systems",
+      title: "Frontend",
       skills: [
-        "Linux (Ubuntu/CentOS/RHEL)", "Windows Server", "z/OS (IBM Mainframe)"
-      ]
-    },
-    {
-      title: "Network Tools",
-      skills: [
-        "Wireshark", "Cisco Packet Tracer", "GNS3", "Network Analyzers", "SNMP Tools"
-      ]
-    },
-    {
-      title: "Development Tools",
-      skills: [
-        "Git", "DevOps", "CI/CD Pipelines", "Automated Testing (Axe, WAVE)"
+        "React", "JavaScript", "HTML", "CSS"
       ]
     },
     {
       title: "Databases",
       skills: [
-        "MongoDB", "IBM DB2", "SQL Server", "Database Design and Optimization"
+        "SQL", "MongoDB", "IBM DB2", "VSAM"
       ]
     },
     {
-      title: "Mainframe Technologies",
+      title: "Mainframe",
       skills: [
-        "JCL", "COBOL", "z/OS", "TSO/ISPF", "VSAM"
+        "JCL", "COBOL"
+      ]
+    },
+    {
+      title: "Networking",
+      skills: [
+        "TCP/IP", "HTTP", "Network Device Configuration & Troubleshooting"
       ]
     }
   ];
 
   const certifications = [
+    "Cisco Certified DevNet Associate (DEVASC)",
     "Cisco Certified Network Associate (CCNA)",
-    "Cisco Certified Cybersecurity Associate (CCCA)",
-    "Microsoft Certified: Security, Compliance & Identity",
-    "Currently Pursuing: Cisco Certified DevNet Associate (DEVASC)"
+    "Cisco Certified Cybersecurity Associate (CCCA)"
   ];
 
   return (
@@ -114,10 +107,9 @@ export default function Skills() {
                 Technical Expertise
               </h3>
               <p className={`text-base leading-relaxed transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                Experienced Network Engineer with expertise in network operations, backend development, and system automation.
-                Strong foundation in TCP/IP, routing, switching, and Linux system administration. Proven track record in
-                developing REST APIs, network troubleshooting, and automation scripting. Passionate about building scalable,
-                secure, and reliable enterprise systems.
+                A results-driven Software Engineer with hands-on experience in migrating legacy systems to modern, cloud-native environments.
+                Proven expertise in the full software development lifecycle, from backend development with Java/Spring Boot to frontend
+                implementation with React. Specialized in Kubernetes, Docker, and GitOps workflows using Helm and FluxCD.
               </p>
             </div>
           </div>

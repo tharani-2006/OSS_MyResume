@@ -8,19 +8,20 @@ export default function Experience() {
   const experiences = [
     {
       id: 1,
-      title: "Software Engineer Trainee",
+      title: "Software Engineer",
       company: "Cisco Systems",
       location: "Bengaluru, India",
       period: "August 2024 - Present",
       description: [
-        "Monitor and support enterprise-level networks to ensure high availability and low latency across distributed systems",
-        "Develop and secure REST APIs for internal network automation tools using Java and Spring Boot frameworks",
-        "Perform comprehensive packet analysis and network issue resolution using Wireshark and advanced CLI tools",
-        "Assist in security policy configuration and assessments including ACLs, NAT, and IP Tables implementation",
-        "Script automation solutions for log parsing, configuration backups, and monitoring using Python and Bash",
-        "Collaborate on network optimization projects to improve performance and reliability"
+        "Led the migration of the IoT Control Center's core services from Docker to a scalable Kubernetes (k8s) architecture, significantly improving service reliability and deployment velocity",
+        "Managed Kubernetes applications using Helm charts for packaging and deployed a GitOps workflow with FluxCD for automated, declarative continuous delivery",
+        "Developed and maintained resilient Java Spring Boot microservices for the HLR-level network service, designing and exposing both REST and SOAP APIs",
+        "Implemented Single Sign-On (SSO) for new services using Duo, enhancing security and streamlining user access",
+        "Built and supported frontend modules in React for internal service management dashboards",
+        "Leveraged CCNA certification to collaborate with the network engineering team on troubleshooting and configuring network devices",
+        "Developed a data analytics tool by integrating with Jira APIs to pull, model, and visualize project data, enabling predictive insights into team productivity"
       ],
-      technologies: ["Java", "Spring Boot", "Python", "Bash", "Wireshark", "Network Security", "REST APIs"]
+      technologies: ["Kubernetes", "Docker", "Helm", "FluxCD", "Java", "Spring Boot", "React", "REST APIs", "SOAP", "SSO", "Jira APIs"]
     },
     {
       id: 2,
@@ -29,12 +30,12 @@ export default function Experience() {
       location: "Bengaluru, India",
       period: "November 2023 - May 2024",
       description: [
-        "Completed comprehensive training in IBM Mainframe environments including z/OS, JCL, COBOL, and DB2",
-        "Contributed to process automation initiatives in legacy systems to enhance performance and reduce manual overhead",
-        "Gained expertise in enterprise system workflows and mainframe application development",
-        "Participated in code reviews and quality assurance processes for mainframe applications"
+        "Maintained and enhanced a large-scale mainframe banking application, gaining deep experience in enterprise-level systems",
+        "Developed and modified COBOL programs to implement new business logic and functionality changes",
+        "Automated and optimized batch processing jobs using JCL, debugged JCL failures, and implemented changes to system-generated reports",
+        "Worked extensively with core mainframe technologies including DB2 for database management and VSAM for indexed data storage"
       ],
-      technologies: ["z/OS", "JCL", "COBOL", "DB2", "TSO/ISPF", "VSAM", "Mainframe"]
+      technologies: ["COBOL", "JCL", "DB2", "VSAM", "Mainframe", "Banking Systems"]
     }
   ];
 
@@ -49,28 +50,22 @@ export default function Experience() {
 
   const certifications = [
     {
+      name: "Cisco Certified DevNet Associate (DEVASC)",
+      issuer: "Cisco",
+      year: "",
+      status: "Certified"
+    },
+    {
       name: "Cisco Certified Network Associate (CCNA)",
       issuer: "Cisco",
       year: "",
-      status: "Active"
+      status: "Certified"
     },
     {
       name: "Cisco Certified Cybersecurity Associate (CCCA)",
       issuer: "Cisco",
       year: "",
-      status: "Active"
-    },
-    {
-      name: "Microsoft Certified: Security, Compliance & Identity",
-      issuer: "Microsoft",
-      year: "",
-      status: "Active"
-    },
-    {
-      name: "Cisco Certified DevNet Associate (DEVASC)",
-      issuer: "Cisco",
-      year: "",
-      status: "Currently Pursuing"
+      status: "Certified"
     }
   ];
 
