@@ -30,18 +30,18 @@ export default function Projects() {
       technologies: ["Java 17", "Spring Boot", "Kafka", "Elasticsearch", "PostgreSQL", "Docker", "React"],
       category: "Backend System",
       image: "/api/placeholder/400/300",
-      githubUrl: "https://github.com/sivavenna/log-analysis-system"
+      githubUrl: "https://github.com/avis-enna/log-analysis-system"
     },
     {
       id: "iot-monitoring",
-      title: "IoT Monitoring System",
-      subtitle: "Environmental data collection",
-      description: "IoT-based continuous abiotic factor monitoring system for agricultural applications with real-time data collection and analysis.",
-      longDescription: "Real-time environmental monitoring system designed for agricultural applications. Integrates IoT sensors with backend services to collect and process environmental data continuously. Features responsive dashboards, alerting mechanisms, and historical data tracking.",
-      technologies: ["Java", "React", "Arduino", "IoT Sensors", "MySQL", "REST APIs"],
-      category: "IoT Application",
+      title: "IoT-Based Continuous Abiotic Factor Monitoring",
+      subtitle: "Research Publication - IJFMR Journal",
+      description: "Real-time environmental monitoring system for agricultural applications with IoT sensors integration, responsive dashboards, and secure data transmission protocols.",
+      longDescription: "Comprehensive IoT-based system for continuous monitoring of abiotic factors in agricultural environments. Features real-time data collection using IoT sensors, responsive dashboards for data visualization, historical data tracking, alerting mechanisms for critical thresholds, secure data transmission protocols, and anomaly detection for system reliability. Published in International Journal For Multidisciplinary Research (IJFMR), May-June 2023.",
+      technologies: ["Java", "React", "Arduino", "IoT Sensors", "Real-time Processing", "Data Visualization", "Environmental Monitoring", "Alert Systems", "Secure Protocols"],
+      category: "IoT Research",
       image: "/api/placeholder/400/300",
-      githubUrl: "https://github.com/sivavenna/iot-monitoring"
+      githubUrl: "#"
     },
     {
       id: "microservices-ecommerce",
@@ -52,7 +52,7 @@ export default function Projects() {
       technologies: ["Spring Boot", "Docker", "PostgreSQL", "Redis", "RabbitMQ", "JWT", "OAuth2"],
       category: "Web Application",
       image: "/api/placeholder/400/300",
-      githubUrl: "https://github.com/sivavenna/secure-ecommerce"
+      githubUrl: "https://github.com/avis-enna/secure-ecommerce"
     },
     {
       id: "library-management",
@@ -63,7 +63,7 @@ export default function Projects() {
       technologies: ["Python", "Flask", "SQLite", "HTML/CSS", "JavaScript", "Bootstrap"],
       category: "Management System",
       image: "/api/placeholder/400/300",
-      githubUrl: "https://github.com/sivavenna/library-management"
+      githubUrl: "https://github.com/avis-enna/library-management"
     }
   ];
 
