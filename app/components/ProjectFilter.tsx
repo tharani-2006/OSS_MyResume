@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Filter, Search, X } from 'lucide-react';
 
 interface ProjectFilterProps {
@@ -17,11 +17,11 @@ interface FilterState {
   search: string;
 }
 
-export default function ProjectFilter({ 
-  categories, 
-  technologies, 
-  onFilterChange, 
-  projectCount 
+export default function ProjectFilter({
+  categories,
+  technologies,
+  onFilterChange,
+  projectCount
 }: ProjectFilterProps) {
   const [filters, setFilters] = useState<FilterState>({
     category: 'All',
@@ -29,6 +29,18 @@ export default function ProjectFilter({
     search: ''
   });
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const updateFilter = (key: keyof FilterState, value: string) => {
     const newFilters = { ...filters, [key]: value };
@@ -47,19 +59,21 @@ export default function ProjectFilter({
   return (
     <div className="mb-12">
       {/* Filter Toggle Button (Mobile) */}
-      <div className="md:hidden mb-4">
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="flex items-center space-x-2 cyber-button w-full justify-center"
-        >
-          <Filter size={16} />
-          <span>Filter Projects</span>
-        </button>
-      </div>
+      {isMobile && (
+        <div className="mb-4">
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="flex items-center space-x-2 cyber-button w-full justify-center"
+          >
+            <Filter size={16} />
+            <span>Filter Projects</span>
+          </button>
+        </div>
+      )}
 
       {/* Filter Panel */}
       <AnimatePresence>
-        {(isExpanded || window.innerWidth >= 768) && (
+        {(isExpanded || !isMobile) && (
           <motion.div
             className="cyber-card"
             initial={{ opacity: 0, height: 0 }}

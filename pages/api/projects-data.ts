@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(404).json({ error: 'Projects directory not found' });
     }
 
-    const projects = [];
+    const projects: any[] = [];
     const projectFolders = fs.readdirSync(projectsDir, { withFileTypes: true })
       .filter(dirent => dirent.isDirectory())
       .map(dirent => dirent.name);
@@ -73,7 +73,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
           // Extract description (first paragraph after title)
           const descriptionStart = lines.findIndex(line => line.trim() && !line.startsWith('#'));
-          if (descriptionStart > 0) {
+          if (descriptionStart > 0 && lines[descriptionStart]) {
             projectInfo.description = lines[descriptionStart];
           }
 
@@ -100,7 +100,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Get file listing
       try {
         const getFiles = (dir: string, prefix = ''): Array<{name: string; type: string; size: number; extension?: string}> => {
-          const files = [];
+          const files: Array<{name: string; type: string; size: number; extension?: string}> = [];
           const items = fs.readdirSync(dir, { withFileTypes: true });
           
           for (const item of items) {

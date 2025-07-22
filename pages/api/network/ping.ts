@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   
   try {
     // Perform actual HTTP-based "ping" to measure real response times
-    const results = [];
+    const results: string[] = [];
     let successCount = 0;
     let totalTime = 0;
     let minTime = Infinity;

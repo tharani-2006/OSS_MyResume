@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     // Get real network interfaces from Node.js os module
     const networkInterfaces = os.networkInterfaces();
-    const output = [];
+    const output: string[] = [];
 
     for (const [name, interfaces] of Object.entries(networkInterfaces)) {
       if (interfaces) {
