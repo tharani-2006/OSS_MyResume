@@ -7,12 +7,12 @@ export default function About() {
   const { isDarkMode } = useDarkMode();
 
   return (
-    <section id="about" className={`min-h-screen py-20 transition-colors duration-300 ${isDarkMode ? 'bg-black' : 'bg-white'}`}>
+    <section id="about" className={`min-h-screen py-20 transition-colors duration-300 ${isDarkMode ? 'bg-black' : 'bg-stone-50'}`}>
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className={`text-5xl font-thin mb-4 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>about</h2>
-            <div className={`w-16 h-px mx-auto transition-colors duration-300 ${isDarkMode ? 'bg-white' : 'bg-black'}`}></div>
+            <h2 className={`text-4xl font-light tracking-[0.1em] uppercase mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-stone-800'}`}>about</h2>
+            <div className={`w-24 h-px mx-auto transition-colors duration-300 ${isDarkMode ? 'bg-white' : 'bg-stone-400'}`}></div>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-16 items-start">
@@ -29,17 +29,17 @@ export default function About() {
                 />
               </div>
               <h3 className={`text-2xl font-light mb-4 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>Venna Venkata Siva Reddy</h3>
-              <p className={`text-sm mb-6 transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                Software Engineer Trainee at Cisco
+              <p className={`text-sm mb-6 font-light tracking-wide transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-stone-600'}`}>
+                Software Engineer · Cisco Systems
               </p>
-              <div className="flex justify-center space-x-6 mb-8">
-                <a href="https://linkedin.com/in/sivavenna" target="_blank" rel="noopener noreferrer" className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
+              <div className="flex justify-center space-x-8 mb-8">
+                <a href="https://linkedin.com/in/sivavenna" target="_blank" rel="noopener noreferrer" className={`text-xs font-light tracking-[0.15em] transition-colors duration-300 ${isDarkMode ? 'text-gray-400 hover:text-white border-b border-transparent hover:border-white' : 'text-stone-600 hover:text-stone-800 border-b border-transparent hover:border-stone-700'}`}>
                   LINKEDIN
                 </a>
-                <a href="https://github.com/avis-enna" target="_blank" rel="noopener noreferrer" className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
+                <a href="https://github.com/avis-enna" target="_blank" rel="noopener noreferrer" className={`text-xs font-light tracking-[0.15em] transition-colors duration-300 ${isDarkMode ? 'text-gray-400 hover:text-white border-b border-transparent hover:border-white' : 'text-stone-600 hover:text-stone-800 border-b border-transparent hover:border-stone-700'}`}>
                   GITHUB
                 </a>
-                <a href="mailto:sivareddy.venna@gmail.com" className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
+                <a href="mailto:vsivareddy.venna@gmail.com" className={`text-xs font-light tracking-[0.15em] transition-colors duration-300 ${isDarkMode ? 'text-gray-400 hover:text-white border-b border-transparent hover:border-white' : 'text-stone-600 hover:text-stone-800 border-b border-transparent hover:border-stone-700'}`}>
                   EMAIL
                 </a>
               </div>
@@ -48,14 +48,13 @@ export default function About() {
             {/* About Content */}
             <div className="lg:col-span-2">
               <div className="mb-12">
-                <p className={`text-lg leading-relaxed mb-6 transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  Innovative software engineer with 2+ years of experience specializing in full-stack development,
-                  network security, and IoT solutions. Currently working at Cisco on cutting-edge networking technologies
-                  with CCNA and CCCA certifications.
+                <p className={`text-lg leading-relaxed mb-6 transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-stone-700'}`}>
+                  A results-driven Software Engineer with hands-on experience in migrating legacy systems to modern, cloud-native environments.
+                  Proven expertise in the full software development lifecycle, from backend development with Java/Spring Boot to frontend implementation with React.
                 </p>
-                <p className={`leading-relaxed transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                  Strong foundation in modern web technologies, database management, and network protocols.
-                  Passionate about building scalable, secure, and reliable systems with a focus on performance optimization.
+                <p className={`leading-relaxed transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-stone-600'}`}>
+                  Specialized in Kubernetes, Docker, and GitOps workflows using Helm and FluxCD. A proactive problem-solver with unique
+                  cross-functional experience in network engineering (CCNA) and data analytics, passionate about building scalable, mission-critical software.
                 </p>
               </div>
 

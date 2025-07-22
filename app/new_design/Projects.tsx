@@ -35,11 +35,11 @@ export default function Projects() {
     {
       id: "iot-monitoring",
       title: "IoT-Based Continuous Abiotic Factor Monitoring",
-      subtitle: "Research Publication - IJFMR Journal",
-      description: "Real-time environmental monitoring system for agricultural applications with IoT sensors integration, responsive dashboards, and secure data transmission protocols.",
-      longDescription: "Comprehensive IoT-based system for continuous monitoring of abiotic factors in agricultural environments. Features real-time data collection using IoT sensors, responsive dashboards for data visualization, historical data tracking, alerting mechanisms for critical thresholds, secure data transmission protocols, and anomaly detection for system reliability. Published in International Journal For Multidisciplinary Research (IJFMR), May-June 2023.",
-      technologies: ["Java", "React", "Arduino", "IoT Sensors", "Real-time Processing", "Data Visualization", "Environmental Monitoring", "Alert Systems", "Secure Protocols"],
-      category: "IoT Research",
+      subtitle: "Full-Stack Application with Research Publication",
+      description: "Built, tested, and deployed a full-stack, real-world application from the ground up, applying computer science knowledge of data structures and algorithms.",
+      longDescription: "Core Technologies: Java, Spring Boot, React, SQL. Built, tested, and deployed a full-stack, real-world application from the ground up, applying computer science knowledge of data structures and algorithms. Developed the backend web service using Java & Spring Boot to expose REST APIs for data ingestion and retrieval. Created a responsive user interface using JavaScript and React to visualize real-time data. Published research paper in International Journal For Multidisciplinary Research (IJFMR), May-June 2023.",
+      technologies: ["Java", "Spring Boot", "React", "SQL", "REST APIs", "JavaScript", "Data Structures", "Algorithms"],
+      category: "Full-Stack Application",
       image: "/api/placeholder/400/300",
       githubUrl: "#"
     },
@@ -72,8 +72,8 @@ export default function Projects() {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className={`text-5xl font-thin mb-4 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>work</h2>
-            <div className={`w-16 h-px mx-auto transition-colors duration-300 ${isDarkMode ? 'bg-white' : 'bg-black'}`}></div>
+            <h2 className={`text-4xl font-light tracking-[0.1em] uppercase mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-stone-800'}`}>portfolio</h2>
+            <div className={`w-24 h-px mx-auto transition-colors duration-300 ${isDarkMode ? 'bg-white' : 'bg-stone-400'}`}></div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">

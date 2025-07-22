@@ -8,63 +8,64 @@ export default function Experience() {
   const experiences = [
     {
       id: 1,
-      title: "Software Engineer Trainee",
+      title: "Software Engineer",
       company: "Cisco Systems",
-      location: "Hyderabad, India",
-      period: "July 2024 - Present",
+      location: "Bengaluru, India",
+      period: "August 2024 - Present",
       description: [
-        "Developing and maintaining network management software solutions",
-        "Working on IoT device integration and monitoring systems",
-        "Implementing security protocols for network infrastructure",
-        "Collaborating on microservices architecture design and development",
-        "Contributing to automation tools for network operations"
+        "Led the migration of the IoT Control Center's core services from Docker to a scalable Kubernetes (k8s) architecture, significantly improving service reliability and deployment velocity",
+        "Managed Kubernetes applications using Helm charts for packaging and deployed a GitOps workflow with FluxCD for automated, declarative continuous delivery",
+        "Developed and maintained resilient Java Spring Boot microservices for the HLR-level network service, designing and exposing both REST and SOAP APIs",
+        "Implemented Single Sign-On (SSO) for new services using Duo, enhancing security and streamlining user access",
+        "Built and supported frontend modules in React for internal service management dashboards",
+        "Leveraged CCNA certification to collaborate with the network engineering team on troubleshooting and configuring network devices",
+        "Developed a data analytics tool by integrating with Jira APIs to pull, model, and visualize project data, enabling predictive insights into team productivity"
       ],
-      technologies: ["Java", "React", "Node.js", "Network Protocols", "IoT", "Microservices"]
+      technologies: ["Kubernetes", "Docker", "Helm", "FluxCD", "Java", "Spring Boot", "React", "REST APIs", "SOAP", "SSO", "Jira APIs"]
     },
     {
       id: 2,
-      title: "Programmer Analyst Trainee",
+      title: "Trainee",
       company: "Cognizant Technology Solutions",
-      location: "Hyderabad, India", 
-      period: "February 2023 - June 2024",
+      location: "Bengaluru, India", 
+      period: "November 2023 - May 2024",
       description: [
-        "Developed full-stack web applications using React and Node.js",
-        "Implemented database solutions with PostgreSQL and MySQL",
-        "Created RESTful APIs and microservices architecture",
-        "Participated in agile development methodologies and sprint planning",
-        "Contributed to code reviews and technical documentation"
+        "Maintained and enhanced a large-scale mainframe banking application, gaining deep experience in enterprise-level systems",
+        "Developed and modified COBOL programs to implement new business logic and functionality changes",
+        "Automated and optimized batch processing jobs using JCL, debugged JCL failures, and implemented changes to system-generated reports",
+        "Worked extensively with core mainframe technologies including DB2 for database management and VSAM for indexed data storage"
       ],
-      technologies: ["React", "Node.js", "PostgreSQL", "MySQL", "REST APIs", "Agile"]
+      technologies: ["COBOL", "JCL", "DB2", "VSAM", "Mainframe", "Banking Systems"]
     }
   ];
 
   const education = {
-    degree: "Bachelor of Technology (B.Tech)",
+    degree: "Bachelor of Engineering (B.E.)",
     field: "Electronics and Telecommunication Engineering",
-    institution: "Sreenidhi Institute of Science and Technology",
-    location: "Hyderabad, India",
-    period: "2019 - 2023",
-    cgpa: "8.5/10"
+    institution: "Sir M Visvesvaraya Institute of Technology",
+    location: "Bengaluru, India",
+    period: "",
+    cgpa: ""
   };
 
   const certifications = [
     {
-      name: "CCNA (Cisco Certified Network Associate)",
+      name: "Cisco Certified DevNet Associate (DEVASC)",
       issuer: "Cisco",
-      year: "2024",
-      status: "Valid through 2027"
+      year: "",
+      status: "Certified"
     },
     {
-      name: "CCCA (Cisco Certified CyberOps Associate)",
+      name: "Cisco Certified Network Associate (CCNA)",
+      issuer: "Cisco",
+      year: "",
+      status: "Certified"
+    },
+    {
+      name: "Cisco Certified Cybersecurity Associate (CCCA)",
       issuer: "Cisco", 
-      year: "2024",
-      status: "Valid through 2027"
-    },
-    {
-      name: "Microsoft Azure Fundamentals (AZ-900)",
-      issuer: "Microsoft",
-      year: "2024",
-      status: "Valid through 2026"
+      year: "",
+      status: "Certified"
     }
   ];
 
@@ -73,13 +74,13 @@ export default function Experience() {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className={`text-5xl font-thin mb-4 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>experience</h2>
-            <div className={`w-16 h-px mx-auto transition-colors duration-300 ${isDarkMode ? 'bg-white' : 'bg-black'}`}></div>
+            <h2 className={`text-4xl font-light tracking-[0.1em] uppercase mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-stone-800'}`}>experience</h2>
+            <div className={`w-24 h-px mx-auto transition-colors duration-300 ${isDarkMode ? 'bg-white' : 'bg-stone-400'}`}></div>
           </div>
 
           {/* Professional Experience */}
           <div className="mb-20">
-            <h3 className={`text-2xl font-light mb-12 text-center transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>Professional Experience</h3>
+            <h3 className={`text-2xl font-light mb-12 text-center transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-stone-800'}`}>Professional Experience</h3>
             
             <div className="space-y-12">
               {experiences.map((exp, index) => (
@@ -157,14 +158,13 @@ export default function Experience() {
                 <p className={`text-sm mb-2 transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                   {education.location}
                 </p>
-                <div className="flex justify-between items-center mt-4">
-                  <span className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                    {education.period}
-                  </span>
-                  <span className={`text-sm font-medium px-3 py-1 rounded-full transition-colors duration-300 ${isDarkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-gray-700'}`}>
-                    CGPA: {education.cgpa}
-                  </span>
-                </div>
+                {education.period && (
+                  <div className="flex justify-between items-center mt-4">
+                    <span className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                      {education.period}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
 

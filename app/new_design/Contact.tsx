@@ -29,8 +29,8 @@ export default function Contact() {
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className={`text-5xl font-thin mb-4 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>contact</h2>
-            <div className={`w-16 h-px mx-auto transition-colors duration-300 ${isDarkMode ? 'bg-white' : 'bg-black'}`}></div>
+            <h2 className={`text-4xl font-light tracking-[0.1em] uppercase mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-stone-800'}`}>contact</h2>
+            <div className={`w-24 h-px mx-auto transition-colors duration-300 ${isDarkMode ? 'bg-white' : 'bg-stone-400'}`}></div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-16">
@@ -44,20 +44,20 @@ export default function Contact() {
 
               <div className="space-y-6">
                 <div>
-                  <h4 className={`text-lg font-medium mb-2 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>Email</h4>
-                  <a href="mailto:sivareddy.venna@gmail.com" className={`transition-colors ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
-                    sivareddy.venna@gmail.com
+                  <h4 className={`text-lg font-medium mb-2 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-stone-800'}`}>Email</h4>
+                  <a href="mailto:vsivareddy.venna@gmail.com" className={`transition-colors ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-stone-600 hover:text-stone-800'}`}>
+                    vsivareddy.venna@gmail.com
                   </a>
                 </div>
                 <div>
-                  <h4 className={`text-lg font-medium mb-2 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>Phone</h4>
-                  <a href="tel:+919390018166" className={`transition-colors ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
-                    +91 9390018166
+                  <h4 className={`text-lg font-medium mb-2 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-stone-800'}`}>Phone</h4>
+                  <a href="tel:+919398961541" className={`transition-colors ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-stone-600 hover:text-stone-800'}`}>
+                    +91 93989 61541
                   </a>
                 </div>
                 <div>
-                  <h4 className={`text-lg font-medium mb-2 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>Location</h4>
-                  <p className={`transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Hyderabad, India</p>
+                  <h4 className={`text-lg font-medium mb-2 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-stone-800'}`}>Location</h4>
+                  <p className={`transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-stone-600'}`}>Bengaluru, India</p>
                 </div>
               </div>
 
