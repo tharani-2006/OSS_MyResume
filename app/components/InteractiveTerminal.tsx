@@ -49,14 +49,18 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
   // Interactive Mini Terminal Component
   const MiniTerminal = ({ sectionId, title }: { sectionId: string; title: string }) => {
     const terminal = miniTerminals[sectionId];
-    
+
+    if (!terminal) {
+      return null;
+    }
+
     return (
       <div className="mt-6 border border-green-400/30 rounded bg-black/40 mini-terminal-container">
         <div className="flex items-center justify-between p-2 border-b border-green-400/20 bg-green-400/5">
           <div className="text-green-300/80 text-xs font-mono">💻 {title}</div>
           <div className="text-green-400/40 text-xs">interactive</div>
         </div>
-        
+
         {/* Terminal Output */}
         <div className="max-h-32 overflow-y-auto terminal-scrollbar bg-black/20">
           <div className="p-3 text-green-400/60 text-xs font-mono space-y-1">
@@ -359,7 +363,11 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
     } else if (cmd === "clear") {
       setMiniTerminals(prev => ({
         ...prev,
-        [sectionId]: { ...prev[sectionId], history: [] }
+        [sectionId]: {
+          input: prev[sectionId]?.input || "",
+          history: [],
+          isActive: prev[sectionId]?.isActive || false
+        }
       }));
       return;
     } else if (cmd) {

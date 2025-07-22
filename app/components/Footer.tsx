@@ -48,7 +48,7 @@ export default function Footer() {
 
   const fetchVersionInfo = async (signal?: AbortSignal) => {
     try {
-      const response = await fetch('/api/version', { signal });
+      const response = await fetch('/api/version', { signal: signal || null });
       const data = await response.json();
       if (data.success) {
         setVersionInfo(data.data);
