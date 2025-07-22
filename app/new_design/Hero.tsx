@@ -8,10 +8,10 @@ export default function Hero() {
   const { isDarkMode } = useDarkMode();
   
   const titles = [
-    "network engineer",
-    "software engineer trainee",
-    "backend developer", 
-    "system administrator"
+    "software engineer",
+    "cloud architect",
+    "systems developer",
+    "technology consultant"
   ];
 
   useEffect(() => {
@@ -44,32 +44,33 @@ export default function Hero() {
             {titles[currentTitle]}
           </h2>
           <p className={`text-base md:text-lg max-w-2xl mx-auto leading-relaxed transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            Experienced Network Engineer with expertise in network operations, backend development, and system automation. 
-            Currently serving as a Software Engineer Trainee at Cisco Systems with CCNA and CCCA certifications.
+            Distinguished software engineer specializing in cloud-native architectures and enterprise systems.
+            Currently architecting scalable solutions at Cisco Systems with expertise in Kubernetes and modern development practices.
           </p>
         </div>
 
         <div className="mt-16 flex justify-center space-x-8">
-          <button 
+          <button
             onClick={() => scrollToSection('projects')}
-            className={`px-8 py-3 border transition-all duration-300 hover:scale-105 ${isDarkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black text-black hover:bg-black hover:text-white'}`}
+            className={`px-10 py-4 border-2 font-light tracking-wider text-sm uppercase transition-all duration-500 hover:scale-[1.02] ${isDarkMode ? 'border-white text-white hover:bg-white hover:text-black' : 'border-black text-black hover:bg-black hover:text-white'}`}
           >
-            view work
+            portfolio
           </button>
-          <button 
+          <button
             onClick={() => scrollToSection('contact')}
-            className={`px-8 py-3 transition-all duration-300 hover:scale-105 ${isDarkMode ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'}`}
+            className={`px-10 py-4 font-light tracking-wider text-sm uppercase transition-all duration-500 hover:scale-[1.02] ${isDarkMode ? 'text-gray-400 hover:text-white border-b border-transparent hover:border-white' : 'text-gray-600 hover:text-black border-b border-transparent hover:border-black'}`}
           >
-            get in touch
+            contact
           </button>
         </div>
       </div>
 
       {/* Side Service Label */}
       <div className="fixed right-8 top-1/2 transform -translate-y-1/2 rotate-90 origin-center">
-        <div className="flex items-center space-x-4">
-          <span className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>portfolio v3</span>
-          <span className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-blue-400' : 'text-blue-500'}`}>MODERN</span>
+        <div className="flex items-center space-x-6">
+          <span className={`text-xs font-light tracking-[0.2em] transition-colors duration-300 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>PORTFOLIO</span>
+          <div className={`w-8 h-px transition-colors duration-300 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-300'}`}></div>
+          <span className={`text-xs font-light tracking-[0.2em] transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>MMXXIV</span>
         </div>
       </div>
     </section>

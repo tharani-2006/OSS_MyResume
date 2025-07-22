@@ -11,8 +11,8 @@ export default function About() {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className={`text-5xl font-thin mb-4 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>about</h2>
-            <div className={`w-16 h-px mx-auto transition-colors duration-300 ${isDarkMode ? 'bg-white' : 'bg-black'}`}></div>
+            <h2 className={`text-4xl font-light tracking-[0.1em] uppercase mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>about</h2>
+            <div className={`w-24 h-px mx-auto transition-colors duration-300 ${isDarkMode ? 'bg-white' : 'bg-black'}`}></div>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-16 items-start">
@@ -29,17 +29,17 @@ export default function About() {
                 />
               </div>
               <h3 className={`text-2xl font-light mb-4 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>Venna Venkata Siva Reddy</h3>
-              <p className={`text-sm mb-6 transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                Software Engineer at Cisco Systems
+              <p className={`text-sm mb-6 font-light tracking-wide transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                Software Engineer · Cisco Systems
               </p>
-              <div className="flex justify-center space-x-6 mb-8">
-                <a href="https://linkedin.com/in/sivavenna" target="_blank" rel="noopener noreferrer" className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
+              <div className="flex justify-center space-x-8 mb-8">
+                <a href="https://linkedin.com/in/sivavenna" target="_blank" rel="noopener noreferrer" className={`text-xs font-light tracking-[0.15em] transition-colors duration-300 ${isDarkMode ? 'text-gray-400 hover:text-white border-b border-transparent hover:border-white' : 'text-gray-500 hover:text-black border-b border-transparent hover:border-black'}`}>
                   LINKEDIN
                 </a>
-                <a href="https://github.com/avis-enna" target="_blank" rel="noopener noreferrer" className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
+                <a href="https://github.com/avis-enna" target="_blank" rel="noopener noreferrer" className={`text-xs font-light tracking-[0.15em] transition-colors duration-300 ${isDarkMode ? 'text-gray-400 hover:text-white border-b border-transparent hover:border-white' : 'text-gray-500 hover:text-black border-b border-transparent hover:border-black'}`}>
                   GITHUB
                 </a>
-                <a href="mailto:vsivareddy.venna@gmail.com" className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
+                <a href="mailto:vsivareddy.venna@gmail.com" className={`text-xs font-light tracking-[0.15em] transition-colors duration-300 ${isDarkMode ? 'text-gray-400 hover:text-white border-b border-transparent hover:border-white' : 'text-gray-500 hover:text-black border-b border-transparent hover:border-black'}`}>
                   EMAIL
                 </a>
               </div>

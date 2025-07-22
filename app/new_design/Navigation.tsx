@@ -11,16 +11,16 @@ export default function Navigation() {
     <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-sm transition-colors duration-300 ${isDarkMode ? 'bg-black/50' : 'bg-white/50'}`}>
       <div className="container mx-auto px-6">
         <div className="flex justify-between items-center py-6">
-          <div className={`text-xl font-light transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>SVR.</div>
+          <div className={`text-xl font-light tracking-[0.2em] transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>V.V.S.R</div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="#home" className={`text-sm font-light transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>home</a>
-            <a href="#about" className={`text-sm font-light transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>about</a>
-            <a href="#skills" className={`text-sm font-light transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>skills</a>
-            <a href="#experience" className={`text-sm font-light transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>experience</a>
-            <a href="#projects" className={`text-sm font-light transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>work</a>
-            <a href="#contact" className={`text-sm font-light transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>contact</a>
+          <div className="hidden md:flex items-center space-x-10">
+            <a href="#home" className={`text-xs font-light tracking-[0.15em] uppercase transition-colors duration-300 ${isDarkMode ? 'text-gray-400 hover:text-white border-b border-transparent hover:border-white' : 'text-gray-500 hover:text-black border-b border-transparent hover:border-black'}`}>home</a>
+            <a href="#about" className={`text-xs font-light tracking-[0.15em] uppercase transition-colors duration-300 ${isDarkMode ? 'text-gray-400 hover:text-white border-b border-transparent hover:border-white' : 'text-gray-500 hover:text-black border-b border-transparent hover:border-black'}`}>about</a>
+            <a href="#skills" className={`text-xs font-light tracking-[0.15em] uppercase transition-colors duration-300 ${isDarkMode ? 'text-gray-400 hover:text-white border-b border-transparent hover:border-white' : 'text-gray-500 hover:text-black border-b border-transparent hover:border-black'}`}>expertise</a>
+            <a href="#experience" className={`text-xs font-light tracking-[0.15em] uppercase transition-colors duration-300 ${isDarkMode ? 'text-gray-400 hover:text-white border-b border-transparent hover:border-white' : 'text-gray-500 hover:text-black border-b border-transparent hover:border-black'}`}>experience</a>
+            <a href="#projects" className={`text-xs font-light tracking-[0.15em] uppercase transition-colors duration-300 ${isDarkMode ? 'text-gray-400 hover:text-white border-b border-transparent hover:border-white' : 'text-gray-500 hover:text-black border-b border-transparent hover:border-black'}`}>portfolio</a>
+            <a href="#contact" className={`text-xs font-light tracking-[0.15em] uppercase transition-colors duration-300 ${isDarkMode ? 'text-gray-400 hover:text-white border-b border-transparent hover:border-white' : 'text-gray-500 hover:text-black border-b border-transparent hover:border-black'}`}>contact</a>
             <div className="flex items-center space-x-3">
               <button 
                 onClick={toggleDarkMode}

@@ -44,7 +44,7 @@ export default function Experience() {
     field: "Electronics and Telecommunication Engineering",
     institution: "Sir M Visvesvaraya Institute of Technology",
     location: "Bengaluru, India",
-    period: "[Graduation Year]",
+    period: "",
     cgpa: ""
   };
 
@@ -74,8 +74,8 @@ export default function Experience() {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className={`text-5xl font-thin mb-4 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>experience</h2>
-            <div className={`w-16 h-px mx-auto transition-colors duration-300 ${isDarkMode ? 'bg-white' : 'bg-black'}`}></div>
+            <h2 className={`text-4xl font-light tracking-[0.1em] uppercase mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>experience</h2>
+            <div className={`w-24 h-px mx-auto transition-colors duration-300 ${isDarkMode ? 'bg-white' : 'bg-black'}`}></div>
           </div>
 
           {/* Professional Experience */}
@@ -158,11 +158,13 @@ export default function Experience() {
                 <p className={`text-sm mb-2 transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                   {education.location}
                 </p>
-                <div className="flex justify-between items-center mt-4">
-                  <span className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                    {education.period}
-                  </span>
-                </div>
+                {education.period && (
+                  <div className="flex justify-between items-center mt-4">
+                    <span className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                      {education.period}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
 
