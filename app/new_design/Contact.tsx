@@ -45,19 +45,19 @@ export default function Contact() {
               <div className="space-y-6">
                 <div>
                   <h4 className={`text-lg font-medium mb-2 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>Email</h4>
-                  <a href="mailto:sivareddy.venna@gmail.com" className={`transition-colors ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
-                    sivareddy.venna@gmail.com
+                  <a href="mailto:vsivareddy.venna@gmail.com" className={`transition-colors ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
+                    vsivareddy.venna@gmail.com
                   </a>
                 </div>
                 <div>
                   <h4 className={`text-lg font-medium mb-2 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>Phone</h4>
-                  <a href="tel:+919390018166" className={`transition-colors ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
-                    +91 9390018166
+                  <a href="tel:+919398961541" className={`transition-colors ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
+                    +91 93989 61541
                   </a>
                 </div>
                 <div>
                   <h4 className={`text-lg font-medium mb-2 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>Location</h4>
-                  <p className={`transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Hyderabad, India</p>
+                  <p className={`transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>Bengaluru, India</p>
                 </div>
               </div>
 
@@ -77,7 +77,7 @@ export default function Contact() {
                     </svg>
                   </div>
                 </a>
-                <a href="mailto:sivareddy.venna@gmail.com" className="group" title="Email">
+                <a href="mailto:vsivareddy.venna@gmail.com" className="group" title="Email">
                   <div className={`w-16 h-16 rounded-full flex items-center justify-center group-hover:bg-red-600 transition-colors ${isDarkMode ? 'bg-gray-900/20 border border-gray-800/50' : 'bg-gray-100'}`}>
                     <svg className={`w-8 h-8 group-hover:text-white transition-colors ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`} fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/>

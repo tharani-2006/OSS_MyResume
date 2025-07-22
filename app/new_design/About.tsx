@@ -39,7 +39,7 @@ export default function About() {
                 <a href="https://github.com/avis-enna" target="_blank" rel="noopener noreferrer" className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
                   GITHUB
                 </a>
-                <a href="mailto:sivareddy.venna@gmail.com" className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
+                <a href="mailto:vsivareddy.venna@gmail.com" className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
                   EMAIL
                 </a>
               </div>
@@ -49,13 +49,12 @@ export default function About() {
             <div className="lg:col-span-2">
               <div className="mb-12">
                 <p className={`text-lg leading-relaxed mb-6 transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  Innovative software engineer with 2+ years of experience specializing in full-stack development,
-                  network security, and IoT solutions. Currently working at Cisco on cutting-edge networking technologies
-                  with CCNA and CCCA certifications.
+                  Experienced Network Engineer with expertise in network operations, backend development, and system automation.
+                  Currently serving as a Software Engineer Trainee at Cisco Systems with CCNA and CCCA certifications.
                 </p>
                 <p className={`leading-relaxed transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                  Strong foundation in modern web technologies, database management, and network protocols.
-                  Passionate about building scalable, secure, and reliable systems with a focus on performance optimization.
+                  Strong foundation in TCP/IP, routing, switching, and Linux system administration. Passionate about building
+                  scalable, secure, and reliable enterprise systems.
                 </p>
               </div>
 

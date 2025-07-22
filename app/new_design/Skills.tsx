@@ -7,57 +7,60 @@ export default function Skills() {
 
   const skillCategories = [
     {
-      title: "Programming Languages",
+      title: "Networking",
       skills: [
-        { name: "Java", level: 90 },
-        { name: "JavaScript", level: 85 },
-        { name: "Python", level: 88 },
-        { name: "TypeScript", level: 80 },
-        { name: "C++", level: 75 }
+        "TCP/IP", "ARP", "OSPF", "BGP", "VLANs", "ACLs", "IP Tables", "NAT", "Routing & Switching", "Network Security"
+      ]
+    },
+    {
+      title: "Programming & Scripting",
+      skills: [
+        "Python", "Java", "C/C++", "Shell Scripting (Bash)", "SQL"
       ]
     },
     {
       title: "Web Technologies",
       skills: [
-        { name: "React.js", level: 90 },
-        { name: "Node.js", level: 88 },
-        { name: "Next.js", level: 85 },
-        { name: "Express.js", level: 82 },
-        { name: "HTML/CSS", level: 95 }
+        "Java Spring Boot", "React", "REST APIs", "JSON", "HTML/CSS"
+      ]
+    },
+    {
+      title: "Operating Systems",
+      skills: [
+        "Linux (Ubuntu/CentOS/RHEL)", "Windows Server", "z/OS (IBM Mainframe)"
+      ]
+    },
+    {
+      title: "Network Tools",
+      skills: [
+        "Wireshark", "Cisco Packet Tracer", "GNS3", "Network Analyzers", "SNMP Tools"
+      ]
+    },
+    {
+      title: "Development Tools",
+      skills: [
+        "Git", "DevOps", "CI/CD Pipelines", "Automated Testing (Axe, WAVE)"
       ]
     },
     {
       title: "Databases",
       skills: [
-        { name: "PostgreSQL", level: 88 },
-        { name: "MySQL", level: 85 },
-        { name: "MongoDB", level: 78 }
+        "MongoDB", "IBM DB2", "SQL Server", "Database Design and Optimization"
       ]
     },
     {
-      title: "Networking & Security",
+      title: "Mainframe Technologies",
       skills: [
-        { name: "Network Protocols", level: 92 },
-        { name: "Network Security", level: 88 },
-        { name: "Cisco Technologies", level: 85 },
-        { name: "IoT Systems", level: 80 }
-      ]
-    },
-    {
-      title: "Cloud & DevOps",
-      skills: [
-        { name: "AWS", level: 75 },
-        { name: "Docker", level: 70 },
-        { name: "Git/GitHub", level: 90 },
-        { name: "Linux", level: 85 }
+        "JCL", "COBOL", "z/OS", "TSO/ISPF", "VSAM"
       ]
     }
   ];
 
   const certifications = [
-    "CCNA (Cisco Certified Network Associate)",
-    "CCCA (Cisco Certified CyberOps Associate)", 
-    "Microsoft Azure Fundamentals (AZ-900)"
+    "Cisco Certified Network Associate (CCNA)",
+    "Cisco Certified Cybersecurity Associate (CCCA)",
+    "Microsoft Certified: Security, Compliance & Identity",
+    "Currently Pursuing: Cisco Certified DevNet Associate (DEVASC)"
   ];
 
   return (
@@ -76,23 +79,13 @@ export default function Skills() {
                 <h3 className={`text-lg font-medium mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>
                   {category.title}
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {category.skills.map((skill, skillIndex) => (
-                    <div key={skillIndex}>
-                      <div className="flex justify-between items-center mb-2">
-                        <span className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                          {skill.name}
-                        </span>
-                        <span className={`text-xs transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <div className={`w-full h-1 rounded-full transition-colors duration-300 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
-                        <div 
-                          className={`h-1 rounded-full transition-all duration-1000 ease-out ${isDarkMode ? 'bg-white' : 'bg-black'}`}
-                          style={{ width: `${skill.level}%` }}
-                        ></div>
-                      </div>
+                    <div key={skillIndex} className="flex items-center">
+                      <span className={`w-2 h-2 rounded-full mr-3 flex-shrink-0 transition-colors duration-300 ${isDarkMode ? 'bg-gray-600' : 'bg-gray-400'}`}></span>
+                      <span className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                        {skill}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -121,10 +114,10 @@ export default function Skills() {
                 Technical Expertise
               </h3>
               <p className={`text-base leading-relaxed transition-colors duration-300 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                Specialized in full-stack development with strong expertise in modern web technologies, 
-                network security, and IoT systems. Experienced in building scalable applications using 
-                React, Node.js, and various database technologies. Certified in Cisco networking 
-                technologies with hands-on experience in network protocols and cybersecurity.
+                Experienced Network Engineer with expertise in network operations, backend development, and system automation.
+                Strong foundation in TCP/IP, routing, switching, and Linux system administration. Proven track record in
+                developing REST APIs, network troubleshooting, and automation scripting. Passionate about building scalable,
+                secure, and reliable enterprise systems.
               </p>
             </div>
           </div>

@@ -10,61 +10,67 @@ export default function Experience() {
       id: 1,
       title: "Software Engineer Trainee",
       company: "Cisco Systems",
-      location: "Hyderabad, India",
-      period: "July 2024 - Present",
+      location: "Bengaluru, India",
+      period: "August 2024 - Present",
       description: [
-        "Developing and maintaining network management software solutions",
-        "Working on IoT device integration and monitoring systems",
-        "Implementing security protocols for network infrastructure",
-        "Collaborating on microservices architecture design and development",
-        "Contributing to automation tools for network operations"
+        "Monitor and support enterprise-level networks to ensure high availability and low latency across distributed systems",
+        "Develop and secure REST APIs for internal network automation tools using Java and Spring Boot frameworks",
+        "Perform comprehensive packet analysis and network issue resolution using Wireshark and advanced CLI tools",
+        "Assist in security policy configuration and assessments including ACLs, NAT, and IP Tables implementation",
+        "Script automation solutions for log parsing, configuration backups, and monitoring using Python and Bash",
+        "Collaborate on network optimization projects to improve performance and reliability"
       ],
-      technologies: ["Java", "React", "Node.js", "Network Protocols", "IoT", "Microservices"]
+      technologies: ["Java", "Spring Boot", "Python", "Bash", "Wireshark", "Network Security", "REST APIs"]
     },
     {
       id: 2,
-      title: "Programmer Analyst Trainee",
+      title: "Trainee",
       company: "Cognizant Technology Solutions",
-      location: "Hyderabad, India", 
-      period: "February 2023 - June 2024",
+      location: "Bengaluru, India",
+      period: "November 2023 - May 2024",
       description: [
-        "Developed full-stack web applications using React and Node.js",
-        "Implemented database solutions with PostgreSQL and MySQL",
-        "Created RESTful APIs and microservices architecture",
-        "Participated in agile development methodologies and sprint planning",
-        "Contributed to code reviews and technical documentation"
+        "Completed comprehensive training in IBM Mainframe environments including z/OS, JCL, COBOL, and DB2",
+        "Contributed to process automation initiatives in legacy systems to enhance performance and reduce manual overhead",
+        "Gained expertise in enterprise system workflows and mainframe application development",
+        "Participated in code reviews and quality assurance processes for mainframe applications"
       ],
-      technologies: ["React", "Node.js", "PostgreSQL", "MySQL", "REST APIs", "Agile"]
+      technologies: ["z/OS", "JCL", "COBOL", "DB2", "TSO/ISPF", "VSAM", "Mainframe"]
     }
   ];
 
   const education = {
-    degree: "Bachelor of Technology (B.Tech)",
+    degree: "Bachelor of Engineering (B.E.)",
     field: "Electronics and Telecommunication Engineering",
-    institution: "Sreenidhi Institute of Science and Technology",
-    location: "Hyderabad, India",
-    period: "2019 - 2023",
-    cgpa: "8.5/10"
+    institution: "Sir M Visvesvaraya Institute of Technology",
+    location: "Bengaluru, India",
+    period: "[Graduation Year]",
+    cgpa: ""
   };
 
   const certifications = [
     {
-      name: "CCNA (Cisco Certified Network Associate)",
+      name: "Cisco Certified Network Associate (CCNA)",
       issuer: "Cisco",
-      year: "2024",
-      status: "Valid through 2027"
+      year: "",
+      status: "Active"
     },
     {
-      name: "CCCA (Cisco Certified CyberOps Associate)",
-      issuer: "Cisco", 
-      year: "2024",
-      status: "Valid through 2027"
+      name: "Cisco Certified Cybersecurity Associate (CCCA)",
+      issuer: "Cisco",
+      year: "",
+      status: "Active"
     },
     {
-      name: "Microsoft Azure Fundamentals (AZ-900)",
+      name: "Microsoft Certified: Security, Compliance & Identity",
       issuer: "Microsoft",
-      year: "2024",
-      status: "Valid through 2026"
+      year: "",
+      status: "Active"
+    },
+    {
+      name: "Cisco Certified DevNet Associate (DEVASC)",
+      issuer: "Cisco",
+      year: "",
+      status: "Currently Pursuing"
     }
   ];
 
@@ -160,9 +166,6 @@ export default function Experience() {
                 <div className="flex justify-between items-center mt-4">
                   <span className={`text-sm transition-colors duration-300 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                     {education.period}
-                  </span>
-                  <span className={`text-sm font-medium px-3 py-1 rounded-full transition-colors duration-300 ${isDarkMode ? 'bg-gray-800 text-gray-300' : 'bg-gray-200 text-gray-700'}`}>
-                    CGPA: {education.cgpa}
                   </span>
                 </div>
               </div>
