@@ -29,7 +29,10 @@ export default function Contact() {
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className={`text-4xl font-light tracking-[0.1em] uppercase mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-stone-800'}`}>contact</h2>
+            <h2 className={`text-4xl font-light tracking-[0.1em] uppercase mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-stone-800'}`}>
+              contact
+              <span className={`text-lg ml-3 ${isDarkMode ? 'text-red-400' : 'text-red-600'}`}>⚠️ Contact Form Broken</span>
+            </h2>
             <div className={`w-24 h-px mx-auto transition-colors duration-300 ${isDarkMode ? 'bg-white' : 'bg-stone-400'}`}></div>
           </div>
 
