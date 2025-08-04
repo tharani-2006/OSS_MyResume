@@ -202,7 +202,6 @@ export default function Contact() {
         >
           <h2 className="text-4xl font-bold mb-4">
             Get In <span className="cyber-text">Touch</span>
-            <span className="text-red-400 text-lg ml-3">⚠️ Contact Form Broken</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-cyber mx-auto mb-6"></div>
           <p className="text-gray-300 max-w-2xl mx-auto">
@@ -541,6 +540,11 @@ export default function Contact() {
                   )}
                 </div>
               </motion.button>
+
+              {/* Subtle form status note */}
+              <p className="text-xs text-gray-500 mt-3 text-center">
+                Having issues? Email me directly at vsivareddy.venna@gmail.com
+              </p>
             </form>
           </motion.div>
         </motion.div>

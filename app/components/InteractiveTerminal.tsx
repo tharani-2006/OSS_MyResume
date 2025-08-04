@@ -292,10 +292,7 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
       isMaximized: false,
       content: (
         <div className="text-green-400/80 text-sm">
-          <p className="text-green-300 font-semibold mb-2">
-            Contact Information
-            <span className="text-red-400 text-xs ml-2">⚠️ Contact Form Broken</span>
-          </p>
+          <p className="text-green-300 font-semibold mb-2">Contact Information</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <p>📧 vsivareddy.venna@gmail.com</p>
@@ -306,7 +303,11 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
               <p>📍 Bengaluru, India</p>
             </div>
           </div>
-          
+
+          <p className="text-green-400/60 text-xs mt-3">
+            Note: Use direct email/phone for fastest response
+          </p>
+
           <MiniTerminal sectionId="contact" title="contact.terminal" />
         </div>
       )
