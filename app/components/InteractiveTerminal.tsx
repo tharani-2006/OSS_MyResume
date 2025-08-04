@@ -303,7 +303,11 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
               <p>📍 Bengaluru, India</p>
             </div>
           </div>
-          
+
+          <p className="text-green-400/60 text-xs mt-3">
+            Note: Use direct email/phone for fastest response
+          </p>
+
           <MiniTerminal sectionId="contact" title="contact.terminal" />
         </div>
       )

@@ -100,10 +100,11 @@ export default function Contact() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors duration-300 ${
-                      isDarkMode 
-                        ? 'bg-gray-900/20 border-gray-800/50 text-white focus:ring-white/50 focus:border-transparent' 
-                        : 'bg-white border-gray-300 text-black focus:ring-black focus:border-transparent'
+                    disabled
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none cursor-not-allowed opacity-60 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-800 border-gray-600 text-gray-400'
+                        : 'bg-gray-100 border-gray-300 text-gray-500'
                     }`}
                     required
                   />
@@ -118,10 +119,11 @@ export default function Contact() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition-colors duration-300 ${
-                      isDarkMode 
-                        ? 'bg-gray-900/20 border-gray-800/50 text-white focus:ring-white/50 focus:border-transparent' 
-                        : 'bg-white border-gray-300 text-black focus:ring-black focus:border-transparent'
+                    disabled
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none cursor-not-allowed opacity-60 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-800 border-gray-600 text-gray-400'
+                        : 'bg-gray-100 border-gray-300 text-gray-500'
                     }`}
                     required
                   />
@@ -136,24 +138,34 @@ export default function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     rows={6}
-                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 resize-none transition-colors duration-300 ${
-                      isDarkMode 
-                        ? 'bg-gray-900/20 border-gray-800/50 text-white focus:ring-white/50 focus:border-transparent' 
-                        : 'bg-white border-gray-300 text-black focus:ring-black focus:border-transparent'
+                    disabled
+                    className={`w-full px-4 py-3 border rounded-lg focus:outline-none resize-none cursor-not-allowed opacity-60 transition-colors duration-300 ${
+                      isDarkMode
+                        ? 'bg-gray-800 border-gray-600 text-gray-400'
+                        : 'bg-gray-100 border-gray-300 text-gray-500'
                     }`}
                     required
                   />
                 </div>
                 <button
-                  type="submit"
-                  className={`w-full py-3 rounded-lg transition-colors font-medium ${
-                    isDarkMode 
-                      ? 'bg-white text-black hover:bg-gray-200' 
-                      : 'bg-black text-white hover:bg-gray-800'
+                  type="button"
+                  disabled={true}
+                  className={`w-full py-3 rounded-lg font-medium cursor-not-allowed opacity-60 transition-colors duration-300 ${
+                    isDarkMode
+                      ? 'bg-gray-700 text-gray-400 border border-gray-600'
+                      : 'bg-gray-300 text-gray-500 border border-gray-400'
                   }`}
+                  title="Contact form is disabled - please use direct email or phone"
                 >
-                  Send Message
+                  Form Disabled
                 </button>
+
+                {/* Subtle form status note */}
+                <p className={`text-xs mt-3 text-center transition-colors duration-300 ${
+                  isDarkMode ? 'text-gray-500' : 'text-gray-400'
+                }`}>
+                  Having issues? Email me directly at vsivareddy.venna@gmail.com
+                </p>
               </form>
             </div>
           </div>

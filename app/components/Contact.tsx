@@ -386,11 +386,8 @@ export default function Contact() {
                     onFocus={() => handleFocus('name')}
                     onBlur={handleBlur}
                     required
-                    className={`w-full px-4 py-3 bg-dark-bg border rounded-lg focus:outline-none transition-all duration-300 text-white ${
-                      fieldFocus === 'name' 
-                        ? 'border-cyber-blue shadow-lg shadow-cyber-blue/20' 
-                        : 'border-border-glow hover:border-gray-400'
-                    }`}
+                    disabled
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:outline-none transition-all duration-300 text-gray-400 cursor-not-allowed opacity-60"
                     placeholder="Your Name"
                   />
                 </div>
@@ -408,11 +405,8 @@ export default function Contact() {
                     onFocus={() => handleFocus('email')}
                     onBlur={handleBlur}
                     required
-                    className={`w-full px-4 py-3 bg-dark-bg border rounded-lg focus:outline-none transition-all duration-300 text-white ${
-                      fieldFocus === 'email' 
-                        ? 'border-cyber-blue shadow-lg shadow-cyber-blue/20' 
-                        : 'border-border-glow hover:border-gray-400'
-                    }`}
+                    disabled
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:outline-none transition-all duration-300 text-gray-400 cursor-not-allowed opacity-60"
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -437,11 +431,8 @@ export default function Contact() {
                   onBlur={handleBlur}
                   required
                   maxLength={100}
-                  className={`w-full px-4 py-3 bg-dark-bg border rounded-lg focus:outline-none transition-all duration-300 text-white ${
-                    fieldFocus === 'subject' 
-                      ? 'border-cyber-blue shadow-lg shadow-cyber-blue/20' 
-                      : 'border-border-glow hover:border-gray-400'
-                  }`}
+                  disabled
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:outline-none transition-all duration-300 text-gray-400 cursor-not-allowed opacity-60"
                   placeholder="Project Discussion"
                 />
               </div>
@@ -465,81 +456,30 @@ export default function Contact() {
                   required
                   rows={5}
                   maxLength={1000}
-                  className={`w-full px-4 py-3 bg-dark-bg border rounded-lg focus:outline-none transition-all duration-300 text-white resize-none ${
-                    fieldFocus === 'message' 
-                      ? 'border-cyber-blue shadow-lg shadow-cyber-blue/20' 
-                      : 'border-border-glow hover:border-gray-400'
-                  }`}
+                  disabled
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:outline-none transition-all duration-300 text-gray-400 resize-none cursor-not-allowed opacity-60"
                   placeholder="Tell me about your project, ideas, or just say hello..."
                 />
               </div>
               
               <motion.button
-                type="submit"
-                disabled={isSubmitting || formProgress < 100}
-                className={`w-full cyber-button flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden ${
-                  formProgress === 100 ? 'hover:scale-105' : ''
-                }`}
-                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                type="button"
+                disabled={true}
+                className="w-full bg-gray-700 text-gray-400 border border-gray-600 rounded-lg py-3 px-6 flex items-center justify-center space-x-2 cursor-not-allowed opacity-60 relative overflow-hidden"
+                title="Contact form is disabled - please use direct email or phone"
               >
-                {/* Button background animation */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-cyber-blue/20 to-cyber-purple/20"
-                  initial={{ x: '-100%' }}
-                  animate={{ x: isSubmitting ? '100%' : '-100%' }}
-                  transition={{ duration: 1.5, repeat: isSubmitting ? Infinity : 0 }}
-                />
-                
-                <div className="relative z-10 flex items-center space-x-2">
-                  {isSubmitting ? (
-                    <>
-                      <motion.div
-                        className="w-5 h-5 border-2 border-dark-bg border-t-transparent rounded-full"
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      />
-                      <span>Sending...</span>
-                      <motion.div
-                        className="flex space-x-1"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5 }}
-                      >
-                        <motion.div
-                          className="w-1 h-1 bg-white rounded-full"
-                          animate={{ scale: [1, 1.5, 1] }}
-                          transition={{ duration: 0.6, repeat: Infinity, delay: 0 }}
-                        />
-                        <motion.div
-                          className="w-1 h-1 bg-white rounded-full"
-                          animate={{ scale: [1, 1.5, 1] }}
-                          transition={{ duration: 0.6, repeat: Infinity, delay: 0.2 }}
-                        />
-                        <motion.div
-                          className="w-1 h-1 bg-white rounded-full"
-                          animate={{ scale: [1, 1.5, 1] }}
-                          transition={{ duration: 0.6, repeat: Infinity, delay: 0.4 }}
-                        />
-                      </motion.div>
-                    </>
-                  ) : (
-                    <>
-                      <Send size={20} />
-                      <span>
-                        {formProgress === 100 ? 'Send Message' : 'Complete form to send'}
-                      </span>
-                      {formProgress === 100 && (
-                        <motion.div
-                          className="w-2 h-2 bg-green-400 rounded-full"
-                          animate={{ scale: [1, 1.2, 1] }}
-                          transition={{ duration: 1, repeat: Infinity }}
-                        />
-                      )}
-                    </>
-                  )}
+                <div className="flex items-center space-x-2">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L5.636 5.636" />
+                  </svg>
+                  <span>Form Disabled</span>
                 </div>
               </motion.button>
+
+              {/* Subtle form status note */}
+              <p className="text-xs text-gray-500 mt-3 text-center">
+                Having issues? Email me directly at vsivareddy.venna@gmail.com
+              </p>
             </form>
           </motion.div>
         </motion.div>
