@@ -1,63 +1,43 @@
-VENNA VENKATA SIVA REDDY
-📧 vsivareddy.venna@gmail.com | 📞 +91 93989 61541
-🔗 LinkedIn: https://linkedin.com/in/sivavenna
-
-PROFESSIONAL SUMMARY
-Experienced Network Engineer with expertise in network operations, backend development, and system automation. Currently serving as a Software Engineer Trainee at Cisco Systems with CCNA and CCCA certifications. Strong foundation in TCP/IP, routing, switching, and Linux system administration. Proven track record in developing REST APIs, network troubleshooting, and automation scripting. Passionate about building scalable, secure, and reliable enterprise systems.
-TECHNICAL SKILLS
-
-• Networking: TCP/IP, ARP, OSPF, BGP, VLANs, ACLs, IP Tables, NAT, Routing & Switching, Network Security
-• Programming & Scripting: Python, Java, C/C++, Shell Scripting (Bash), SQL
-• Web Technologies: Java Spring Boot, React, REST APIs, JSON, HTML/CSS
-• Operating Systems: Linux (Ubuntu/CentOS/RHEL), Windows Server, z/OS (IBM Mainframe)
-• Network Tools: Wireshark, Cisco Packet Tracer, GNS3, Network Analyzers, SNMP Tools
-• Development Tools: Git, DevOps, CI/CD Pipelines, Automated Testing (Axe, WAVE)
-• Databases: MongoDB, IBM DB2, SQL Server, Database Design and Optimization
-• Mainframe Technologies: JCL, COBOL, z/OS, TSO/ISPF, VSAM
-PROFESSIONAL EXPERIENCE
-
-Software Engineer Trainee | Cisco Systems | August 2024 – Present
-• Monitor and support enterprise-level networks to ensure high availability and low latency across distributed systems
-• Develop and secure REST APIs for internal network automation tools using Java and Spring Boot frameworks
-• Perform comprehensive packet analysis and network issue resolution using Wireshark and advanced CLI tools
-• Assist in security policy configuration and assessments including ACLs, NAT, and IP Tables implementation
-• Script automation solutions for log parsing, configuration backups, and monitoring using Python and Bash
-• Collaborate on network optimization projects to improve performance and reliability
-
-Trainee | Cognizant Technology Solutions | November 2023 – May 2024
-• Completed comprehensive training in IBM Mainframe environments including z/OS, JCL, COBOL, and DB2
-• Contributed to process automation initiatives in legacy systems to enhance performance and reduce manual overhead
-• Gained expertise in enterprise system workflows and mainframe application development
-• Participated in code reviews and quality assurance processes for mainframe applications
-KEY PROJECTS
-
-IoT-Based Continuous Abiotic Factor Monitoring | Java, React, Arduino
-• Designed and implemented a real-time environmental monitoring system for agricultural applications
-• Integrated IoT sensors with backend services to collect and process environmental data continuously
-• Developed responsive dashboards using React for data visualization and trend analysis
-• Implemented data storage and retrieval mechanisms for historical environmental data tracking
-• Created alerting mechanisms for critical environmental threshold breaches
-• Employed secure data transmission protocols and anomaly detection for system reliability
-
-CERTIFICATIONS
-
-• Cisco Certified Network Associate (CCNA) - Active
-• Cisco Certified Cybersecurity Associate (CCCA) - Active
-• Microsoft Certified: Security, Compliance & Identity
-• Currently Pursuing: Cisco Certified DevNet Associate (DEVASC)
-
-EDUCATION
-
-Bachelor of Engineering (B.E.) - Electronics and Telecommunication Engineering
+Venna Venkata Siva Reddy
+Bengaluru, India | +91 93989 61541 | vsivareddy.venna@gmail.com | linkedin.com/in/sivavenna
+Summary
+A results-driven Software Engineer with hands-on experience in migrating legacy systems to modern, cloud-native environments. Proven expertise in the full software development lifecycle, from backend development with Java/Spring Boot to frontend implementation with React. Specialized in Kubernetes, Docker, and GitOps workflows using Helm and FluxCD. A proactive problem-solver with unique cross-functional experience in network engineering (CCNA) and data analytics, passionate about building scalable, mission-critical software.
+Technical Skills
+•	Cloud & DevOps: Kubernetes, Docker, Helm, FluxCD, CI/CD, AWS, GCP
+•	Programming Languages: Java, Python, JavaScript, SQL, Shell Scripting, COBOL
+•	Backend: Spring Boot, REST APIs, SOAP Web Services, Microservices
+•	Frontend: React, JavaScript, HTML, CSS
+•	Databases: SQL, MongoDB, IBM DB2, VSAM
+•	Mainframe: JCL, COBOL
+•	Networking: TCP/IP, HTTP, Network Device Configuration & Troubleshooting
+Professional Experience
+Cisco Systems – Software Engineer | [Start Date, Aug 2024] – Present
+•	Led the migration of the IoT Control Center's core services from Docker to a scalable Kubernetes (k8s) architecture, significantly improving service reliability and deployment velocity.
+•	Managed Kubernetes applications using Helm charts for packaging and deployed a GitOps workflow with FluxCD for automated, declarative continuous delivery.
+•	Developed and maintained resilient Java Spring Boot microservices for the HLR-level network service, designing and exposing both REST and SOAP APIs.
+•	Implemented Single Sign-On (SSO) for new services using Duo, enhancing security and streamlining user access.
+•	Built and supported frontend modules in React for internal service management dashboards.
+•	Cross-Functional Experience:
+o	Leveraged CCNA certification to collaborate with the network engineering team on troubleshooting and configuring network devices, bridging the gap between software and infrastructure.
+o	Developed a data analytics tool by integrating with Jira APIs to pull, model, and visualize project data, enabling predictive insights into team productivity and project progress.
+Cognizant Technology Solutions – Trainee | [Start Date, Nov 2023] – [End Date,  May 2024]
+•	Maintained and enhanced a large-scale mainframe banking application, gaining deep experience in enterprise-level systems.
+•	Developed and modified COBOL programs to implement new business logic and functionality changes.
+•	Automated and optimized batch processing jobs using JCL, debugged JCL failures, and implemented changes to system-generated reports.
+•	Worked extensively with core mainframe technologies including DB2 for database management and VSAM for indexed data storage.
+Projects
+IoT-Based Continuous Abiotic Factor Monitoring
+•	Core Technologies: Java, Spring Boot, React, SQL
+•	Built, tested, and deployed a full-stack, real-world application from the ground up, applying computer science knowledge of data structures and algorithms.
+•	Developed the backend web service using Java & Spring Boot to expose REST APIs for data ingestion and retrieval.
+•	Created a responsive user interface using JavaScript and React to visualize real-time data.
+Certifications
+•	Cisco Certified DevNet Associate (DEVASC)
+•	Cisco Certified Network Associate (CCNA)
+•	Cisco Certified Cybersecurity Associate (CCCA)
+Education
 Sir M Visvesvaraya Institute of Technology, Bengaluru
-[Graduation Year]
-
-ADDITIONAL QUALIFICATIONS
-
-• Strong analytical and problem-solving skills with attention to detail
-• Excellent communication and teamwork abilities in cross-functional environments
-• Experience with enterprise-scale network infrastructure and security implementations
-• Proficient in network performance optimization and troubleshooting methodologies
-• Knowledge of industry best practices for network security and compliance standards
+•	Bachelor of Engineering (B.E.) – Electronics and Telecommunication Engineering
 Honors & Publications
 •	Research Paper: “IoT-Based Continuous Abiotic Factor Monitoring” – IJFMR, May–June 2023
+
