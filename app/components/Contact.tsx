@@ -210,7 +210,7 @@ export default function Contact() {
         </motion.div>
 
         <motion.div
-          className="grid lg:grid-cols-2 gap-16"
+          className="grid lg:grid-cols-2 gap-8 lg:gap-16"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -233,7 +233,7 @@ export default function Contact() {
               {contactInfo.map((info, index) => (
                 <motion.div
                   key={info.label}
-                  className="relative p-4 rounded-lg border border-border-glow hover:border-cyber-blue/50 transition-all duration-300 group overflow-hidden"
+                  className="relative p-3 sm:p-4 rounded-lg border border-border-glow hover:border-cyber-blue/50 transition-all duration-300 group overflow-hidden touch-target"
                   variants={itemVariants}
                   whileHover={{ scale: 1.02, x: 10 }}
                 >
@@ -372,7 +372,7 @@ export default function Contact() {
                 </motion.div>
               )}
               
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
                     Name
