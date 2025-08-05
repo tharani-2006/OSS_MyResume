@@ -149,8 +149,8 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
       content: (
         <div className="text-green-400/80 text-sm">
           <p className="text-green-300 font-semibold mb-4">Technical Skills</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="border border-green-400/20 p-4 rounded bg-black/20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="border border-green-400/20 p-3 sm:p-4 rounded bg-black/20">
               <p className="text-green-300 font-semibold mb-3">Networking:</p>
               <div className="space-y-2">
                 <p>• TCP/IP, OSPF, BGP</p>
@@ -160,7 +160,7 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
                 <p>• Network Security & Monitoring</p>
               </div>
             </div>
-            <div className="border border-green-400/20 p-4 rounded bg-black/20">
+            <div className="border border-green-400/20 p-3 sm:p-4 rounded bg-black/20">
               <p className="text-green-300 font-semibold mb-3">Programming:</p>
               <div className="space-y-2">
                 <p>• Python, Java, Spring Boot</p>
@@ -170,7 +170,7 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
                 <p>• Object-Oriented Programming</p>
               </div>
             </div>
-            <div className="border border-green-400/20 p-4 rounded bg-black/20">
+            <div className="border border-green-400/20 p-3 sm:p-4 rounded bg-black/20">
               <p className="text-green-300 font-semibold mb-3">DevOps & Tools:</p>
               <div className="space-y-2">
                 <p>• Linux, Git, Docker</p>
@@ -227,8 +227,8 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
       content: (
         <div className="text-green-400/80 text-sm">
           <p className="text-green-300 font-semibold mb-4">Featured Projects</p>
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-            <div className="border border-green-400/20 p-4 rounded bg-black/20">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
+            <div className="border border-green-400/20 p-3 sm:p-4 rounded bg-black/20">
               <h4 className="text-green-300 font-semibold mb-2">Network Automation Tool</h4>
               <p className="text-green-400/70 text-xs mb-3">Python, Cisco IOS, Network Management</p>
               <p className="text-green-400/80 text-sm">
@@ -293,7 +293,7 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
       content: (
         <div className="text-green-400/80 text-sm">
           <p className="text-green-300 font-semibold mb-2">Contact Information</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <p>📧 vsivareddy.venna@gmail.com</p>
               <p>📱 +91 93989 61541</p>
@@ -1754,27 +1754,28 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
       {/* Terminal Window - Full Screen */}
       <div className="h-full flex flex-col">
         {/* Terminal Header */}
-        <div className="flex items-center justify-between p-4 border-b border-green-400/30 bg-green-400/5 backdrop-blur-sm">
+        <div className="flex items-center justify-between p-2 sm:p-4 border-b border-green-400/30 bg-green-400/5 backdrop-blur-sm">
           <div className="flex items-center space-x-2">
-            <div className="w-3 h-3 bg-red-500 rounded-full cursor-pointer hover:bg-red-400 transition-colors"></div>
-            <div className="w-3 h-3 bg-yellow-500 rounded-full cursor-pointer hover:bg-yellow-400 transition-colors"></div>
-            <div className="w-3 h-3 bg-green-500 rounded-full cursor-pointer hover:bg-green-400 transition-colors"></div>
-            <span className="text-green-400 font-mono text-sm ml-4">terminal@sivareddy:{currentPath}$</span>
+            <div className="w-3 h-3 sm:w-4 sm:h-4 bg-red-500 rounded-full cursor-pointer hover:bg-red-400 transition-colors touch-target"></div>
+            <div className="w-3 h-3 sm:w-4 sm:h-4 bg-yellow-500 rounded-full cursor-pointer hover:bg-yellow-400 transition-colors touch-target"></div>
+            <div className="w-3 h-3 sm:w-4 sm:h-4 bg-green-500 rounded-full cursor-pointer hover:bg-green-400 transition-colors touch-target"></div>
+            <span className="text-green-400 font-mono text-xs sm:text-sm ml-2 sm:ml-4 truncate">terminal@sivareddy:{currentPath}$</span>
           </div>
           <motion.button
             onClick={onToggleUI}
-            className="text-green-400/70 hover:text-green-300 transition-colors text-xs font-mono flex items-center space-x-1"
+            className="text-green-400/70 hover:text-green-300 transition-colors text-xs font-mono flex items-center space-x-1 min-h-[44px] px-2 touch-target"
             whileHover={{ scale: 1.05 }}
             title="Switch to Classic Mode"
           >
             <span className="text-green-400/50">$</span>
-            <span>exit_terminal</span>
+            <span className="hidden sm:inline">exit_terminal</span>
+            <span className="sm:hidden">exit</span>
           </motion.button>
         </div>
 
         {/* Main Terminal Content */}
-        <div 
-          className="flex-1 p-6" 
+        <div
+          className="flex-1 p-3 sm:p-6"
           onClick={handleTerminalClick}
         >
           <div className="h-full max-w-6xl mx-auto flex flex-col">
@@ -1783,13 +1784,13 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.5 }}
-              className="mb-8"
+              className="mb-4 sm:mb-8"
             >
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{ duration: 2, delay: 1 }}
-                className="text-green-300/80 text-lg font-mono border-r-2 border-green-400 pr-2 overflow-hidden whitespace-nowrap"
+                className="text-green-300/80 text-base sm:text-lg font-mono border-r-2 border-green-400 pr-2 overflow-hidden whitespace-nowrap"
               >
                 Welcome to Siva's Interactive Terminal Portfolio
               </motion.div>
@@ -1797,11 +1798,18 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 3 }}
-                className="text-green-400/60 text-sm mt-2 font-mono"
+                className="text-green-400/60 text-xs sm:text-sm mt-2 font-mono"
               >
-                Type 'help' for available commands • Navigate with terminal commands • Each section opens as a draggable window
-                <br />
-                <span className="text-green-300/80">💡 Enhanced with networking commands, file operations, and system monitoring</span>
+                <div className="block sm:hidden">
+                  Type 'help' for commands • Tap sections to open windows
+                  <br />
+                  <span className="text-green-300/80">💡 Mobile-optimized terminal interface</span>
+                </div>
+                <div className="hidden sm:block">
+                  Type 'help' for available commands • Navigate with terminal commands • Each section opens as a draggable window
+                  <br />
+                  <span className="text-green-300/80">💡 Enhanced with networking commands, file operations, and system monitoring</span>
+                </div>
               </motion.div>
               
               {/* Terminal status line */}
@@ -1833,7 +1841,7 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
               {/* Terminal Output Area */}
               <div
                 ref={terminalOutputRef}
-                className="w-full h-[400px] overflow-y-auto terminal-scrollbar bg-black/20 relative terminal-output-container"
+                className="w-full h-[250px] sm:h-[400px] overflow-y-auto terminal-scrollbar bg-black/20 relative terminal-output-container"
                 onScroll={(e) => {
                   e.stopPropagation();
                   const target = e.currentTarget;
@@ -1943,7 +1951,7 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
               className={`floating-window fixed border border-green-400/40 rounded-lg bg-black/95 backdrop-blur-sm shadow-2xl ${
                 section.isMaximized 
                   ? 'inset-0 w-full h-full rounded-none' 
-                  : 'min-w-[400px] max-w-[600px] min-h-[300px] max-h-[80vh]'
+                  : 'min-w-[280px] sm:min-w-[400px] max-w-[90vw] sm:max-w-[600px] min-h-[250px] sm:min-h-[300px] max-h-[80vh]'
               } ${!section.isMaximized ? 'cursor-move' : ''}`}
               style={{ 
                 zIndex: 1000 + section.zIndex,
@@ -1966,14 +1974,14 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
               }}
             >
               {/* Mac-style Window Header */}
-              <div className={`flex items-center justify-between p-4 border-b border-green-400/30 bg-green-400/10 ${!section.isMaximized ? 'cursor-move' : ''}`}>
+              <div className={`flex items-center justify-between p-2 sm:p-4 border-b border-green-400/30 bg-green-400/10 ${!section.isMaximized ? 'cursor-move' : ''}`}>
                 <div className="flex items-center space-x-2">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       closeSection(section.id);
                     }}
-                    className="w-3 h-3 bg-red-500 rounded-full hover:bg-red-400 transition-colors flex items-center justify-center group"
+                    className="w-4 h-4 sm:w-3 sm:h-3 bg-red-500 rounded-full hover:bg-red-400 transition-colors flex items-center justify-center group touch-target"
                     title="Close"
                   >
                     <span className="text-red-800 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">×</span>
@@ -1983,7 +1991,7 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
                       e.stopPropagation();
                       minimizeSection(section.id);
                     }}
-                    className="w-3 h-3 bg-yellow-500 rounded-full hover:bg-yellow-400 transition-colors flex items-center justify-center group"
+                    className="w-4 h-4 sm:w-3 sm:h-3 bg-yellow-500 rounded-full hover:bg-yellow-400 transition-colors flex items-center justify-center group touch-target"
                     title="Minimize"
                   >
                     <span className="text-yellow-800 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">−</span>
@@ -1993,7 +2001,7 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
                       e.stopPropagation();
                       maximizeSection(section.id);
                     }}
-                    className="w-3 h-3 bg-green-500 rounded-full hover:bg-green-400 transition-colors flex items-center justify-center group"
+                    className="w-4 h-4 sm:w-3 sm:h-3 bg-green-500 rounded-full hover:bg-green-400 transition-colors flex items-center justify-center group touch-target"
                     title={section.isMaximized ? "Restore" : "Maximize"}
                   >
                     <span className="text-green-800 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">
@@ -2009,8 +2017,8 @@ export default function InteractiveTerminal({ onToggleUI }: InteractiveTerminalP
               {/* Window Content */}
               <div className={`overflow-y-auto cursor-auto terminal-scrollbar ${
                 section.isMaximized 
-                  ? 'h-[calc(100vh-80px)] p-8' 
-                  : 'max-h-[500px] min-h-[200px] p-6'
+                  ? 'h-[calc(100vh-80px)] p-4 sm:p-8'
+                  : 'max-h-[400px] sm:max-h-[500px] min-h-[150px] sm:min-h-[200px] p-3 sm:p-6'
               }`}>
                 {section.isMaximized ? (
                   <div className="max-w-6xl mx-auto">

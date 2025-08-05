@@ -37,6 +37,46 @@
   .container-max {
     @apply max-w-7xl mx-auto;
   }
+
+  /* Mobile-specific touch targets */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+
+  /* Mobile-optimized text sizes */
+  .mobile-text-sm {
+    @apply text-xs sm:text-sm;
+  }
+
+  .mobile-text-base {
+    @apply text-sm sm:text-base;
+  }
+
+  .mobile-text-lg {
+    @apply text-base sm:text-lg;
+  }
+
+  .mobile-text-xl {
+    @apply text-lg sm:text-xl;
+  }
+
+  /* Mobile-optimized spacing */
+  .mobile-padding {
+    @apply p-3 sm:p-4 md:p-6;
+  }
+
+  .mobile-margin {
+    @apply m-3 sm:m-4 md:m-6;
+  }
+
+  /* Mobile-optimized grids */
+  .mobile-grid-1-2 {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4;
+  }
+
+  .mobile-grid-1-2-3 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6;
+  }
 }
 
 /* Custom scrollbar */

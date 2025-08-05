@@ -110,12 +110,12 @@ export default function Hero() {
 
         {/* CTA Buttons */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
+          className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16"
           variants={itemVariants}
         >
           <motion.a
             href="#projects"
-            className="cyber-button group"
+            className="cyber-button group touch-target w-full sm:w-auto"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -125,7 +125,7 @@ export default function Hero() {
           
           <motion.a
             href="#contact"
-            className="px-6 py-3 border border-cyber-blue text-cyber-blue rounded-lg font-semibold transition-all duration-300 hover:bg-cyber-blue hover:text-dark-bg group"
+            className="px-6 py-3 border border-cyber-blue text-cyber-blue rounded-lg font-semibold transition-all duration-300 hover:bg-cyber-blue hover:text-dark-bg group touch-target w-full sm:w-auto text-center"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
