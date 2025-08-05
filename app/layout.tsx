@@ -1,6 +1,8 @@
 import './globals.css'
 import type { Metadata, Viewport } from 'next'
 import PerformanceMonitor from './components/PerformanceMonitor'
+import { SecurityProvider } from './components/SecurityProvider'
+import SecurityMonitor from './components/SecurityMonitor'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://my-resume-o2do89dyl-sivavennas-projects.vercel.app'),
@@ -132,8 +134,11 @@ export default function RootLayout({
         />
       </head>
       <body className="overflow-x-hidden">
-        {children}
-        <PerformanceMonitor />
+        <SecurityProvider>
+          {children}
+          <PerformanceMonitor />
+          <SecurityMonitor />
+        </SecurityProvider>
       </body>
     </html>
   )

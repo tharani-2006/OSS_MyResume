@@ -1,11 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, Shield } from 'lucide-react'
 import { useState } from 'react'
 import emailjs from '@emailjs/browser'
+import { processFormData, validate, sanitize } from '../lib/security'
+import { useSecurity } from './SecurityProvider'
 
 export default function Contact() {
+  const { csrfToken, checkRateLimit, isRateLimited } = useSecurity()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,16 +21,64 @@ export default function Contact() {
   const [fieldFocus, setFieldFocus] = useState<string | null>(null)
   const [copySuccess, setCopySuccess] = useState('')
   const [formProgress, setFormProgress] = useState(0)
+  const [validationErrors, setValidationErrors] = useState<string[]>([])
+  const [isSecureConnection, setIsSecureConnection] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
+
+    // Real-time input sanitization
+    let sanitizedValue = value
+    switch (name) {
+      case 'email':
+        sanitizedValue = sanitize.email(value)
+        break
+      case 'name':
+        sanitizedValue = sanitize.name(value)
+        break
+      default:
+        sanitizedValue = sanitize.text(value)
+    }
+
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: sanitizedValue
     }))
-    
+
+    // Real-time validation
+    const errors: string[] = []
+    if (sanitizedValue) {
+      switch (name) {
+        case 'email':
+          if (!validate.email(sanitizedValue)) {
+            errors.push('Invalid email format')
+          }
+          break
+        case 'name':
+          if (!validate.name(sanitizedValue)) {
+            errors.push('Name must be 2-50 characters, letters only')
+          }
+          break
+        case 'message':
+          if (!validate.message(sanitizedValue)) {
+            errors.push('Message must be 10-2000 characters')
+          }
+          break
+      }
+
+      // Security validation
+      if (!validate.noXSS(sanitizedValue)) {
+        errors.push('Invalid characters detected')
+      }
+      if (!validate.noSqlInjection(sanitizedValue)) {
+        errors.push('Invalid input detected')
+      }
+    }
+
+    setValidationErrors(errors)
+
     // Calculate form completion progress
-    const updatedData = { ...formData, [name]: value }
+    const updatedData = { ...formData, [name]: sanitizedValue }
     const filledFields = Object.values(updatedData).filter(val => val.trim() !== '').length
     setFormProgress((filledFields / 4) * 100)
   }
@@ -55,7 +106,46 @@ export default function Contact() {
     setIsSubmitting(true)
     setSubmitMessage('')
     setSubmitType('')
-    
+    setValidationErrors([])
+
+    // Security checks
+    if (isRateLimited) {
+      setSubmitMessage('Too many requests. Please wait before submitting again.')
+      setSubmitType('error')
+      setIsSubmitting(false)
+      return
+    }
+
+    // Rate limiting check
+    if (!checkRateLimit(formData.email || 'anonymous')) {
+      setSubmitMessage('Rate limit exceeded. Please wait 15 minutes before submitting again.')
+      setSubmitType('error')
+      setIsSubmitting(false)
+      return
+    }
+
+    // CSRF token validation
+    if (!csrfToken) {
+      setSubmitMessage('Security token missing. Please refresh the page and try again.')
+      setSubmitType('error')
+      setIsSubmitting(false)
+      return
+    }
+
+    // Input validation and sanitization
+    const { isValid, sanitizedData, errors } = processFormData(formData)
+
+    if (!isValid) {
+      setValidationErrors(errors)
+      setSubmitMessage('Please correct the errors below.')
+      setSubmitType('error')
+      setIsSubmitting(false)
+      return
+    }
+
+    // Use sanitized data for submission
+    const secureFormData = sanitizedData
+
     try {
       // Method 1: Try EmailJS first (primary method)
       try {
@@ -70,11 +160,12 @@ export default function Contact() {
             serviceId,
             templateId,
             {
-              from_name: formData.name,
-              from_email: formData.email,
-              subject: formData.subject,
-              message: formData.message,
-              reply_to: formData.email,
+              from_name: secureFormData.name,
+              from_email: secureFormData.email,
+              subject: secureFormData.subject,
+              message: secureFormData.message,
+              reply_to: secureFormData.email,
+              csrf_token: csrfToken,
             },
             publicKey
           )
@@ -97,8 +188,13 @@ export default function Contact() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'X-CSRF-Token': csrfToken,
+            'X-Requested-With': 'XMLHttpRequest',
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({
+            ...secureFormData,
+            csrf_token: csrfToken,
+          }),
         })
         
         if (response.ok) {
@@ -355,7 +451,48 @@ export default function Contact() {
                 Typically responds within <span className="text-cyber-blue font-medium">24 hours</span>
               </span>
             </motion.div>
-            
+
+            {/* Security Status Indicator */}
+            <motion.div
+              className="flex items-center space-x-2 mb-4 p-3 bg-green-500/5 border border-green-500/20 rounded-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              <Shield className="w-4 h-4 text-green-400" />
+              <span className="text-sm text-gray-300">
+                <span className="text-green-400 font-medium">Secure Form</span> - Protected by CSRF tokens and input validation
+              </span>
+            </motion.div>
+
+            {/* Validation Errors */}
+            {validationErrors.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="p-4 rounded-lg border bg-red-500/10 border-red-500/50 text-red-400 mb-4"
+              >
+                <div className="font-medium mb-2">Please fix the following errors:</div>
+                <ul className="list-disc list-inside space-y-1">
+                  {validationErrors.map((error, index) => (
+                    <li key={index} className="text-sm">{error}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
+
+            {/* Rate Limit Warning */}
+            {isRateLimited && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="p-4 rounded-lg border bg-yellow-500/10 border-yellow-500/50 text-yellow-400 mb-4"
+              >
+                <div className="font-medium">Rate Limit Active</div>
+                <div className="text-sm">Please wait before submitting another message.</div>
+              </motion.div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Success/Error Message */}
               {submitMessage && (
