@@ -4,10 +4,11 @@ import dotenv from 'dotenv';
 // Load environment variables
 dotenv.config();
 
-const MONGODB_URI = process.env.MONGODB_URI;
+// Use local MongoDB for open source project
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/chatbot';
 
 if (!MONGODB_URI) {
-  throw new Error('Please define the MONGODB_URI environment variable inside .env');
+  throw new Error('Please define the MONGODB_URI environment variable inside .env or ensure MongoDB is running locally');
 }
 
 /**

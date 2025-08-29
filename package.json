@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "analyze": "ANALYZE=true npm run build"
+    "analyze": "ANALYZE=true npm run build",
+    "seed": "node src/seedData.js",
+    "test-api": "node test-chatbot-api.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
