@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '../../../src/db.js';
 import QA from '../../../src/models/qa.model.js';
-import type { AddQARequest, AddQAResponse } from '../../../types/chatbot.js';
 
 export async function POST(request: NextRequest) {
   try {
@@ -97,8 +96,9 @@ export async function POST(request: NextRequest) {
     console.error('Add Q&A API error:', error);
     
     // Handle validation errors
-    if (error.name === 'ValidationError') {
-      const validationErrors = Object.values(error.errors).map((err: any) => err.message);
+    if (error instanceof Error && error.name === 'ValidationError') {
+      const validationError = error as Error & { errors: Record<string, { message: string }> };
+      const validationErrors = Object.values(validationError.errors).map((err) => err.message);
       return NextResponse.json(
         { 
           error: 'Validation failed',

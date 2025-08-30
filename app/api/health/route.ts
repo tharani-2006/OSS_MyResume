@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import connectDB from '../../../src/db.js';
 import QA from '../../../src/models/qa.model.js';
-import type { HealthResponse } from '../../../types/chatbot.js';
 
 export async function GET() {
   try {

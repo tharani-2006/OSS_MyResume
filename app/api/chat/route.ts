@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '../../../src/db.js';
 import QA from '../../../src/models/qa.model.js';
-import type { QADocument, ChatResponse } from '../../../types/chatbot.js';
+import type { QADocument } from '../../../types/chatbot.js';
 
 export async function POST(request: NextRequest) {
   try {
@@ -32,16 +32,17 @@ export async function POST(request: NextRequest) {
 
     try {
       // First, try text search (requires text index)
-      results = await (QA as any).searchQuestions(trimmedQuestion, limit);
+      results = await (QA as unknown as { searchQuestions: (query: string, limit: number) => Promise<QADocument[]> }).searchQuestions(trimmedQuestion, limit);
 
       // If no results from text search, try regex search as fallback
       if (results.length === 0) {
-        results = await (QA as any).regexSearch(trimmedQuestion, limit);
+        results = await (QA as unknown as { regexSearch: (query: string, limit: number) => Promise<QADocument[]> }).regexSearch(trimmedQuestion, limit);
       }
-    } catch (textSearchError: any) {
-      console.log('Text search failed, using regex fallback:', textSearchError.message);
+    } catch (textSearchError: unknown) {
+      const errorMessage = textSearchError instanceof Error ? textSearchError.message : 'Unknown error';
+      console.log('Text search failed, using regex fallback:', errorMessage);
       // Fallback to regex search if text index doesn't exist yet
-      results = await (QA as any).regexSearch(trimmedQuestion, limit);
+      results = await (QA as unknown as { regexSearch: (query: string, limit: number) => Promise<QADocument[]> }).regexSearch(trimmedQuestion, limit);
     }
 
     // If we found results, return the best match
