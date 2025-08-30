@@ -4,11 +4,20 @@ import dotenv from 'dotenv';
 // Load environment variables
 dotenv.config();
 
-// Use local MongoDB for open source project
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/chatbot';
+// Production configuration with MongoDB Atlas
+const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
-  throw new Error('Please define the MONGODB_URI environment variable inside .env or ensure MongoDB is running locally');
+  throw new Error('Please define the MONGODB_URI environment variable for MongoDB Atlas connection');
+}
+
+// Log connection type (without exposing credentials)
+const isAtlas = MONGODB_URI.includes('mongodb+srv://');
+const isLocal = MONGODB_URI.includes('localhost');
+console.log(`🔗 Connecting to MongoDB: ${isAtlas ? 'MongoDB Atlas' : isLocal ? 'localhost:27017' : 'Custom MongoDB'}`);
+
+if (!isAtlas && !isLocal) {
+  console.log('⚠️  Using custom MongoDB connection');
 }
 
 /**

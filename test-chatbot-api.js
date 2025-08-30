@@ -1,7 +1,16 @@
 // Test script for chatbot API endpoints
-// Run with: node test-chatbot-api.js
+// Usage:
+//   Local: npm run test-api
+//   Production: API_BASE_URL=https://your-domain.vercel.app npm run test-api
 
-const BASE_URL = 'http://localhost:3000';
+// Configuration - Automatically detects environment
+const BASE_URL = process.env.API_BASE_URL ||
+                 process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` :
+                 'http://localhost:3000';
+
+const isProduction = BASE_URL.includes('vercel.app') || BASE_URL.includes('https://');
+console.log(`🔗 Testing API at: ${BASE_URL}`);
+console.log(`🌍 Environment: ${isProduction ? 'Production' : 'Local Development'}`);
 
 async function testAPI() {
   console.log('🧪 Testing Chatbot API Endpoints\n');

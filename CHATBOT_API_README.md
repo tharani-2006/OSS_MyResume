@@ -142,12 +142,38 @@ npm run test-api
 
 ## 📊 Sample Data Categories
 
-The seeded database includes Q&A pairs in these categories:
-- **Skills**: Technologies, programming languages, databases
-- **Projects**: Portfolio projects, technical implementations
-- **Experience**: Professional background, expertise areas
-- **Contact**: How to reach out, availability
-- **General**: Unique qualities, technical preferences
+The seeded database includes **35+ comprehensive Q&A pairs** covering:
+
+### 👤 Personal & Professional
+- **Personal**: Name, location, contact information
+- **Experience**: Current role at Cisco Systems, previous experience at Cognizant
+- **Education**: Electronics & Telecommunication Engineering background
+- **Contact**: Email, phone, LinkedIn, GitHub, availability
+
+### 💻 Technical Expertise
+- **Skills**: Java, Python, JavaScript/TypeScript, SQL, COBOL, Shell Scripting
+- **Technologies**: Kubernetes, Docker, Spring Boot, React, PostgreSQL, MongoDB
+- **Cloud**: AWS, GCP, CI/CD, Infrastructure as Code
+- **Networking**: CCNA certified, TCP/IP, Wireshark, device configuration
+- **Security**: CCCA certified, SSO implementation, secure coding practices
+
+### 🚀 Projects & Implementations
+- **Network Automation Toolkit**: Python/Flask with SNMP device management
+- **Security Compliance Monitor**: FastAPI/React with vulnerability scanning
+- **Library Management System**: PostgreSQL with advanced SQL features
+- **Log Analysis System**: Java/Spring Boot with real-time processing
+- **Portfolio Website**: Next.js/TypeScript with terminal interface
+
+### 🏆 Certifications & Specializations
+- **Cisco Certified DevNet Associate (DEVASC)**: Network programmability
+- **Cisco Certified Network Associate (CCNA)**: Networking fundamentals
+- **Cisco Certified Cybersecurity Associate (CCCA)**: Security expertise
+
+### 🔧 Methodologies & Tools
+- **Development**: Agile, DevOps, GitOps, Test-driven development
+- **Tools**: IntelliJ IDEA, VS Code, Git, Docker, Kubernetes, Wireshark
+- **Architecture**: Microservices, API design, system migration
+- **Automation**: Network automation, CI/CD pipelines, infrastructure automation
 
 ## 🔧 Configuration
 

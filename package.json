@@ -2,6 +2,7 @@
   "name": "portfolio-website",
   "version": "0.2.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,7 +11,12 @@
     "type-check": "tsc --noEmit",
     "analyze": "ANALYZE=true npm run build",
     "seed": "node src/seedData.js",
-    "test-api": "node test-chatbot-api.js"
+    "seed-production": "node scripts/seed-production.js",
+    "test-api": "node test-chatbot-api.js",
+    "start-localhost": "node start-localhost.js",
+    "quick-test": "npm run seed && npm run test-api",
+    "check-mongodb": "node check-mongodb.js",
+    "postbuild": "echo 'Build completed successfully! Ready for deployment.'"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
