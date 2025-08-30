@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '../../../src/db.js';
 import QA from '../../../src/models/qa.model.js';
+import type { QADocument, ChatResponse } from '../../../types/chatbot.js';
 
 export async function POST(request: NextRequest) {
   try {
@@ -27,20 +28,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    let results = [];
+    let results: QADocument[] = [];
 
     try {
       // First, try text search (requires text index)
-      results = await QA.searchQuestions(trimmedQuestion, limit);
-      
+      results = await (QA as any).searchQuestions(trimmedQuestion, limit);
+
       // If no results from text search, try regex search as fallback
       if (results.length === 0) {
-        results = await QA.regexSearch(trimmedQuestion, limit);
+        results = await (QA as any).regexSearch(trimmedQuestion, limit);
       }
-    } catch (textSearchError) {
+    } catch (textSearchError: any) {
       console.log('Text search failed, using regex fallback:', textSearchError.message);
       // Fallback to regex search if text index doesn't exist yet
-      results = await QA.regexSearch(trimmedQuestion, limit);
+      results = await (QA as any).regexSearch(trimmedQuestion, limit);
     }
 
     // If we found results, return the best match

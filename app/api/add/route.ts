@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '../../../src/db.js';
 import QA from '../../../src/models/qa.model.js';
+import type { AddQARequest, AddQAResponse } from '../../../types/chatbot.js';
 
 export async function POST(request: NextRequest) {
   try {
